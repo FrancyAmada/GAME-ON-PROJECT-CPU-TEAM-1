@@ -14,3 +14,8 @@ config/name="Game On Final"
 run/main_scene="res://World.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Game="*res://global/game.gd"
+Utils="*res://global/utils.gd"
