@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://rgokhokuj2k1"]
+
+[ext_resource type="Texture2D" uid="uid://c7ra3c3tlqqex" path="res://game assets test/oak_woods_v1.0/decorations/lamp.png" id="1_4l0iq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t16go"]
+height = 60.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iyq2k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4l0iq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Lamp" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t16go")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_iyq2k")

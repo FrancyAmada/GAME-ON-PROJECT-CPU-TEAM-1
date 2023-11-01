@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://coklvrkg4xuwo"]
+
+[ext_resource type="Texture2D" uid="uid://dr4gtlxavmx6l" path="res://game assets test/custom/coin1.png" id="1_gx08o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5dwyk"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ng6uo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gx08o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="coinStored" type="RigidBody2D" groups=["coin_stored"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5dwyk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.9375, -1)
+scale = Vector2(1.51042, 1.25781)
+sprite_frames = SubResource("SpriteFrames_ng6uo")

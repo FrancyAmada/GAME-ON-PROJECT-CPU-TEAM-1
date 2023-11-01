@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=10 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
 [ext_resource type="PackedScene" uid="uid://py8eaf6rn7ys" path="res://bg/bg_forest.tscn" id="3_i7qhs"]
 [ext_resource type="Script" path="res://gold.gd" id="4_pdopd"]
-[ext_resource type="PackedScene" uid="uid://d2nnt5h3muoqc" path="res://collectables.tscn" id="5_fd7hc"]
+[ext_resource type="PackedScene" uid="uid://cyvafd74yadlo" path="res://collectables/coin.tscn" id="5_8jj52"]
+[ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="5_o8fy5"]
+[ext_resource type="Script" path="res://coinSpawner.gd" id="6_ijbuo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
 texture = ExtResource("2_0wty5")
@@ -2098,7 +2100,21 @@ offset_bottom = 53.0
 text = "Gold"
 script = ExtResource("4_pdopd")
 
-[node name="collectables" type="Node2D" parent="."]
+[node name="bag" parent="UI" instance=ExtResource("5_o8fy5")]
+position = Vector2(1082, 514)
 
-[node name="Cherry" parent="collectables" instance=ExtResource("5_fd7hc")]
-position = Vector2(361, 326)
+[node name="collectables" type="Node2D" parent="."]
+position = Vector2(2, 1)
+
+[node name="coinSpawner" type="Node2D" parent="collectables"]
+position = Vector2(-2, -1)
+script = ExtResource("6_ijbuo")
+
+[node name="Timer" type="Timer" parent="collectables/coinSpawner"]
+wait_time = 0.492
+autostart = true
+
+[node name="coin" parent="collectables" instance=ExtResource("5_8jj52")]
+position = Vector2(455, 300)
+
+[connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]
