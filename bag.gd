@@ -3,8 +3,9 @@ extends StaticBody2D
 var CoinScene = preload("res://coin_stored.tscn")
 
 func _ready():
-	Signals.connect("spawnCoin", _on_coin_collected)
-	Signals.connect("removeCoin", _remove_coin)
+	Signals.connect("add_coin", _on_coin_collected)
+	Signals.connect("remove_coin", _remove_coin)
+	Signals.connect("pass_coin", _remove_coin)
 
 func _process(delta):
 	var coins = 0
@@ -31,5 +32,5 @@ func _remove_coin():
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("coin_stored"):
-		Signals.emit_signal("dropCoin")
+		Signals.emit_signal("drop_coin")
 		body.queue_free()

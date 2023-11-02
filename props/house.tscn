@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://55xbqi4ghcka"]
+
+[ext_resource type="Texture2D" uid="uid://cq6dc66mss261" path="res://game assets test/oak_woods_v1.0/decorations/shop.png" id="1_xbeor"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t16go"]
+radius = 62.0
+height = 124.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iyq2k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xbeor")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="house" type="Area2D" groups=["interactable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t16go")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -0.25)
+scale = Vector2(1, 1.04386)
+sprite_frames = SubResource("SpriteFrames_iyq2k")

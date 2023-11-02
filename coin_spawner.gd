@@ -3,8 +3,8 @@ extends Node2D
 var Coin = preload("res://collectables/coin.tscn")
 
 func _ready():
-	Signals.connect("dropCoin", _drop_coin)
-	Signals.connect("removeCoin", _drop_coin)
+	Signals.connect("drop_coin", _drop_coin)
+	Signals.connect("remove_coin", _drop_coin)
 
 func _on_timer_timeout():
 	var new_coin_temp = Coin.instantiate()

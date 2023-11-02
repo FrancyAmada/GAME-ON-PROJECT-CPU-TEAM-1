@@ -1,7 +1,9 @@
 extends Node
 
-signal spawnCoin
+signal add_coin
 
-signal dropCoin
+signal drop_coin
 
-signal removeCoin
+signal remove_coin
+
+signal pass_coin

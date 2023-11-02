@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3ipjerk8uya8"]
+[gd_scene load_steps=27 format=3 uid="uid://d3ipjerk8uya8"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_bktfi"]
 [ext_resource type="Texture2D" uid="uid://dncra0lssup53" path="res://game assets test/Medieval King Pack 2/Sprites/Run.png" id="2_1japs"]
@@ -224,6 +224,9 @@ _data = {
 "run": SubResource("Animation_q1qqv")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_d13en"]
+radius = 16.0
+
 [node name="Player" type="CharacterBody2D" groups=["CharacterBody2D"]]
 script = ExtResource("1_bktfi")
 
@@ -245,3 +248,12 @@ zoom = Vector2(2, 2)
 libraries = {
 "": SubResource("AnimationLibrary_xxtoi")
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_d13en")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

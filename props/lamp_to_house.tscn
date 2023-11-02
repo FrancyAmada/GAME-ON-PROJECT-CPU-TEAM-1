@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn41lw4m0pjn5"]
+
+[ext_resource type="Script" path="res://lamp_to_house.gd" id="1_riw42"]
+[ext_resource type="PackedScene" uid="uid://rgokhokuj2k1" path="res://props/lamp.tscn" id="2_ac7bm"]
+
+[node name="lamp_to_house" type="Node2D"]
+script = ExtResource("1_riw42")
+
+[node name="Lamp" parent="." instance=ExtResource("2_ac7bm")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=11 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://gold.gd" id="4_pdopd"]
 [ext_resource type="PackedScene" uid="uid://cyvafd74yadlo" path="res://collectables/coin.tscn" id="5_8jj52"]
 [ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="5_o8fy5"]
-[ext_resource type="Script" path="res://coinSpawner.gd" id="6_ijbuo"]
+[ext_resource type="Script" path="res://coin_spawner.gd" id="6_53mfs"]
+[ext_resource type="PackedScene" uid="uid://dn41lw4m0pjn5" path="res://props/lamp_to_house.tscn" id="8_qjbtu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
 texture = ExtResource("2_0wty5")
@@ -2078,6 +2079,9 @@ sources/0 = SubResource("TileSetAtlasSource_swccr")
 
 [node name="world" type="Node2D"]
 
+[node name="lamp_to_house" parent="." instance=ExtResource("8_qjbtu")]
+position = Vector2(569, 305)
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_a4p3w")
 format = 2
@@ -2107,8 +2111,8 @@ position = Vector2(1082, 514)
 position = Vector2(2, 1)
 
 [node name="coinSpawner" type="Node2D" parent="collectables"]
-position = Vector2(-2, -1)
-script = ExtResource("6_ijbuo")
+position = Vector2(2, 1)
+script = ExtResource("6_53mfs")
 
 [node name="Timer" type="Timer" parent="collectables/coinSpawner"]
 wait_time = 0.492

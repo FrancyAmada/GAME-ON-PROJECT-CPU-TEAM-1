@@ -5,5 +5,5 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		Signals.emit_signal("spawnCoin")
+		Signals.emit_signal("add_coin")
 		queue_free()
