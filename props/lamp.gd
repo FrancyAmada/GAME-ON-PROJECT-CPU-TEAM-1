@@ -2,11 +2,16 @@ extends Area2D
 
 var Coin = preload("res://collectables/coin.tscn")
 
+var last_coin_pass_time = 0
+var delay_before_drop = 3
+
 func _ready():
 	Signals.connect("pass_coin", _pass_coin)
+	set_process(true)
 
 func _pass_coin():
 	call_deferred("on_pass_coin")
+	last_coin_pass_time = 0
 
 func _process(delta):
 	var coins = 0
@@ -16,6 +21,10 @@ func _process(delta):
 	if coins >= 2:
 		await get_tree().create_timer(.6).timeout
 		self.queue_free()
+		
+	last_coin_pass_time += delta
+	if last_coin_pass_time >= delay_before_drop:
+		drop_all_coins()
 
 func on_pass_coin():
 	var new_coin = Coin.instantiate()
@@ -24,3 +33,9 @@ func on_pass_coin():
 	new_coin.set_gravity_scale(0)
 	var tween = get_tree().create_tween()
 	tween.tween_property(new_coin, "position", position - self.position + Vector2(0, -35), .5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
+func drop_all_coins():
+	for child in get_children():
+		if child.is_in_group("coin"):
+			var coin = child
+			coin.set_gravity_scale(1)
