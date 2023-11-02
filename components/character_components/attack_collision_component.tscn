@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://82fic0hyyxbq"]
+
+[ext_resource type="Script" path="res://components/character_components/attack_collision_component.gd" id="1_2tqu2"]
+
+[node name="AttackCollisionComponent" type="CollisionShape2D"]
+script = ExtResource("1_2tqu2")

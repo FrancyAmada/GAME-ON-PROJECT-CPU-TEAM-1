@@ -1,15 +1,22 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+class_name Player
+
+signal use_attack(attack_name: String)
+
+@onready var state_machine: CharacterStateMachine = $CharacterStateMachine
+@onready var velocity_component: VelocityComponent = $VelocityComponent
+@onready var animation_component: AnimationComponent = $AnimationComponent
+@onready var max_speed = velocity_component.max_speed
 
 var interactable_object : Node2D = null
-
-@onready var anim = get_node("AnimationPlayer")
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var Coin = preload("res://collectables/coin.tscn")
+
+var direction: Vector2
+
 
 func _ready():
 	set_process_input(true)
@@ -36,21 +43,15 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	var direction = Input.get_axis("ui_left", "ui_right")
-	
-	if direction == -1:
-		get_node("AnimatedSprite2D").flip_h = true
-	elif direction == 1:
-		get_node("AnimatedSprite2D").flip_h = false
-	
-	if direction:
-		velocity.x = direction * SPEED
-		anim.play("run")
+	direction = Input.get_vector("left", "right", "up", "down")
+	if direction.x and state_machine.check_if_can_move():
+		velocity.x = direction.x * max_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		anim.play("idle")
+		velocity.x = move_toward(velocity.x, 0, max_speed)
 		
 	move_and_slide()
+	animation_component.update_animation(direction)
+	animation_component.update_facing_direction(direction)
 
 func _on_area_2d_area_entered(object):
 	if object.is_in_group("interactable"):
