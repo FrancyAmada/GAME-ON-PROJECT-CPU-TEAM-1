@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://py8eaf6rn7ys"]
+[gd_scene load_steps=5 format=3 uid="uid://py8eaf6rn7ys"]
 
 [ext_resource type="Script" path="res://BG Forest.gd" id="1_6wlkh"]
 [ext_resource type="Texture2D" uid="uid://cyvfts5dse776" path="res://game assets test/oak_woods_v1.0/background/background_layer_1.png" id="2_6jaa7"]
+[ext_resource type="Script" path="res://bg/bg1.gd" id="2_dd1l4"]
 [ext_resource type="Texture2D" uid="uid://ulwo3mo0rb56" path="res://game assets test/oak_woods_v1.0/background/background_layer_2.png" id="3_kjbua"]
 
 [node name="BG Forest" type="ParallaxBackground"]
@@ -10,6 +11,7 @@ script = ExtResource("1_6wlkh")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(1494, 0)
+script = ExtResource("2_dd1l4")
 
 [node name="BackgroundLayer1" type="Sprite2D" parent="ParallaxLayer"]
 position = Vector2(357.25, 247)
@@ -17,7 +19,7 @@ scale = Vector2(2.21094, 2.75556)
 texture = ExtResource("2_6jaa7")
 
 [node name="BackgroundLayer2" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(377.25, 247)
+position = Vector2(390, 249)
 scale = Vector2(2.33594, 2.75556)
 texture = ExtResource("2_6jaa7")
 
@@ -29,6 +31,7 @@ texture = ExtResource("2_6jaa7")
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.7, 0.7)
 motion_mirroring = Vector2(1498, 0)
+script = ExtResource("2_dd1l4")
 
 [node name="BackgroundLayer2" type="Sprite2D" parent="ParallaxLayer2"]
 position = Vector2(252, 300)
