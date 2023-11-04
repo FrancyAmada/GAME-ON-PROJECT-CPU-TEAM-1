@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-signal use_attack(attack_name: String)
+@export var hit_state: HitState
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
@@ -11,9 +11,9 @@ signal use_attack(attack_name: String)
 
 var interactable_object : Node2D = null
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 var Coin = preload("res://collectables/coin.tscn")
+
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: Vector2
 
@@ -46,7 +46,7 @@ func _physics_process(delta):
 	direction = Input.get_vector("left", "right", "up", "down")
 	if direction.x and state_machine.check_if_can_move():
 		velocity.x = direction.x * max_speed
-	else:
+	elif state_machine.current_state != hit_state:
 		velocity.x = move_toward(velocity.x, 0, max_speed)
 		
 	move_and_slide()
