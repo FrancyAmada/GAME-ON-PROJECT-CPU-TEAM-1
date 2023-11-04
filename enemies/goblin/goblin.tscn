@@ -350,7 +350,7 @@ states/Move/position = Vector2(427, 88)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_br2wd"), "Move", "Attack1", SubResource("AnimationNodeStateMachineTransition_sq08g"), "Attack1", "Move", SubResource("AnimationNodeStateMachineTransition_var7u"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_0j8we"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_hrvg6"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_2k0q4"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_ka6yj")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ll4mi"]
-radius = 700.0
+radius = 1200.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfrxp"]
 size = Vector2(27, 32)
@@ -358,10 +358,11 @@ size = Vector2(27, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hawr"]
 size = Vector2(24, 32)
 
-[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("hit_state")]
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "attack1_component")]
 collision_layer = 4
 script = ExtResource("1_u0c15")
 hit_state = NodePath("CharacterStateMachine/Hit")
+attack1_component = NodePath("Attack1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -448,7 +449,7 @@ shape = SubResource("CircleShape2D_ll4mi")
 script = ExtResource("19_fmpdm")
 damage = 10.0
 attack_area = NodePath("Attack1")
-knockback_distance = 150.0
+knockback_distance = 100.0
 detection_collision_component = NodePath("EnemyDetector/DetectionCollisionComponent")
 animation_component = NodePath("../AnimationComponent")
 attack_collision_component = NodePath("Attack1/AttackCollisionComponent")

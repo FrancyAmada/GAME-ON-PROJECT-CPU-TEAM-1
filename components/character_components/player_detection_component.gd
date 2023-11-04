@@ -11,8 +11,8 @@ signal chase_player(body: CharacterBody2D)
 
 func _ready():
 	detection_area.connect("_on_body_entered", _on_player_detection_body_entered)
-	detection_area.connect("_on_body_exited", _on_player_detection_body_exited)
- 
+	detection_area.connect("_on_body_exited", _on_player_detection_body_exited) 
+
 func start_chase(body: CharacterBody2D):
 	emit_signal("chase_player", body)
 	
@@ -20,8 +20,10 @@ func stop_chase():
 	emit_signal("chase_player", null)
 
 func _on_player_detection_body_entered(body):
-	for child in body.get_children():
-		if child is HitBoxComponent:
+	var health_component: HealthComponent = body.find_child("HealthComponent")
+	var hitbox_component: HitBoxComponent = body.find_child("HitBoxComponent")
+	if health_component and hitbox_component:
+		if health_component.health > 0:
 			start_chase(body)
 			
 func _on_player_detection_body_exited(body):

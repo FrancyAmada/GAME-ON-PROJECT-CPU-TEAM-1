@@ -2098,9 +2098,10 @@ transform = Transform2D(1, 0, 0, 1, -100, -100)
 [node name="GoblinSpawner" parent="Enemies" instance=ExtResource("4_cwq77")]
 position = Vector2(0, 257)
 goblin = ExtResource("4_yt5yi")
+spawn_interval = 2.0
 
 [node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
-position = Vector2(645, 318)
+position = Vector2(596, 319)
 
 [node name="Player" parent="." instance=ExtResource("1_tdels")]
 position = Vector2(342, 320)
@@ -2126,7 +2127,8 @@ position = Vector2(2, 1)
 script = ExtResource("6_53mfs")
 
 [node name="Timer" type="Timer" parent="collectables/coinSpawner"]
-wait_time = 0.492
+process_callback = 0
+wait_time = 3.0
 autostart = true
 
 [node name="coin" parent="collectables" instance=ExtResource("5_8jj52")]

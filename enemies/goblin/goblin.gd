@@ -2,21 +2,21 @@ extends CharacterBody2D
 
 class_name Goblin
 
-@export var hit_state = State
+@export var hit_state: State
+@export var attack1_component: AttackComponent
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var playerdetection_component: PlayerDetectionComponent = $PlayerDetectionComponent
 @onready var max_speed = velocity_component.max_speed
+@onready var player: CharacterBody2D
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: Vector2 = Vector2.RIGHT
-
-@onready var player: CharacterBody2D
 
 
 func _ready():
@@ -41,7 +41,7 @@ func _physics_process(delta):
 func get_direction():
 	for child in player.get_children():
 		if child is HitBoxComponent:
-			if child.health_component.health >= 0:
+			if child.health_component.health >= 0 and not attack1_component.check_if_enemy_is_detected():
 				direction.x = sign((player.position - position).x)
 			else:
 				direction.x = 0

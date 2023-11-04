@@ -2,11 +2,19 @@ extends AttackComponent
 
 @export var damage: float = 10.0
 @export var attack_area: Area2D
-@export var knockback_distance: float = 150.0
+@export var knockback_distance: float = 100.0
 @export var detection_collision_component: AttackCollisionComponent 
 
+@onready var enemy_detector: AttackDetectionComponent = $EnemyDetector
 @onready var enemy_detected: bool = false
 
+
+func _ready():
+	timer.wait_time = cd_time
+	timer.connect("_on_timeout", _on_timer_timeout)
+	animation_component.connect("facing_direction_changed", _on_facing_direction_changed)
+	use_state.connect("use_attack", _on_attack_use)
+	enemy_detector.connect("is_enemy_detected", _on_enemy_is_detected)
 
 func _on_attack_1_body_entered(body):
 	for child in body.get_children():
@@ -14,7 +22,6 @@ func _on_attack_1_body_entered(body):
 			# get direction from the sword to the body
 			var direction_to_damageable = body.global_position - get_parent().global_position
 			var direction_sign = sign(direction_to_damageable.x)
-			
 			do_melee_attack(child, direction_sign)
 				
 			print_debug(body.name + " took " + str(damage) + " damage.")
@@ -30,3 +37,9 @@ func _on_facing_direction_changed(facing_right: bool):
 	else:
 		attack_collision_component.position = attack_collision_component.facing_left_position
 		detection_collision_component.position = detection_collision_component.facing_left_position
+
+func check_if_enemy_is_detected():
+	return enemy_detected
+
+func _on_enemy_is_detected(detected: bool):
+	enemy_detected = detected
