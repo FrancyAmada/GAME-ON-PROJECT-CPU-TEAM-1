@@ -4,9 +4,9 @@ class_name HealthComponent
 
 signal health_changed(node: Node, health_change: float)
 
-signal on_death(node: Node)
+signal on_death(dead_state: State)
 
-@export var max_health: float = 100.0:
+@export var max_health: float:
 	get:
 		return health
 	set(value):
@@ -19,10 +19,17 @@ var health: float = max_health:
 		emit_signal("health_changed", get_parent(), value - health)
 		health = value
 
-func _on_health_changed(node, health_change):
+@export var dead_state: State
+
+
+func _physics_process(_delta):
+	if health <= 0:
+		emit_signal("on_death", dead_state)
+
+func _on_health_changed(health_change):
 	if health_change > 0:
 		if health > max_health:
 			health = max_health
 	else:
 		if health <= 0:
-			emit_signal("on_death", node)
+			emit_signal("on_death", dead_state)

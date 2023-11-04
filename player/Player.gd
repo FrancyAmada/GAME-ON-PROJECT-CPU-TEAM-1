@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-signal use_attack(attack_name: String)
+@export var hit_state: HitState
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent

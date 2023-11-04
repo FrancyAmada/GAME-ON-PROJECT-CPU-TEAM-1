@@ -28,10 +28,12 @@ func _on_attack_use(used_attack_name: String):
 			timer.start()
 			attack()
 			print_debug(get_parent().name + " used " + attack_name + ".")
-		else:
-			print_debug(attack_name + " attack is on cooldown.")
-		
-		
+		else: pass
+#			print_debug(attack_name + " attack is on cooldown.")
+			
+func check_if_can_use():
+	return can_use_attack
+
 # blank slate to be able to make new attacks
 func attack():
 	pass
@@ -44,3 +46,4 @@ func _on_facing_direction_changed(facing_right: bool):
 		attack_collision_component.position = attack_collision_component.facing_right_position
 	else:
 		attack_collision_component.position = attack_collision_component.facing_left_position
+

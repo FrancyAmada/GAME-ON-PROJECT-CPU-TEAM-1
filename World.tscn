@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=13 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
 [ext_resource type="PackedScene" uid="uid://py8eaf6rn7ys" path="res://bg/bg_forest.tscn" id="3_i7qhs"]
+[ext_resource type="PackedScene" uid="uid://ohij7grph7uc" path="res://enemies/goblin_spawner.tscn" id="4_cwq77"]
 [ext_resource type="Script" path="res://gold.gd" id="4_pdopd"]
+[ext_resource type="PackedScene" uid="uid://djfo2ggqgpq5m" path="res://enemies/goblin/goblin.tscn" id="4_yt5yi"]
 [ext_resource type="PackedScene" uid="uid://cyvafd74yadlo" path="res://collectables/coin.tscn" id="5_8jj52"]
 [ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="5_o8fy5"]
 [ext_resource type="Script" path="res://coin_spawner.gd" id="6_53mfs"]
@@ -2090,6 +2092,15 @@ layer_0/tile_data = PackedInt32Array(1376268, 917504, 0, 1376269, 65536, 0, 1376
 [node name="BG Forest" parent="." instance=ExtResource("3_i7qhs")]
 offset = Vector2(-100, -100)
 transform = Transform2D(1, 0, 0, 1, -100, -100)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="GoblinSpawner" parent="Enemies" instance=ExtResource("4_cwq77")]
+position = Vector2(0, 257)
+goblin = ExtResource("4_yt5yi")
+
+[node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
+position = Vector2(645, 318)
 
 [node name="Player" parent="." instance=ExtResource("1_tdels")]
 position = Vector2(342, 320)
