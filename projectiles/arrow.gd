@@ -29,6 +29,5 @@ func _on_body_entered(body):
 		print("start")
 		velocity = Vector2(0, 0)
 		
-		await get_tree().create_timer(5.0).timeout
-		print("end")
+		await get_tree().create_timer(.2).timeout
 		queue_free()

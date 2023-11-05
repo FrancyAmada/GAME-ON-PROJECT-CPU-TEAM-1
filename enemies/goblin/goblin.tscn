@@ -358,7 +358,7 @@ size = Vector2(27, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hawr"]
 size = Vector2(24, 32)
 
-[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "attack1_component")]
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "attack1_component") groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_u0c15")
 hit_state = NodePath("CharacterStateMachine/Hit")
@@ -399,7 +399,7 @@ libraries = {
 "": SubResource("AnimationLibrary_n6gpc")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="AnimationComponent"]
+[node name="AnimationTree" type="AnimationTree" parent="AnimationComponent" groups=["enemy"]]
 tree_root = SubResource("AnimationNodeStateMachine_brsap")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = 0.00150156
