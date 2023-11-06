@@ -66,3 +66,9 @@ func _on_area_2d_area_exited(object):
 	if object.is_in_group("interactable"):
 		interactable_object.close_coins_need()
 		interactable_object = null
+
+
+func _on_health_component_health_changed(node, health_change):
+	if Game.player_gold > 0:
+		Signals.emit_signal("remove_coin")
+		coin_dropped = true

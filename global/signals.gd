@@ -7,3 +7,5 @@ signal drop_coin
 signal remove_coin
 
 signal pass_coin
+
+signal character_died(node: Node)
