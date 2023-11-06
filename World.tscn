@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ckl0262w6yrmv" path="res://allies/archer_2/archer.tscn" id="5_uavne"]
 [ext_resource type="Script" path="res://coin_spawner.gd" id="6_53mfs"]
 [ext_resource type="PackedScene" uid="uid://dn41lw4m0pjn5" path="res://props/lamp_to_house.tscn" id="8_qjbtu"]
-[ext_resource type="PackedScene" path="res://props/tree.tscn" id="12_lkdhx"]
+[ext_resource type="PackedScene" uid="uid://dkavgdnn76lrm" path="res://props/tree.tscn" id="12_lkdhx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
 texture = ExtResource("2_0wty5")
