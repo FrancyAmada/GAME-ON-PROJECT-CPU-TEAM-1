@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=15 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
@@ -8,11 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://djfo2ggqgpq5m" path="res://enemies/goblin/goblin.tscn" id="4_yt5yi"]
 [ext_resource type="PackedScene" uid="uid://cyvafd74yadlo" path="res://collectables/coin.tscn" id="5_8jj52"]
 [ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="5_o8fy5"]
+[ext_resource type="PackedScene" uid="uid://ckl0262w6yrmv" path="res://allies/archer_2/archer.tscn" id="5_uavne"]
 [ext_resource type="Script" path="res://coin_spawner.gd" id="6_53mfs"]
 [ext_resource type="PackedScene" uid="uid://dn41lw4m0pjn5" path="res://props/lamp_to_house.tscn" id="8_qjbtu"]
-[ext_resource type="PackedScene" uid="uid://cwlyy3uvlcy2f" path="res://projectiles/arrow.tscn" id="11_d5t57"]
-[ext_resource type="PackedScene" uid="uid://dkavgdnn76lrm" path="res://props/tree.tscn" id="12_lkdhx"]
-[ext_resource type="PackedScene" uid="uid://bwqdxll4djpqx" path="res://allies/archer/archer.tscn" id="13_6xu5l"]
+[ext_resource type="PackedScene" path="res://props/tree.tscn" id="12_lkdhx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
 texture = ExtResource("2_0wty5")
@@ -2103,8 +2102,12 @@ position = Vector2(0, 257)
 goblin = ExtResource("4_yt5yi")
 spawn_interval = 5.0
 
-[node name="Player" parent="." instance=ExtResource("1_tdels")]
-position = Vector2(342, 320)
+[node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
+
+[node name="Allies" type="Node2D" parent="."]
+
+[node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
+position = Vector2(421, 305)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -2136,14 +2139,11 @@ position = Vector2(455, 300)
 
 [node name="Node" type="Node" parent="."]
 
-[node name="arrow" parent="." instance=ExtResource("11_d5t57")]
-position = Vector2(232, 268)
-
 [node name="tree" parent="." instance=ExtResource("12_lkdhx")]
 position = Vector2(651, 307)
 
-[node name="archer" parent="." instance=ExtResource("13_6xu5l")]
-position = Vector2(505, 314)
+[node name="Player" parent="." instance=ExtResource("1_tdels")]
+position = Vector2(342, 320)
 
 [node name="TileMap2" type="TileMap" parent="." groups=["ground"]]
 tile_set = SubResource("TileSet_xaqel")
