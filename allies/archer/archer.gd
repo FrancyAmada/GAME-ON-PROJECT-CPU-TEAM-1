@@ -30,7 +30,6 @@ func set_shooting_angle():
 	var initial_velocity = 500
 	var angle = 0.5 * asin((gravity * enemy_distance) / (initial_velocity ** 2))
 	shooting_angle = rad2deg(angle)
-	print(shooting_angle)
 	if enemy_distance < 0:
 		shooting_angle = 180 + shooting_angle
 

@@ -7,7 +7,7 @@ var enemy = null
 func _ready():
 	monitoring = true
 
-func _process(delta):
+func _physics_process(delta):
 	var distance = 100000
 	
 	if enemy:
