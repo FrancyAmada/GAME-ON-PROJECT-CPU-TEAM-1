@@ -11,8 +11,8 @@ var arrow = preload("res://projectiles/arrow.tscn")
 @onready var idle = $finiteStateMachine_archer/idle as archer_idle_state
 @onready var shoot = $finiteStateMachine_archer/shoot as archer_shoot_state
 
-var nearest_enemy_distance: int
-var shooting_angle: int
+var enemy_distance: float
+var shooting_angle: float
 
 const SPEED = 50.0
 const JUMP_VELOCITY = -400.0
@@ -27,21 +27,15 @@ func _ready():
 	shoot.stop_shooting.connect(finite_state_machine_archer.changeState.bind(idle))
 
 func set_shooting_angle():
-	if nearest_enemy_distance < 20:
-		shooting_angle = 88
-	elif nearest_enemy_distance < 70:
-		shooting_angle = 84
-	elif nearest_enemy_distance < 135:
-		shooting_angle = 77
-	elif nearest_enemy_distance < 165:
-		shooting_angle = 70
-	elif nearest_enemy_distance < 240:
-		shooting_angle = 55
-	else:
-		shooting_angle = 45
-		
+	var initial_velocity = 500
+	var angle = 0.5 * asin((gravity * enemy_distance) / (initial_velocity ** 2))
+	shooting_angle = rad2deg(angle)
 	print(shooting_angle)
-	print(nearest_enemy_distance)
+	if enemy_distance < 0:
+		shooting_angle = 180 + shooting_angle
+
+func rad2deg(rad):
+	return rad * 180 / PI
 
 func _physics_process(delta):
 	if not is_on_floor():

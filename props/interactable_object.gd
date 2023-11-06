@@ -1,8 +1,17 @@
-extends interactable_object
+extends Area2D
+
+class_name interactable_object
+
+var Coin = preload("res://collectables/coin.tscn")
+var coinHolder = preload("res://props/coin_holder/coin_holder.tscn")
+
+var last_coin_pass_time = 0
+var delay_before_drop = 3
+var coins_needed : int
+var coins_in : int
 
 func _ready():
 	set_process(true)
-	coins_needed = 2
 
 func _pass_coin():
 	call_deferred("on_pass_coin")

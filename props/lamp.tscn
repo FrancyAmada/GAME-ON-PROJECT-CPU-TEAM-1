@@ -17,7 +17,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xij36"]
 height = 62.0
 
-[node name="Lamp" type="Area2D" groups=["interactable"]]
+[node name="lamp" type="Area2D" groups=["interactable"]]
 script = ExtResource("1_87xjw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -32,4 +32,3 @@ func do_melee_attack(hit_box: HitBoxComponent, direction: float):
 		knockback.x *= 0
 		current_damage *= 2
 	hit_box.receive_hit(current_damage, knockback)
-	

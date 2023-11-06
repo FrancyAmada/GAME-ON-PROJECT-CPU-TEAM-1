@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://coin_spawner.gd" id="6_53mfs"]
 [ext_resource type="PackedScene" uid="uid://dn41lw4m0pjn5" path="res://props/lamp_to_house.tscn" id="8_qjbtu"]
 [ext_resource type="PackedScene" uid="uid://cwlyy3uvlcy2f" path="res://projectiles/arrow.tscn" id="11_d5t57"]
-[ext_resource type="PackedScene" uid="uid://bwqdxll4djpqx" path="res://allies/archer/archer.tscn" id="12_o81n5"]
+[ext_resource type="PackedScene" uid="uid://dkavgdnn76lrm" path="res://props/tree.tscn" id="12_lkdhx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
 texture = ExtResource("2_0wty5")
@@ -2103,13 +2103,9 @@ one_shot = true
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="GoblinSpawner" parent="Enemies" instance=ExtResource("4_cwq77")]
-visible = false
 position = Vector2(0, 257)
 goblin = ExtResource("4_yt5yi")
 spawn_interval = 5.0
-
-[node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
-position = Vector2(596, 319)
 
 [node name="Player" parent="." instance=ExtResource("1_tdels")]
 position = Vector2(342, 320)
@@ -2147,8 +2143,8 @@ position = Vector2(455, 300)
 [node name="arrow" parent="." instance=ExtResource("11_d5t57")]
 position = Vector2(232, 268)
 
-[node name="archer" parent="." instance=ExtResource("12_o81n5")]
-position = Vector2(249, 308)
+[node name="tree" parent="." instance=ExtResource("12_lkdhx")]
+position = Vector2(651, 307)
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]

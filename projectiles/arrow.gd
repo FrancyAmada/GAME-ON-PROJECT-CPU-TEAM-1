@@ -22,6 +22,7 @@ func _physics_process(delta):
 		position += velocity * delta
 		angle = velocity.angle()
 		rotation = angle
+	print(gravity)
 
 func _on_body_entered(body):
 	if body.is_in_group("ground"):
@@ -31,3 +32,6 @@ func _on_body_entered(body):
 		
 		await get_tree().create_timer(.2).timeout
 		queue_free()
+		
+	if body.is_in_group("enemy"):
+		pass

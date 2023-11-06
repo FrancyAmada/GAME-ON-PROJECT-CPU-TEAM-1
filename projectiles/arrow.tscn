@@ -19,6 +19,7 @@ animations = [{
 }]
 
 [node name="arrow" type="Area2D"]
+collision_mask = 5
 script = ExtResource("1_1tbgf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

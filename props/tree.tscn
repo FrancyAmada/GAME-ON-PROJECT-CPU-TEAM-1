@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkavgdnn76lrm"]
+
+[ext_resource type="Script" path="res://props/tree.gd" id="1_occes"]
+[ext_resource type="Texture2D" uid="uid://da6s3pr32134w" path="res://game assets test/custom/tree1.png" id="2_qtt6a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhxod"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qtt6a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dog3"]
+height = 62.0
+
+[node name="tree" type="Area2D" groups=["interactable"]]
+script = ExtResource("1_occes")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -37)
+scale = Vector2(0.695313, 0.823171)
+sprite_frames = SubResource("SpriteFrames_xhxod")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0dog3")

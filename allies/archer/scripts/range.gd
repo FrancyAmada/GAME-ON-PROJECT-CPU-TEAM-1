@@ -2,19 +2,24 @@ extends Area2D
 
 @onready var archer = $".." as archer
 
-func _physics_process(delta):
-	var enemies = get_overlapping_bodies()
-	var number_of_enemies = 0
-	var nearest_distance = 100000
+var enemy = null
+
+func _ready():
+	monitoring = true
+
+func _process(delta):
+	var distance = 100000
 	
-	for enemy in enemies:
-		if enemy.is_in_group("enemy"):
-			number_of_enemies += 1
-			var distance = global_position.distance_to(enemy.global_position)
-			
-			if distance < nearest_distance:
-				nearest_distance = distance
+	if enemy:
+		distance = global_position.distance_to(enemy.global_position)
+		
+		var direction = (enemy.global_position - global_position)
+		
+		if direction.x < 0:
+			distance *= -1
 	
-	print(get_overlapping_bodies())
-	
-	archer.nearest_enemy_distance = nearest_distance
+	archer.enemy_distance = distance
+
+func _on_body_entered(body):
+	if body.is_in_group("enemy"):
+		enemy = body

@@ -9,7 +9,7 @@ class_name Player
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var max_speed = velocity_component.max_speed
 
-var interactable_object : Node2D = null
+var interactable_object : interactable_object = null
 
 var Coin = preload("res://collectables/coin.tscn")
 
@@ -29,7 +29,8 @@ var coin_dropped = false
 var damageable = true
 
 func _input(event):
-	if event.is_action_pressed("ui_down") and interactable_object and Game.player_gold > 0:
+	if event.is_action_pressed("ui_down") and interactable_object and Game.player_gold > 0 and interactable_object.coins_in < interactable_object.coins_needed:
+		interactable_object._pass_coin()
 		Signals.emit_signal("pass_coin")
 	elif event.is_action_pressed("ui_down") and not coin_dropped and Game.player_gold > 0:
 		Signals.emit_signal("remove_coin")
@@ -55,8 +56,13 @@ func _physics_process(delta):
 
 func _on_area_2d_area_entered(object):
 	if object.is_in_group("interactable"):
+		if interactable_object:
+			interactable_object.close_coins_need()
+			interactable_object = null
 		interactable_object = object
+		interactable_object.show_coins_need()
 
 func _on_area_2d_area_exited(object):
 	if object.is_in_group("interactable"):
+		interactable_object.close_coins_need()
 		interactable_object = null
