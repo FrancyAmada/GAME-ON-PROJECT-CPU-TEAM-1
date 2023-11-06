@@ -64,3 +64,4 @@ func shoot_arrow():
 	add_child(new_arrow)
 	new_arrow = new_arrow.duplicate()
 	new_arrow.global_position = self.position
+
