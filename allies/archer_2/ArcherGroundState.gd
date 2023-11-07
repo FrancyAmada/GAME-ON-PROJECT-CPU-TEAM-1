@@ -13,7 +13,7 @@ func _ready():
 	get_parent().connect("use_attack", _on_shoot_attack_use)
 	
 func _on_shoot_attack_use(attack_name: String):
-	emit_signal("use_attack", "Shoot")
+	emit_signal("use_attack", shoot_anim_name)
 
 func _on_shoot_attack_used(is_attack_used: bool):
 	if is_attack_used:
