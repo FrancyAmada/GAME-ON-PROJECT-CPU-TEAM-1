@@ -1,6 +1,6 @@
 extends State
 
-class_name GoblinGroundState
+class_name BreederGroundState
 
 signal use_attack(attack_name: String)
 
@@ -9,7 +9,7 @@ signal reset_attack_monitoring
 @export var melee_attack1: AttackComponent
 @export var attack1_detector: AttackDetectionComponent
 @export var attack_state: State
-@export var attack1_node: String = "Attack1"
+@export var attack1_node: String = "Attack"
 
 
 func _ready():
