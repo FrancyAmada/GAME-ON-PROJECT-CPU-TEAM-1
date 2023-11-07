@@ -21,12 +21,19 @@ func _ready():
 func _physics_process(delta):
 	enemy_distance = 600
 	var distance: int
+	if target_enemy:
+		var health_component: HealthComponent = target_enemy.find_child("HealthComponent")
+		if health_component.health <= 0:
+			enemy_list.erase(target_enemy)
+			target_enemy = null
+	
 	for enemy in enemy_list:
+			
 		distance = abs(character.global_position.x - enemy.global_position.x)
 		if distance < enemy_distance:
 			enemy_distance = distance
 			target_enemy = enemy
-			
+		
 	if len(enemy_list) != 0:
 		start_chase(target_enemy)
 	else:

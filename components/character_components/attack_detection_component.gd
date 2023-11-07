@@ -15,6 +15,9 @@ var enemy_detected: bool = false
 
 
 func _physics_process(delta):
+	if len(enemies_list) == 0:
+		enemy_detected = false
+	
 	if enemy_detected and attack_component.check_if_can_use():
 		for enemy in enemies_list:
 			if enemy is Player:

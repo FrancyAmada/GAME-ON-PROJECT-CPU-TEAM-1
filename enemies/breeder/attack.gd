@@ -19,13 +19,21 @@ func _ready():
 	use_state.connect("use_attack", _on_attack_use)
 	enemy_detector.connect("is_enemy_detected", _on_enemy_is_detected)
 
-func _on_attack_1_body_entered(body):
+func _on_attack_body_entered(body):
 	for child in body.get_children():
 		if child is HitBoxComponent:
 			# get direction from the sword to the body
 			var direction_to_damageable = body.global_position - get_parent().global_position
 			direction = sign(direction_to_damageable.x)
 			do_melee_attack(child, direction)
+			
+			# Additional 2 coins to drop
+			if body is Player:
+				if Game.player_gold > 3:
+					Signals.emit_signal("remove_coin")
+					Signals.emit_signal("remove_coin")
+					body.coin_dropped = true
+			
 			print_debug(body.name + " took " + str(damage) + " damage.")
 
 func do_melee_attack(hit_box: HitBoxComponent, direction: float):
