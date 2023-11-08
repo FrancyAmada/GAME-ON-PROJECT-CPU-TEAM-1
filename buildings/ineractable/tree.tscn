@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0lrnpdo2jceo"]
+[gd_scene load_steps=5 format=3 uid="uid://dkavgdnn76lrm"]
 
-[ext_resource type="Script" path="res://buildings/ineractable/tree.gd" id="1_ligne"]
-[ext_resource type="Texture2D" uid="uid://da6s3pr32134w" path="res://game assets test/custom/tree1.png" id="2_qtt6a"]
+[ext_resource type="Script" path="res://buildings/ineractable/tree.gd" id="1_pynwf"]
+[ext_resource type="Texture2D" uid="uid://da6s3pr32134w" path="res://game assets test/custom/tree1.png" id="2_fen5s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xhxod"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_qtt6a")
+"texture": ExtResource("2_fen5s")
 }],
 "loop": true,
 "name": &"default",
@@ -18,7 +18,7 @@ animations = [{
 height = 62.0
 
 [node name="tree" type="Area2D" groups=["interactable"]]
-script = ExtResource("1_ligne")
+script = ExtResource("1_pynwf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -37)

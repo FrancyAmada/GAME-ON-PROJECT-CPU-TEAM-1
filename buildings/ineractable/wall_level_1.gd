@@ -1,19 +1,11 @@
-extends Area2D
+extends interactable_object
 
-class_name interactable_object
-
-var Coin = preload("res://collectables/coin.tscn")
-var coinHolder = preload("res://props/coin_holder/coin_holder.tscn")
-
-var last_coin_pass_time = 0
-var delay_before_drop = 3
-var coins_needed : int
-var coins_in : int
-
-signal build_me
+var hp = 20
+var maxHp = 20
 
 func _ready():
 	set_process(true)
+	coins_needed = 3
 
 func _pass_coin():
 	call_deferred("on_pass_coin")
@@ -26,11 +18,12 @@ func _process(delta):
 			coins += 1
 			coins_in = coins
 	if coins >= coins_needed:
-		await get_tree().create_timer(.6).timeout
-		self.queue_free()
+		build_me.emit()
+		queue_free()
 		
 	last_coin_pass_time += delta
 	if last_coin_pass_time >= delay_before_drop:
+		await get_tree().create_timer(.6).timeout
 		drop_all_coins()
 
 func on_pass_coin():
@@ -56,3 +49,10 @@ func close_coins_need():
 	for child in get_children():
 		if child.is_in_group("coin holder"):
 			child.queue_free()
+
+func damage():
+	hp -= 1
+
+func repair():
+	if hp < maxHp:
+		hp += 1

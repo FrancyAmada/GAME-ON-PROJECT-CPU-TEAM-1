@@ -53,8 +53,6 @@ func get_direction():
 		run_away = false
 	elif run_away:
 		direction.x = -direction.x
-	print_debug(enemy_distance)
-	
 
 func on_idle():
 	if enemy == null:

@@ -25,7 +25,6 @@ func _on_ground_use_attack(used_attack_name: String):
 			can_use_attack = false
 			timer.start()
 			attack()
-			print_debug(get_parent().name + " used " + attack_name + ".")
 		else: pass
 #			print_debug(attack_name + " attack is on cooldown.")
 			

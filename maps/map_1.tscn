@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://qt8xg5vomoi1"]
+[gd_scene load_steps=10 format=3 uid="uid://qt8xg5vomoi1"]
 
 [ext_resource type="PackedScene" uid="uid://py8eaf6rn7ys" path="res://bg/bg_forest.tscn" id="2_ccppb"]
-[ext_resource type="PackedScene" uid="uid://dkavgdnn76lrm" path="res://props/tree.tscn" id="2_tcapw"]
+[ext_resource type="PackedScene" uid="uid://b0lrnpdo2jceo" path="res://props/tree.tscn" id="2_tcapw"]
+[ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="3_m61xg"]
+[ext_resource type="PackedScene" uid="uid://c1kd3wmplwmry" path="res://allies/builder/builder.tscn" id="4_o3ov1"]
+[ext_resource type="Script" path="res://buildings/wall.gd" id="5_k82wn"]
+[ext_resource type="PackedScene" uid="uid://ba84lifj0uers" path="res://buildings/wall.tscn" id="6_nsb62"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m4ivf"]
 load_path = "res://.godot/imported/TX Tileset Ground.png-3e0d0a6de75da4cafc19f458888c1cca.ctex"
@@ -2105,3 +2109,13 @@ position = Vector2(587, 305)
 
 [node name="tree7" parent="." instance=ExtResource("2_tcapw")]
 position = Vector2(628, 305)
+
+[node name="Player" parent="." instance=ExtResource("3_m61xg")]
+position = Vector2(109, 314)
+
+[node name="builder" parent="." instance=ExtResource("4_o3ov1")]
+position = Vector2(-53, 305)
+script = ExtResource("5_k82wn")
+
+[node name="wall" parent="." instance=ExtResource("6_nsb62")]
+position = Vector2(450, 332)
