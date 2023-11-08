@@ -461,7 +461,7 @@ use_state = NodePath("../CharacterStateMachine/Ground")
 
 [node name="Attack1Area" type="Area2D" parent="Attack1" node_paths=PackedStringArray("ground_state")]
 collision_layer = 0
-collision_mask = 10
+collision_mask = 42
 monitoring = false
 script = ExtResource("20_33v7t")
 ground_state = NodePath("../../CharacterStateMachine/Ground")
@@ -474,7 +474,7 @@ facing_right_position = Vector2(18, 0)
 
 [node name="EnemyDetector" parent="Attack1" node_paths=PackedStringArray("attack_component") instance=ExtResource("10_snb4g")]
 collision_layer = 0
-collision_mask = 10
+collision_mask = 42
 attack_component = NodePath("..")
 
 [node name="DetectionCollisionComponent" parent="Attack1/EnemyDetector" instance=ExtResource("9_3kuty")]
@@ -490,3 +490,5 @@ facing_right_position = Vector2(15, 0)
 [connection signal="body_entered" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_exited"]
 [connection signal="body_entered" from="Attack1/Attack1Area" to="Attack1" method="_on_attack_1_body_entered"]
+[connection signal="body_shape_entered" from="Attack1/Attack1Area" to="Attack1" method="_on_attack_1_area_body_shape_entered"]
+[connection signal="body_shape_entered" from="Attack1/EnemyDetector" to="Attack1/EnemyDetector" method="_on_body_shape_entered"]

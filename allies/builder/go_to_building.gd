@@ -47,7 +47,7 @@ func _physics_process(delta):
 	actor.velocity.x = direction * SPEED
 	
 	if actor.building_in_area and actor.building_to_construct and !actor.building:
-		print("emit!")
+#		print("emit!")
 		await get_tree().create_timer(.2).timeout
 		start_building.emit()
 	

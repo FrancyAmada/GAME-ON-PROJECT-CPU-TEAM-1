@@ -27,6 +27,10 @@ func _on_attack_1_body_entered(body):
 			direction = sign(direction_to_damageable.x)
 			do_melee_attack(child, direction)
 			print_debug(body.name + " took " + str(damage) + " damage.")
+			
+func _on_attack_1_area_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	if body.get_parent().is_in_group("wall"):
+		body.get_parent().damage()
 
 func do_melee_attack(hit_box: HitBoxComponent, direction: float):
 	var knockback = Vector2(knockback_distance * direction, -200)
@@ -45,3 +49,4 @@ func check_if_enemy_is_detected():
 
 func _on_enemy_is_detected(detected: bool):
 	enemy_detected = detected
+

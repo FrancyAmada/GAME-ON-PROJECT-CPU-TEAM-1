@@ -2,6 +2,10 @@ extends interactable_object
 
 var hp = 50
 var maxHp = 50
+@export var maxHp: int = 10
+
+var building_name = "Wall"
+@onready var hp = maxHp
 
 func _ready():
 	set_process(true)

@@ -35,10 +35,17 @@ func _on_body_entered(body):
 		if child is HitBoxComponent:
 			enemies_list.append(body)
 			enemy_detected = true
-	
+
 func _on_body_exited(body):
 	for enemy in enemies_list:
 		if body == enemy:
 			enemies_list.erase(body)
 	if len(enemies_list) == 0:
 		enemy_detected = false
+
+func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	print_debug(body)
+	if body.get_parent().is_in_group("wall"):
+		enemy_detected = true
+		enemies_list.append(body)
+		print_debug("a wall is detected")

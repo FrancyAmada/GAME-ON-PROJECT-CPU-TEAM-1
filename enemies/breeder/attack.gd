@@ -36,6 +36,11 @@ func _on_attack_body_entered(body):
 			
 			print_debug(body.name + " took " + str(damage) + " damage.")
 
+func _on_attack_area_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	if body.get_parent().is_in_group("wall"):
+		for atks in range(3):
+			body.get_parent().damage()
+
 func do_melee_attack(hit_box: HitBoxComponent, direction: float):
 	var knockback = Vector2(knockback_distance * direction, -200)
 	hit_box.receive_hit(damage, knockback)

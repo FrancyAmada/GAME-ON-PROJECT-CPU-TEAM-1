@@ -20,8 +20,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8n4m"]
 size = Vector2(30, 50)
 
-[node name="wall_level_1" type="Area2D" groups=["interactable"]]
+[node name="wall_level_1" type="Area2D" groups=["interactable", "wall"]]
+collision_mask = 33
 script = ExtResource("1_awdum")
+maxHp = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -25)
