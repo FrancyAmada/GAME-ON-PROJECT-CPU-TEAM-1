@@ -53,11 +53,11 @@ func _physics_process(delta):
 func get_direction():
 	if enemy != null:
 		direction = (enemy.global_position - global_position).normalized()
-		if enemy_distance < 200 and not run_away:
+		if enemy_distance < 120 and not run_away:
 			set_shooting_angle()
 			emit_signal("use_attack", "Shoot")
 			run_away = true
-		elif (enemy_distance > 250 and run_away) or shoot_component.check_if_can_use():
+		elif (enemy_distance > 200 and run_away) or shoot_component.check_if_can_use():
 			run_away = false
 		elif run_away:
 			direction.x = -direction.x

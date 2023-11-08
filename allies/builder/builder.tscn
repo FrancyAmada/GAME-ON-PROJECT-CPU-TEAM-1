@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://2weabnirnavw"]
+[gd_scene load_steps=31 format=3 uid="uid://2weabnirnavw"]
 
 [ext_resource type="Script" path="res://allies/builder/builder.gd" id="1_yn65f"]
 [ext_resource type="Texture2D" uid="uid://dkpsl1raa542g" path="res://game assets test/Huntress/Huntress/Sprites/Attack2.png" id="2_42i2i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://allies/builder/idle.gd" id="7_lwn63"]
 [ext_resource type="Script" path="res://allies/builder/build.gd" id="8_qpeig"]
 [ext_resource type="Script" path="res://allies/builder/go_to_building.gd" id="9_tv234"]
+[ext_resource type="Script" path="res://allies/builder/build_range.gd" id="10_6w4gl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oy82c"]
 radius = 8.0
@@ -300,6 +301,8 @@ script = ExtResource("9_tv234")
 actor = NodePath("../..")
 
 [node name="build_range" type="Area2D" parent="."]
+monitoring = false
+script = ExtResource("10_6w4gl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="build_range"]
 shape = SubResource("CircleShape2D_1ac7h")
