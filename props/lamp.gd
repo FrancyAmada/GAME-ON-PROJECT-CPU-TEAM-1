@@ -1,13 +1,8 @@
-extends Area2D
-
-var Coin = preload("res://collectables/coin.tscn")
-
-var last_coin_pass_time = 0
-var delay_before_drop = 3
+extends interactable_object
 
 func _ready():
-	Signals.connect("pass_coin", _pass_coin)
 	set_process(true)
+	coins_needed = 2
 
 func _pass_coin():
 	call_deferred("on_pass_coin")
@@ -18,7 +13,8 @@ func _process(delta):
 	for child in get_children():
 		if child.is_in_group("coin"):
 			coins += 1
-	if coins >= 2:
+			coins_in = coins
+	if coins >= coins_needed:
 		await get_tree().create_timer(.6).timeout
 		self.queue_free()
 		
@@ -39,3 +35,13 @@ func drop_all_coins():
 		if child.is_in_group("coin"):
 			var coin = child
 			coin.set_gravity_scale(1)
+
+func show_coins_need():
+	var coin_holder_initial = coinHolder.instantiate()
+	add_child(coin_holder_initial)
+	coin_holder_initial.show_coins_required(coins_needed)
+
+func close_coins_need():
+	for child in get_children():
+		if child.is_in_group("coin holder"):
+			child.queue_free()

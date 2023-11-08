@@ -11,7 +11,7 @@ signal on_death(dead_state: State)
 		return health
 	set(value):
 		health = value
-
+ 
 var health: float = max_health:
 	get:
 		return health
@@ -33,3 +33,4 @@ func _on_health_changed(health_change):
 	else:
 		if health <= 0:
 			emit_signal("on_death", dead_state)
+			Signals.emit_signal("character_died", get_parent())

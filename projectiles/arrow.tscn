@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwlyy3uvlcy2f"]
+
+[ext_resource type="Script" path="res://projectiles/arrow.gd" id="1_1tbgf"]
+[ext_resource type="Texture2D" uid="uid://bkmtdknlqf76t" path="res://game assets test/custom/arrow.png" id="1_d6dmr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t67im"]
+radius = 1.0
+height = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n0f2c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d6dmr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="arrow" type="Area2D"]
+collision_mask = 5
+script = ExtResource("1_1tbgf")
+damage = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t67im")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.76837e-07, -9.53674e-07)
+scale = Vector2(1.11111, 0.583335)
+sprite_frames = SubResource("SpriteFrames_n0f2c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

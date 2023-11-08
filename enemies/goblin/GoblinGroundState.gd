@@ -11,12 +11,13 @@ signal reset_attack_monitoring
 @export var attack_state: State
 @export var attack1_node: String = "Attack1"
 
+
 func _ready():
 	melee_attack1.connect("is_attack_used", _on_melee_attack_used)
 	attack1_detector.connect("use_attack", _on_attack1_use)
 	
 func _on_attack1_use(attack_name: String):
-	emit_signal("use_attack", "Attack1")
+	emit_signal("use_attack", attack1_node)
 
 func _on_melee_attack_used(is_attack_used: bool):
 	if is_attack_used:

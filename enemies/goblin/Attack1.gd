@@ -7,7 +7,10 @@ extends AttackComponent
 
 @onready var enemy_detector: AttackDetectionComponent = $EnemyDetector
 @onready var enemy_detected: bool = false
+@onready var character: CharacterBody2D = get_parent()
 
+var direction: float = 0
+var enemy: CharacterBody2D
 
 func _ready():
 	timer.wait_time = cd_time
@@ -21,11 +24,10 @@ func _on_attack_1_body_entered(body):
 		if child is HitBoxComponent:
 			# get direction from the sword to the body
 			var direction_to_damageable = body.global_position - get_parent().global_position
-			var direction_sign = sign(direction_to_damageable.x)
-			do_melee_attack(child, direction_sign)
-				
+			direction = sign(direction_to_damageable.x)
+			do_melee_attack(child, direction)
 			print_debug(body.name + " took " + str(damage) + " damage.")
-			
+
 func do_melee_attack(hit_box: HitBoxComponent, direction: float):
 	var knockback = Vector2(knockback_distance * direction, -200)
 	hit_box.receive_hit(damage, knockback)

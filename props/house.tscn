@@ -17,7 +17,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="house" type="Area2D" groups=["interactable"]]
+[node name="house" type="Area2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_t16go")

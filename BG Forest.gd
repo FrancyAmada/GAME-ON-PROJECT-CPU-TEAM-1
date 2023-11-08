@@ -13,7 +13,6 @@ func _process(delta):
 	scroll_offset.x -= scrolling_speed * delta
 
 func _ready():
-	timer.start()
 	for child in get_children():
 		parallax_layers.append(child)
 

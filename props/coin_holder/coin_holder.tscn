@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://c10xmt40yhib0"]
+
+[ext_resource type="Script" path="res://props/coin_holder/coin_holder.gd" id="1_ap0hn"]
+[ext_resource type="Texture2D" uid="uid://dm1sys7p5kpk4" path="res://game assets test/custom/coinHolder1.png" id="1_y86bo"]
+[ext_resource type="Texture2D" uid="uid://c74a3o5p0m42h" path="res://game assets test/custom/coinHolder2.png" id="2_netpq"]
+[ext_resource type="Texture2D" uid="uid://dhwgdplgxsqay" path="res://game assets test/custom/coinHolder3.png" id="3_vew4w"]
+[ext_resource type="Texture2D" uid="uid://1mns7djmgy1i" path="res://game assets test/custom/coinHolder4.png" id="4_173pe"]
+[ext_resource type="Texture2D" uid="uid://bnolbna7sswop" path="res://game assets test/custom/coinHolder5.png" id="5_a56u2"]
+[ext_resource type="Texture2D" uid="uid://88ihebbg3vrf" path="res://game assets test/custom/coinHolder6.png" id="6_tciuo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w7vn7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y86bo")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_netpq")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vew4w")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_173pe")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_a56u2")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tciuo")
+}],
+"loop": true,
+"name": &"6",
+"speed": 5.0
+}]
+
+[node name="coin_holder" type="Node2D" groups=["coin holder"]]
+script = ExtResource("1_ap0hn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w7vn7")
+animation = &"6"

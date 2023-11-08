@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6k3ok7ty0h33"]
+
+[ext_resource type="Script" path="res://buildings/ineractable/dirt_mound.gd" id="1_7u835"]
+[ext_resource type="Texture2D" uid="uid://bmmcjad4s3u8n" path="res://game assets test/custom/dirtmound.png" id="2_cs1se"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebkaj"]
+radius = 16.0312
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_empjc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cs1se")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="dirt_mound" type="Area2D" groups=["interactable"]]
+script = ExtResource("1_7u835")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ebkaj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -22)
+scale = Vector2(0.65625, 0.895833)
+sprite_frames = SubResource("SpriteFrames_empjc")
