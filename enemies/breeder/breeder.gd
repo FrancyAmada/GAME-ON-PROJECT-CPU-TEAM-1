@@ -1,14 +1,16 @@
 extends CharacterBody2D
 
-class_name Goblin
+class_name Breeder
 
 @export var hit_state: State
 @export var attack1_component: AttackComponent
+@export var spawn_amount: int = 3
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var enemydetection_component: EnemyDetectionComponent = $EnemyDetectionComponent
+@onready var breed_timer: Timer = $BreedTimer
 @onready var max_speed = velocity_component.max_speed
 @onready var enemy: CharacterBody2D
 
@@ -18,9 +20,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: Vector2 = Vector2.RIGHT
 
+var goblin = preload("res://enemies/goblin/goblin.tscn")
+
 
 func _ready():
 	enemydetection_component.connect("chase_player", set_chase_player)
+	breed_timer.connect("timeout", _on_breed_timer_timeout)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -46,3 +51,11 @@ func get_direction():
 		
 func set_chase_player(set_target: CharacterBody2D):
 	enemy = set_target
+
+func _on_breed_timer_timeout():
+	for spawn in range(spawn_amount):
+		var new_goblin: Goblin = goblin.instantiate()
+		get_parent().add_child(new_goblin)
+		new_goblin.global_position = self.position
+		new_goblin.global_position.x += spawn * -10
+	breed_timer.start()
