@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=17 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://djfo2ggqgpq5m" path="res://enemies/goblin/goblin.tscn" id="4_yt5yi"]
 [ext_resource type="PackedScene" uid="uid://cyvafd74yadlo" path="res://collectables/coin.tscn" id="5_8jj52"]
 [ext_resource type="PackedScene" uid="uid://c7vlerc3ikog7" path="res://enemies/breeder/breeder.tscn" id="5_cisid"]
-[ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="5_o8fy5"]
 [ext_resource type="PackedScene" uid="uid://ckl0262w6yrmv" path="res://allies/archer_2/archer.tscn" id="5_uavne"]
 [ext_resource type="Script" path="res://coin_spawner.gd" id="6_53mfs"]
 [ext_resource type="PackedScene" uid="uid://dn41lw4m0pjn5" path="res://props/lamp_to_house.tscn" id="8_qjbtu"]

@@ -1,7 +1,7 @@
 extends interactable_object
 
-var hp = 20
-var maxHp = 20
+var hp = 50
+var maxHp = 50
 
 func _ready():
 	set_process(true)
