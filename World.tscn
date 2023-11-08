@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=17 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://djfo2ggqgpq5m" path="res://enemies/goblin/goblin.tscn" id="4_yt5yi"]
 [ext_resource type="PackedScene" uid="uid://cyvafd74yadlo" path="res://collectables/coin.tscn" id="5_8jj52"]
 [ext_resource type="PackedScene" uid="uid://c7vlerc3ikog7" path="res://enemies/breeder/breeder.tscn" id="5_cisid"]
-[ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="5_o8fy5"]
 [ext_resource type="PackedScene" uid="uid://ckl0262w6yrmv" path="res://allies/archer_2/archer.tscn" id="5_uavne"]
 [ext_resource type="Script" path="res://coin_spawner.gd" id="6_53mfs"]
 [ext_resource type="PackedScene" uid="uid://dn41lw4m0pjn5" path="res://props/lamp_to_house.tscn" id="8_qjbtu"]
@@ -2107,15 +2106,18 @@ goblin = ExtResource("4_yt5yi")
 spawn_interval = 30.0
 
 [node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
-position = Vector2(160, 316)
-
-[node name="Breeder" parent="Enemies" instance=ExtResource("5_cisid")]
-position = Vector2(-14, 307)
+position = Vector2(1528, 317)
 
 [node name="Allies" type="Node2D" parent="."]
 
 [node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
 position = Vector2(421, 305)
+
+[node name="builder" parent="Allies" instance=ExtResource("12_tox4p")]
+position = Vector2(757, 296)
+
+[node name="builder2" parent="Allies" instance=ExtResource("12_tox4p")]
+position = Vector2(530, 320)
 
 [node name="collectables" type="Node2D" parent="."]
 position = Vector2(2, 1)
@@ -2131,6 +2133,15 @@ autostart = true
 
 [node name="coin" parent="collectables" instance=ExtResource("5_8jj52")]
 position = Vector2(455, 300)
+
+[node name="coin2" parent="collectables" instance=ExtResource("5_8jj52")]
+position = Vector2(449, 284)
+
+[node name="coin3" parent="collectables" instance=ExtResource("5_8jj52")]
+position = Vector2(473, 300)
+
+[node name="coin4" parent="collectables" instance=ExtResource("5_8jj52")]
+position = Vector2(465, 282)
 
 [node name="Node" type="Node" parent="."]
 
@@ -2152,11 +2163,8 @@ position = Vector2(720, 337)
 [node name="wall2" parent="." instance=ExtResource("11_sbetg")]
 position = Vector2(796, 336)
 
-[node name="builder" parent="." instance=ExtResource("12_tox4p")]
-position = Vector2(916, 318)
-
-[node name="builder2" parent="." instance=ExtResource("12_tox4p")]
-position = Vector2(530, 320)
+[node name="Breeder" parent="." instance=ExtResource("5_cisid")]
+position = Vector2(1565, 311)
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]

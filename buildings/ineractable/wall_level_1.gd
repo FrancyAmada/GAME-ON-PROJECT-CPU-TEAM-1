@@ -1,7 +1,9 @@
 extends interactable_object
 
-var hp = 20
-var maxHp = 20
+@export var maxHp: int = 10
+
+var building_name = "Wall"
+@onready var hp = maxHp
 
 func _ready():
 	set_process(true)
@@ -52,6 +54,7 @@ func close_coins_need():
 
 func damage():
 	hp -= 1
+	print_debug(name, " health: ", str(hp))
 
 func repair():
 	if hp < maxHp:
