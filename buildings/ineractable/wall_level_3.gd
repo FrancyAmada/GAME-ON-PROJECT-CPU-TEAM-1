@@ -1,13 +1,13 @@
 extends interactable_object
 
-@export var maxHp: int = 20
+@export var maxHp: int = 30
 
 var building_name = "Wall"
 @onready var hp = maxHp
 
 func _ready():
 	set_process(true)
-	coins_needed = 4
+	coins_needed = 5
 
 func _pass_coin():
 	call_deferred("on_pass_coin")

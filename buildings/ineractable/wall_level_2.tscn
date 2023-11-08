@@ -22,7 +22,6 @@ size = Vector2(38, 43)
 
 [node name="wall_level_2" type="Area2D" groups=["interactable", "wall"]]
 script = ExtResource("1_w15yj")
-maxHp = 20
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -21)
