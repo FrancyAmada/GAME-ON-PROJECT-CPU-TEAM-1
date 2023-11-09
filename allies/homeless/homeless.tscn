@@ -1,0 +1,195 @@
+[gd_scene load_steps=19 format=3 uid="uid://dxs5oxpk1uh6s"]
+
+[ext_resource type="Script" path="res://allies/homeless/homeless.gd" id="1_4vraf"]
+[ext_resource type="Texture2D" uid="uid://byrcan4s4qq04" path="res://game assets test/custom/entities/humans/homeless/homeless_run.png" id="2_qvx5c"]
+[ext_resource type="Texture2D" uid="uid://b2cvvu8xujwri" path="res://game assets test/custom/entities/humans/homeless/homeless_idle.png" id="3_bj4s5"]
+[ext_resource type="Script" path="res://components/character_components/animation_component.gd" id="3_kvvql"]
+[ext_resource type="PackedScene" uid="uid://bci8dwt4iycg0" path="res://components/character_components/velocity_component.tscn" id="4_q0wup"]
+[ext_resource type="PackedScene" uid="uid://bo3jadkrsersr" path="res://components/character_components/enemy_detection_component.tscn" id="5_lgqhh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n277k"]
+radius = 7.0
+height = 32.0
+
+[sub_resource type="Animation" id="Animation_hue7q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6kjxr"]
+resource_name = "Walk"
+length = 0.3
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_qvx5c")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_m0na6"]
+resource_name = "Idle"
+length = 0.6
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_bj4s5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ljs6k"]
+_data = {
+"Idle": SubResource("Animation_m0na6"),
+"RESET": SubResource("Animation_hue7q"),
+"Walk": SubResource("Animation_6kjxr")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u3q1v"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xhq5u"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w4d6k"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ce4qp"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_u3q1v")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_xhq5u")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_w4d6k")
+blend_point_2/pos = -1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kmab8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_isufr"]
+states/Move/node = SubResource("AnimationNodeBlendSpace1D_ce4qp")
+states/Move/position = Vector2(392, 82)
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_kmab8")]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dc1xd"]
+radius = 600.0
+
+[node name="homeless" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_4vraf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_n277k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_bj4s5")
+hframes = 2
+
+[node name="AnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("sprite", "animation_player", "animation_tree")]
+script = ExtResource("3_kvvql")
+sprite = NodePath("../Sprite2D")
+animation_player = NodePath("AnimationPlayer")
+animation_tree = NodePath("AnimationTree")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationComponent"]
+libraries = {
+"": SubResource("AnimationLibrary_ljs6k")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationComponent"]
+tree_root = SubResource("AnimationNodeStateMachine_isufr")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Move/blend_position = 0
+
+[node name="VelocityComponent" parent="." instance=ExtResource("4_q0wup")]
+max_speed = 50.0
+
+[node name="EnemyDetectionComponent" parent="." node_paths=PackedStringArray("detection_area") instance=ExtResource("5_lgqhh")]
+detection_area = NodePath("EnemyDetection")
+
+[node name="EnemyDetection" type="Area2D" parent="EnemyDetectionComponent"]
+collision_layer = 0
+collision_mask = 68
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionComponent/EnemyDetection"]
+shape = SubResource("CircleShape2D_dc1xd")
+
+[node name="IdleTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
