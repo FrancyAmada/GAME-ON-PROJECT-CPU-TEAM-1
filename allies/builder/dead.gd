@@ -19,10 +19,7 @@ func _enter_state():
 	animation_tree["parameters/conditions/dies"] = true
 	animation_tree["parameters/conditions/stop_building"] = false
 	animation_tree["parameters/conditions/build"] = false
-	set_physics_process(true)
-
-func _physics_process(delta):
-	pass
+	set_physics_process(false)
 
 func _on_animation_tree_finished(anim_name: String):
 	if anim_name == "death":

@@ -21,7 +21,6 @@ func add_scaffolding():
 	add_child(new_scaffolding)
 	under_construction = true
 	Game.buildngs_construction_add(self)
-	print("added!")
 	done = false
 
 func add_construction_points():
@@ -53,4 +52,3 @@ func add_building():
 		new_wall.connect("build_me", add_scaffolding)
 	
 	Game.buildngs_construction_remove(self)
-	print("remove me!")

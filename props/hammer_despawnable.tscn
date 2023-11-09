@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://78t0hl8u68ef"]
+
+[ext_resource type="Script" path="res://props/despawnable_object.gd" id="1_wflah"]
+[ext_resource type="Texture2D" uid="uid://b6r2w4wlnoqog" path="res://game assets test/custom/others/hammer.png" id="2_7vxav"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ylhgc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7vxav")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pxp0x"]
+radius = 8.0
+
+[node name="hammer_despawnable" type="RigidBody2D"]
+collision_layer = 128
+script = ExtResource("1_wflah")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -1)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_ylhgc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_pxp0x")

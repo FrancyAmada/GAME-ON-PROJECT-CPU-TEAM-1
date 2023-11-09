@@ -13,4 +13,3 @@ func receive_hit(damage: float, knockback: Vector2):
 	health_component.health -= damage
 	
 	emit_signal("on_hit", knockback)
-	

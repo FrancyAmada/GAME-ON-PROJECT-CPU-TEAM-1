@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal use_attack(attack_name: String)
 
+var bow = preload("res://props/bow_despawnable.tscn")
+
 @export var hit_state: State
 @export var shoot_component: ShootComponent
 
@@ -13,6 +15,7 @@ signal use_attack(attack_name: String)
 @onready var enemydetection_component: EnemyDetectionComponent = $EnemyDetectionComponent
 @onready var max_speed = velocity_component.max_speed
 @onready var enemy: CharacterBody2D
+@onready var hit = $CharacterStateMachine/Hit
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -27,6 +30,7 @@ var run_away: bool = false
 
 func _ready():
 	idle_timer.start()
+	hit.dropBow.connect(printMe)
 
 func _physics_process(delta):
 	on_idle()
@@ -98,3 +102,13 @@ func rad2deg(rad):
 	
 func map_range(value: float, start1: float, stop1: float, start2: float, stop2: float):
 	return (value - start1) / (stop1 - start1) * (stop2 - start2) + start2
+
+func printMe():
+	var new_bow = bow.instantiate()
+	add_child(new_bow)
+	var velocity_x = randi_range(-140, 140)
+	var newVelocity = Vector2(velocity_x, -130)
+	new_bow.set_linear_velocity(newVelocity)
+	new_bow.global_position = self.position + Vector2(0, -35)
+	await get_tree().create_timer(.6).timeout
+	queue_free()

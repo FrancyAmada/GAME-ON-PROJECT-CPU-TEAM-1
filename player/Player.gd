@@ -17,7 +17,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: Vector2
 
-
 func _ready():
 	set_process_input(true)
 

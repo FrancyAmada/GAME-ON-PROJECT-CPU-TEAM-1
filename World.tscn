@@ -2106,18 +2106,18 @@ goblin = ExtResource("4_yt5yi")
 spawn_interval = 30.0
 
 [node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
-position = Vector2(814, 304)
+position = Vector2(134, 320)
 
 [node name="Allies" type="Node2D" parent="."]
 
 [node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
-position = Vector2(421, 305)
+position = Vector2(275, 278)
 
 [node name="builder" parent="Allies" instance=ExtResource("12_tox4p")]
 position = Vector2(757, 296)
 
 [node name="builder2" parent="Allies" instance=ExtResource("12_tox4p")]
-position = Vector2(530, 320)
+position = Vector2(502, 282)
 
 [node name="collectables" type="Node2D" parent="."]
 position = Vector2(2, 1)
@@ -2161,10 +2161,10 @@ script = SubResource("GDScript_htodp")
 position = Vector2(720, 337)
 
 [node name="wall2" parent="." instance=ExtResource("11_sbetg")]
-position = Vector2(796, 336)
+position = Vector2(796, 337)
 
 [node name="Breeder" parent="." instance=ExtResource("5_cisid")]
-position = Vector2(922, 303)
+position = Vector2(54, 311)
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]
