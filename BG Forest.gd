@@ -2,11 +2,10 @@ extends ParallaxBackground
 
 @export var timer: Timer
 
-var TIME_CYCLE = 120
-var TIME_TRANSITION = 25
+var TIME_CYCLE = 100
+var TIME_TRANSITION = 20
 var scrolling_speed = 100
 var parallax_layers: Array[ParallaxLayer]
-var is_day: bool = true
 var count: int = 0
 
 func _process(delta):
@@ -18,16 +17,17 @@ func _ready():
 
 func _on_day_night_timeout():
 	change_time()
+	print_debug(DayNight.is_day)
 	if count >= TIME_CYCLE: 
 		for layer in parallax_layers:
-			layer.change_alpha(is_day)
+			layer.change_alpha(DayNight.is_day)
 	timer.start()
 	count += 1
 
 func change_time():
 	var stop_count = TIME_CYCLE + TIME_TRANSITION
 	if count == stop_count:
-		is_day = not is_day
+		DayNight.is_day = not DayNight.is_day
 		count = 0
 
 
