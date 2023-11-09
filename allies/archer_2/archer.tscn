@@ -355,7 +355,7 @@ max_health = 20.0
 dead_state = NodePath("../CharacterStateMachine/Dead")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_q3pe8")]
-max_speed = 50.0
+max_speed = 60.0
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("4_i2dwk")]
 collision_layer = 8

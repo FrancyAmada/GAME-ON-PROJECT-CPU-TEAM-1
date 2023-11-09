@@ -25,3 +25,4 @@ func add_construction_points():
 
 func add_building():
 	pass
+
