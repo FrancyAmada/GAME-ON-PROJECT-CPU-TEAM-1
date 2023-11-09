@@ -273,8 +273,8 @@ shape = SubResource("CapsuleShape2D_oy82c")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, -3)
 scale = Vector2(0.853333, 0.873333)
-texture = ExtResource("3_8nvew")
-hframes = 8
+texture = ExtResource("2_42i2i")
+hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
