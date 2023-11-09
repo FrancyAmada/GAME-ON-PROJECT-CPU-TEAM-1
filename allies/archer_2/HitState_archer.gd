@@ -18,7 +18,6 @@ func on_exit():
 	character.velocity = Vector2.ZERO
 
 func _on_hit_box_component_on_hit(knockback: Vector2):
-	print("hit!")
 	character.velocity = knockback
 	dropBow.emit()
 
