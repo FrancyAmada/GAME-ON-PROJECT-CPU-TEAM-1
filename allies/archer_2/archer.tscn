@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://ckl0262w6yrmv"]
+[gd_scene load_steps=52 format=3 uid="uid://ckl0262w6yrmv"]
 
 [ext_resource type="Script" path="res://allies/archer_2/archer.gd" id="1_tbk3s"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="2_by07i"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ba2mdypfi1l0u" path="res://components/character_components/animation_component.tscn" id="5_vpnea"]
 [ext_resource type="PackedScene" uid="uid://cnb86u6w26c04" path="res://components/character_states/character_state_machine.tscn" id="6_7k3vs"]
 [ext_resource type="Script" path="res://allies/archer_2/hit_box_component_archer.gd" id="6_vhivm"]
-[ext_resource type="Texture2D" uid="uid://ysyryco6ryi8" path="res://game assets test/Elementals_Leaf_ranger_Free_v1.0/Elementals_Leaf_ranger_Free_v1.0/animations/spritesheets/run.png" id="7_5s6ni"]
 [ext_resource type="PackedScene" uid="uid://bo3jadkrsersr" path="res://components/character_components/enemy_detection_component.tscn" id="7_qra4k"]
 [ext_resource type="PackedScene" uid="uid://cni7yp7s8ub7m" path="res://components/character_states/state_component.tscn" id="7_yuvkh"]
 [ext_resource type="Script" path="res://allies/archer_2/ArcherGroundState.gd" id="8_67c8x"]
@@ -23,7 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://crx6fq3bf4y6" path="res://game assets test/Elementals_Leaf_ranger_Free_v1.0/Elementals_Leaf_ranger_Free_v1.0/animations/PNG/take_hit/take_hit_6.png" id="13_ggucj"]
 [ext_resource type="PackedScene" uid="uid://7nxesgqogyv3" path="res://allies/archer_2/shoot_component.tscn" id="13_hawyr"]
 [ext_resource type="Texture2D" uid="uid://t06aibt1h6yw" path="res://game assets test/Elementals_Leaf_ranger_Free_v1.0/Elementals_Leaf_ranger_Free_v1.0/animations/spritesheets/death.png" id="14_03nn6"]
-[ext_resource type="Texture2D" uid="uid://culb6dsxmip7m" path="res://game assets test/Elementals_Leaf_ranger_Free_v1.0/Elementals_Leaf_ranger_Free_v1.0/animations/spritesheets/attack.png" id="15_gy40a"]
+[ext_resource type="Texture2D" uid="uid://c57alu4av16kc" path="res://game assets test/custom/entities/humans/archer/archer_idle.png" id="15_dgsno"]
+[ext_resource type="Texture2D" uid="uid://def06uqs5jpln" path="res://game assets test/custom/entities/humans/archer/archer_shoot.png" id="16_yvyvy"]
+[ext_resource type="Texture2D" uid="uid://xh1htdb6egcx" path="res://game assets test/custom/entities/humans/archer/archer_run.png" id="17_u02rs"]
 [ext_resource type="Script" path="res://allies/archer_2/HitState_archer.gd" id="21_whidq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1krw8"]
@@ -115,9 +116,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_i7t6i"]
 resource_name = "Idle"
-length = 0.96
+length = 0.6
 loop_mode = 1
-step = 0.08
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -128,7 +129,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_xeaxd")]
+"values": [ExtResource("15_dgsno")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -140,7 +141,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [12]
+"values": [2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -149,10 +150,10 @@ tracks/2/path = NodePath("../Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_xwfcj"]
@@ -184,8 +185,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_jtdsu"]
 resource_name = "Shoot"
-length = 0.9
-step = 0.06
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -196,7 +196,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("15_gy40a")]
+"values": [ExtResource("16_yvyvy")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -208,7 +208,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [15]
+"values": [5]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -217,17 +217,17 @@ tracks/2/path = NodePath("../Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48, 0.54, 0.6, 0.66, 0.72, 0.78, 0.84),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_j3vdk"]
 resource_name = "Walk"
-length = 0.8
+length = 0.3
 loop_mode = 1
-step = 0.08
+step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -238,7 +238,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_5s6ni")]
+"values": [ExtResource("17_u02rs")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -250,7 +250,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [10]
+"values": [2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -259,10 +259,10 @@ tracks/2/path = NodePath("../Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ndfug"]
@@ -333,7 +333,7 @@ radius = 600.0
 size = Vector2(1638.33, 113.333)
 
 [node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "shoot_component")]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.7, 0.7)
 collision_layer = 8
 script = ExtResource("1_tbk3s")
 hit_state = NodePath("CharacterStateMachine/Hit")
@@ -344,9 +344,10 @@ position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_1krw8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -34)
+position = Vector2(1, 6.667)
+scale = Vector2(0.23, 0.23)
 texture = ExtResource("2_xeaxd")
-hframes = 19
+hframes = 5
 frame = 1
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("dead_state") instance=ExtResource("2_by07i")]
