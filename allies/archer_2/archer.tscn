@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://ckl0262w6yrmv"]
+[gd_scene load_steps=51 format=3 uid="uid://ckl0262w6yrmv"]
 
 [ext_resource type="Script" path="res://allies/archer_2/archer.gd" id="1_tbk3s"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="2_by07i"]
@@ -354,7 +354,7 @@ max_health = 20.0
 dead_state = NodePath("../CharacterStateMachine/Dead")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_q3pe8")]
-max_speed = 50.0
+max_speed = 60.0
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("4_i2dwk")]
 collision_layer = 8
