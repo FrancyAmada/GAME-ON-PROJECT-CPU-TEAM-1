@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=24 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
@@ -17,8 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://dkjx842gk4qi1" path="res://animals/boar/boar.tscn" id="7_3r3cn"]
 [ext_resource type="PackedScene" uid="uid://dn41lw4m0pjn5" path="res://props/lamp_to_house.tscn" id="8_qjbtu"]
 [ext_resource type="PackedScene" uid="uid://ba84lifj0uers" path="res://buildings/wall.tscn" id="11_sbetg"]
+
 [ext_resource type="PackedScene" uid="uid://fcf6dvm3trqp" path="res://allies/builder_2/builder.tscn" id="12_7yipq"]
-[ext_resource type="PackedScene" uid="uid://b0lrnpdo2jceo" path="res://props/tree.tscn" id="12_lkdhx"]
+[ext_resource type="PackedScene" uid="uid://dxs5oxpk1uh6s" path="res://allies/homeless/homeless.tscn" id="20_ptnhe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
 texture = ExtResource("2_0wty5")
@@ -2193,6 +2194,12 @@ position = Vector2(796, 337)
 
 [node name="Breeder" parent="." instance=ExtResource("5_cisid")]
 position = Vector2(2728, 304)
+
+[node name="homeless" parent="." instance=ExtResource("20_ptnhe")]
+position = Vector2(524, 317)
+
+[node name="Goblin" parent="." instance=ExtResource("4_yt5yi")]
+position = Vector2(202, 315)
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]

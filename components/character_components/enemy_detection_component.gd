@@ -73,4 +73,5 @@ func get_enemy():
 		enemy_distance = 600
 	else:
 		target_enemy = enemy_list[0]
+	print(enemy_list)
 	return [target_enemy, enemy_distance]

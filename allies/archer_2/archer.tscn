@@ -281,21 +281,21 @@ animation = &"Death"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4b7kk"]
 animation = &"Hit"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pnhiw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a1gar"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e6kyl"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_08uba"]
 animation = &"Walk"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o6jbo"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f4ctf"]
 animation = &"Walk"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_m8qyx"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_pnhiw")
+blend_point_0/node = SubResource("AnimationNodeAnimation_a1gar")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_e6kyl")
+blend_point_1/node = SubResource("AnimationNodeAnimation_08uba")
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_o6jbo")
+blend_point_2/node = SubResource("AnimationNodeAnimation_f4ctf")
 blend_point_2/pos = -1.0
 blend_mode = 1
 
@@ -346,7 +346,7 @@ shape = SubResource("CapsuleShape2D_1krw8")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -34)
 texture = ExtResource("2_xeaxd")
-hframes = 12
+hframes = 19
 frame = 1
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("dead_state") instance=ExtResource("2_by07i")]
