@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cluxufpss8t4q"]
+
+[ext_resource type="Script" path="res://animals/spawner/animal_spawner.gd" id="1_78flt"]
+
+[node name="AnimalSpawner" type="Node2D"]
+script = ExtResource("1_78flt")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+one_shot = true

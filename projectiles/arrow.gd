@@ -43,3 +43,7 @@ func _on_body_entered(body):
 		if hitbox:
 			hitbox.receive_hit(damage, knockback)
 			queue_free()
+	
+	if body.is_in_group("animals"):
+		body.get_hit(damage)
+		queue_free()

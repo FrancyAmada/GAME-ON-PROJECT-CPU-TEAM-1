@@ -6,11 +6,10 @@ extends Node2D
 @export var spawn_interval: float = 20.0
 
 func _ready():
-	timer.wait_time = spawn_interval
-	timer.start()
-
-func _on_timer_timeout():
-	var new_goblin = goblin.instantiate()
-	print("spawn")
-	add_child(new_goblin)
-	new_goblin.global_position = global_position
+	pass
+		
+func _on_enemy_timer_timeout():
+	if !DayNight.is_day:
+		var new_goblin = goblin.instantiate()
+		add_child(new_goblin)
+		new_goblin.global_position = global_position

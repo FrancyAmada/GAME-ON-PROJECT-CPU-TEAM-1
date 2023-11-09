@@ -1,17 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=23 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
 [ext_resource type="PackedScene" uid="uid://py8eaf6rn7ys" path="res://bg/bg_forest.tscn" id="3_i7qhs"]
+[ext_resource type="PackedScene" uid="uid://cluxufpss8t4q" path="res://animals/spawner/animal_spawner.tscn" id="3_li35a"]
+[ext_resource type="PackedScene" uid="uid://nsut2g2m8jue" path="res://animals/chicken/chicken_white.tscn" id="3_ytuoy"]
 [ext_resource type="PackedScene" uid="uid://ohij7grph7uc" path="res://enemies/goblin_spawner.tscn" id="4_cwq77"]
+[ext_resource type="PackedScene" uid="uid://cgxh5ragit4wm" path="res://animals/chicken/chicken_light_brown.tscn" id="4_u43c1"]
 [ext_resource type="PackedScene" uid="uid://djfo2ggqgpq5m" path="res://enemies/goblin/goblin.tscn" id="4_yt5yi"]
+[ext_resource type="PackedScene" uid="uid://cmeegocs44b4w" path="res://animals/chicken/chicken_dark_brown.tscn" id="5_7l2al"]
 [ext_resource type="PackedScene" uid="uid://cyvafd74yadlo" path="res://collectables/coin.tscn" id="5_8jj52"]
 [ext_resource type="PackedScene" uid="uid://c7vlerc3ikog7" path="res://enemies/breeder/breeder.tscn" id="5_cisid"]
 [ext_resource type="PackedScene" uid="uid://ckl0262w6yrmv" path="res://allies/archer_2/archer.tscn" id="5_uavne"]
 [ext_resource type="Script" path="res://coin_spawner.gd" id="6_53mfs"]
+[ext_resource type="PackedScene" uid="uid://d2cboe3s0l8ln" path="res://animals/chicken/chicken_black.tscn" id="6_seem8"]
+[ext_resource type="PackedScene" uid="uid://dkjx842gk4qi1" path="res://animals/boar/boar.tscn" id="7_3r3cn"]
 [ext_resource type="PackedScene" uid="uid://dn41lw4m0pjn5" path="res://props/lamp_to_house.tscn" id="8_qjbtu"]
 [ext_resource type="PackedScene" uid="uid://ba84lifj0uers" path="res://buildings/wall.tscn" id="11_sbetg"]
-[ext_resource type="PackedScene" uid="uid://b0lrnpdo2jceo" path="res://props/tree.tscn" id="12_lkdhx"]
+[ext_resource type="PackedScene" path="res://props/tree.tscn" id="12_lkdhx"]
 [ext_resource type="PackedScene" uid="uid://2weabnirnavw" path="res://allies/builder/builder.tscn" id="12_tox4p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
@@ -2097,21 +2103,43 @@ timer = NodePath("../DayNight")
 [node name="DayNight" type="Timer" parent="."]
 process_callback = 0
 one_shot = true
+autostart = true
+
+[node name="Animals" type="Node2D" parent="."]
+
+[node name="AnimalSpawner" parent="Animals" instance=ExtResource("3_li35a")]
+position = Vector2(95, 310)
+spawn_range = 50
+
+[node name="Chicken_white" parent="Animals" instance=ExtResource("3_ytuoy")]
+position = Vector2(186, 327)
+
+[node name="Chicken_light_brown" parent="Animals" instance=ExtResource("4_u43c1")]
+position = Vector2(227, 327)
+
+[node name="Chicken_dark_brown" parent="Animals" instance=ExtResource("5_7l2al")]
+position = Vector2(258, 328)
+
+[node name="Chicken_black" parent="Animals" instance=ExtResource("6_seem8")]
+position = Vector2(299, 326)
+
+[node name="Boar" parent="Animals" instance=ExtResource("7_3r3cn")]
+position = Vector2(149, 327)
 
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="GoblinSpawner" parent="Enemies" instance=ExtResource("4_cwq77")]
 position = Vector2(0, 257)
 goblin = ExtResource("4_yt5yi")
-spawn_interval = 30.0
+spawn_interval = 100.0
 
 [node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
-position = Vector2(134, 320)
+position = Vector2(2654, 310)
 
 [node name="Allies" type="Node2D" parent="."]
 
 [node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
-position = Vector2(275, 278)
+position = Vector2(450, 312)
 
 [node name="builder" parent="Allies" instance=ExtResource("12_tox4p")]
 position = Vector2(757, 296)
@@ -2149,7 +2177,7 @@ position = Vector2(465, 282)
 position = Vector2(651, 307)
 
 [node name="Player" parent="." instance=ExtResource("1_tdels")]
-position = Vector2(342, 320)
+position = Vector2(368, 322)
 
 [node name="TileMap" type="TileMap" parent="." groups=["ground"]]
 tile_set = SubResource("TileSet_xaqel")
@@ -2164,7 +2192,7 @@ position = Vector2(720, 337)
 position = Vector2(796, 337)
 
 [node name="Breeder" parent="." instance=ExtResource("5_cisid")]
-position = Vector2(54, 311)
+position = Vector2(2728, 304)
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]
