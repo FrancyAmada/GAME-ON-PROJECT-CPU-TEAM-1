@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dkjx842gk4qi1" path="res://animals/boar/boar.tscn" id="7_3r3cn"]
 [ext_resource type="PackedScene" uid="uid://dn41lw4m0pjn5" path="res://props/lamp_to_house.tscn" id="8_qjbtu"]
 [ext_resource type="PackedScene" uid="uid://ba84lifj0uers" path="res://buildings/wall.tscn" id="11_sbetg"]
-[ext_resource type="PackedScene" uid="uid://b0lrnpdo2jceo" path="res://props/tree.tscn" id="12_lkdhx"]
+[ext_resource type="PackedScene" path="res://props/tree.tscn" id="12_lkdhx"]
 [ext_resource type="PackedScene" uid="uid://2weabnirnavw" path="res://allies/builder/builder.tscn" id="12_tox4p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
@@ -2103,6 +2103,7 @@ timer = NodePath("../DayNight")
 [node name="DayNight" type="Timer" parent="."]
 process_callback = 0
 one_shot = true
+autostart = true
 
 [node name="Animals" type="Node2D" parent="."]
 
