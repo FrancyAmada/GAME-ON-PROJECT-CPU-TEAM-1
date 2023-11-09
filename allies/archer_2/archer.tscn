@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ckl0262w6yrmv"]
+[gd_scene load_steps=49 format=3 uid="uid://ckl0262w6yrmv"]
 
 [ext_resource type="Script" path="res://allies/archer_2/archer.gd" id="1_tbk3s"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="2_by07i"]
@@ -327,6 +327,9 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_f0hhf"]
 radius = 600.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0uoa"]
+size = Vector2(1638.33, 113.333)
+
 [node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "shoot_component")]
 scale = Vector2(0.6, 0.6)
 collision_layer = 8
@@ -406,13 +409,12 @@ attack_name = "Shoot"
 can_move = false
 
 [node name="EnemyDetectionComponent" parent="." node_paths=PackedStringArray("detection_area") instance=ExtResource("7_qra4k")]
-visible = false
 detection_area = NodePath("EnemyDetection")
 
 [node name="EnemyDetection" type="Area2D" parent="EnemyDetectionComponent"]
 visible = false
 collision_layer = 0
-collision_mask = 4
+collision_mask = 68
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionComponent/EnemyDetection"]
 shape = SubResource("CircleShape2D_f0hhf")
@@ -427,6 +429,14 @@ process_callback = 0
 wait_time = 2.0
 one_shot = true
 
+[node name="HuntArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HuntArea"]
+shape = SubResource("RectangleShape2D_s0uoa")
+
 [connection signal="use_attack" from="." to="CharacterStateMachine/Ground" method="_on_shoot_attack_use"]
 [connection signal="on_hit" from="HitBoxComponent" to="CharacterStateMachine/Hit" method="_on_hit_box_component_on_hit"]
 [connection signal="animation_finished" from="AnimationComponent/AnimationTree" to="AnimationComponent" method="_on_animation_tree_animation_finished"]
@@ -434,3 +444,5 @@ one_shot = true
 [connection signal="body_entered" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_exited"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="body_entered" from="HuntArea" to="." method="_on_hunt_area_body_entered"]
+[connection signal="body_exited" from="HuntArea" to="." method="_on_hunt_area_body_exited"]

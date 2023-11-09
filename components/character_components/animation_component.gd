@@ -12,7 +12,7 @@ signal facing_direction_changed(facing_right: bool)
 
 func _ready():
 	animation_tree.active = true
-	animation_tree.connect("_on_animation_finished", _on_animation_tree_animation_finished)
+	animation_tree.connect("animation_finished", _on_animation_tree_animation_finished)
 
 # Update Character Animation
 func update_animation(direction: Vector2):

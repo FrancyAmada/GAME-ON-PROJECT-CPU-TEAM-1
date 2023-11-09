@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Archer
+
 signal use_attack(attack_name: String)
 
 @export var hit_state: State
@@ -13,6 +15,7 @@ signal use_attack(attack_name: String)
 @onready var enemydetection_component: EnemyDetectionComponent = $EnemyDetectionComponent
 @onready var max_speed = velocity_component.max_speed
 @onready var enemy: CharacterBody2D
+@onready var hunt_area: Area2D = $HuntArea
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -25,12 +28,27 @@ var enemy_distance: float
 var shooting_angle: float
 var run_away: bool = false
 
+var target_animal: CharacterBody2D = null
+var target_animal_distance: int = 1000
+var animals_list: Array
+
+
 func _ready():
 	idle_timer.start()
 
 func _physics_process(delta):
 	on_idle()
 	set_target_enemy()
+	get_target_animal()
+	
+	if enemy == null:
+		hunt_area.monitoring = true
+		if target_animal != null:
+			enemy = target_animal
+			enemy_distance = target_animal_distance
+	else:
+		hunt_area.monitoring = false
+		target_animal = null
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -98,3 +116,22 @@ func rad2deg(rad):
 	
 func map_range(value: float, start1: float, stop1: float, start2: float, stop2: float):
 	return (value - start1) / (stop1 - start1) * (stop2 - start2) + start2
+
+
+func get_target_animal():
+	target_animal = null
+	var nearest_distance: int = 1000
+	for animal in animals_list:
+		var animal_distance = abs(global_position.x - animal.global_position.x)
+		if animal_distance < nearest_distance:
+			nearest_distance = animal_distance
+			target_animal = animal
+			target_animal_distance = animal_distance
+	
+func _on_hunt_area_body_entered(body):
+	if body.is_in_group("animals"):
+		animals_list.append(body)
+
+func _on_hunt_area_body_exited(body):
+	if body in animals_list:
+		animals_list.erase(body)
