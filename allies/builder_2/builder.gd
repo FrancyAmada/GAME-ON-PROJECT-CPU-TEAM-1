@@ -45,7 +45,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	print_debug(self, " at state ", state_machine.current_state, " is run away ", run_away, " enemy = ", enemy)
+#	print_debug(self, " at state ", state_machine.current_state, " is run away ", run_away, " enemy = ", enemy)
 	if idle and !run_away:
 		idle_time += delta
 		get_idle_direction()
