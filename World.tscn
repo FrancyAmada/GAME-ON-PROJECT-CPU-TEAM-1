@@ -2157,7 +2157,7 @@ script = ExtResource("6_53mfs")
 
 [node name="Timer" type="Timer" parent="collectables/coinSpawner"]
 process_callback = 0
-wait_time = 3.0
+wait_time = 0.43
 autostart = true
 
 [node name="coin" parent="collectables" instance=ExtResource("5_8jj52")]
@@ -2196,7 +2196,7 @@ position = Vector2(796, 337)
 position = Vector2(2728, 304)
 
 [node name="homeless" parent="." instance=ExtResource("20_ptnhe")]
-position = Vector2(524, 317)
+position = Vector2(912, 315)
 
 [node name="Goblin" parent="." instance=ExtResource("4_yt5yi")]
 position = Vector2(202, 315)
