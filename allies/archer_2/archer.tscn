@@ -28,7 +28,7 @@
 height = 44.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pwhsp"]
-size = Vector2(30, 44.5)
+size = Vector2(36.6667, 44.5)
 
 [sub_resource type="Animation" id="Animation_4otqw"]
 resource_name = "Death"
@@ -352,6 +352,7 @@ dead_state = NodePath("../CharacterStateMachine/Dead")
 max_speed = 50.0
 
 [node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component", "area", "hit_state") instance=ExtResource("4_i2dwk")]
+collision_layer = 8
 health_component = NodePath("../HealthComponent")
 area = NodePath("CollisionShape2D")
 hit_state = NodePath("../CharacterStateMachine/Hit")

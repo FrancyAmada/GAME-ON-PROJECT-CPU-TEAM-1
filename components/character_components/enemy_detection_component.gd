@@ -20,12 +20,17 @@ func _ready():
 
 func _physics_process(delta):
 	enemy_distance = 600
+	target_enemy = null
 	var distance: int
+	
 	if target_enemy:
-		var health_component: HealthComponent = target_enemy.find_child("HealthComponent")
-		if health_component.health <= 0:
+		if target_enemy is builder and target_enemy.health <= 0:
 			enemy_list.erase(target_enemy)
-			target_enemy = null
+			
+		else:
+			var health_component: HealthComponent = target_enemy.find_child("HealthComponent")
+			if health_component and health_component.health <= 0:
+				enemy_list.erase(target_enemy)
 	
 	for enemy in enemy_list:
 			
@@ -54,6 +59,8 @@ func _on_enemy_detection_body_entered(body):
 	if health_component and hitbox_component:
 		if health_component.health > 0:
 			enemy_list.append(body)
+	if body is builder:
+		enemy_list.append(body)
 			
 func _on_enemy_detection_body_exited(body):
 	if body in enemy_list:

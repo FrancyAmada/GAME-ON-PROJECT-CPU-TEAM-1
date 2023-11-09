@@ -1,11 +1,12 @@
 extends Area2D
 
+@export var ground_state: State
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	monitoring = false
+	ground_state.connect("reset_attack_monitoring", _on_attack_reset)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_attack_reset():
+	monitoring = false

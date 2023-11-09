@@ -2106,7 +2106,7 @@ goblin = ExtResource("4_yt5yi")
 spawn_interval = 30.0
 
 [node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
-position = Vector2(1528, 317)
+position = Vector2(814, 304)
 
 [node name="Allies" type="Node2D" parent="."]
 
@@ -2164,7 +2164,7 @@ position = Vector2(720, 337)
 position = Vector2(796, 336)
 
 [node name="Breeder" parent="." instance=ExtResource("5_cisid")]
-position = Vector2(1565, 311)
+position = Vector2(922, 303)
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]
