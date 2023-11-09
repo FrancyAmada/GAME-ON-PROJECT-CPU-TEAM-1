@@ -4,6 +4,8 @@ extends building_node
 var wall_level_1 = preload("res://buildings/ineractable/wall_level_1.tscn")
 var dirt_mound_1 = preload("res://buildings/ineractable/dirt_mound.tscn")
 var wall_level_2 = preload("res://buildings/ineractable/wall_level_2.tscn")
+var wall_level_3 = preload("res://buildings/ineractable/wall_level_3.tscn")
+var wall_level_4 = preload("res://buildings/ineractable/wall_level_4.tscn")
 @onready var build_range = $build_area
 var done = true
 var level = 0
@@ -40,6 +42,15 @@ func add_building():
 	elif level == 2:
 		var new_wall = wall_level_2.instantiate()
 		add_child(new_wall)
+		new_wall.connect("build_me", add_scaffolding)
+	elif level == 3:
+		var new_wall = wall_level_3.instantiate()
+		add_child(new_wall)
+		new_wall.connect("build_me", add_scaffolding)
+	elif level == 4:
+		var new_wall = wall_level_4.instantiate()
+		add_child(new_wall)
+		new_wall.connect("build_me", add_scaffolding)
 	
 	Game.buildngs_construction_remove(self)
 	print("remove me!")

@@ -18,7 +18,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: Vector2 = Vector2.RIGHT
 
-
 func _ready():
 	enemydetection_component.connect("chase_player", set_chase_player)
 

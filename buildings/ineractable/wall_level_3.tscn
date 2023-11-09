@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctw367suy3cb"]
+
+[ext_resource type="Script" path="res://buildings/ineractable/wall_level_3.gd" id="1_4wami"]
+[ext_resource type="Texture2D" uid="uid://n31g0ofufpph" path="res://game assets test/custom/structures/wall/Wall 3.png" id="2_xhron"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_772sv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xhron")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vchy0"]
+size = Vector2(35, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atx67"]
+size = Vector2(38, 43)
+
+[node name="wall_level_3" type="Area2D"]
+script = ExtResource("1_4wami")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -21)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_772sv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -21)
+shape = SubResource("RectangleShape2D_vchy0")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, -21.5)
+shape = SubResource("RectangleShape2D_atx67")
