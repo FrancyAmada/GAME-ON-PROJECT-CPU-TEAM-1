@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://2weabnirnavw"]
+[gd_scene load_steps=34 format=3 uid="uid://2weabnirnavw"]
 
 [ext_resource type="Script" path="res://allies/builder/builder.gd" id="1_yn65f"]
 [ext_resource type="Texture2D" uid="uid://dkpsl1raa542g" path="res://game assets test/Huntress/Huntress/Sprites/Attack2.png" id="2_42i2i"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" path="res://allies/builder/idle.gd" id="7_lwn63"]
 [ext_resource type="Script" path="res://allies/builder/build.gd" id="8_qpeig"]
 [ext_resource type="Script" path="res://allies/builder/go_to_building.gd" id="9_tv234"]
+[ext_resource type="Script" path="res://allies/builder/dead.gd" id="10_6qjdv"]
 [ext_resource type="Script" path="res://allies/builder/build_range.gd" id="10_6w4gl"]
+[ext_resource type="PackedScene" uid="uid://bo3jadkrsersr" path="res://components/character_components/enemy_detection_component.tscn" id="11_lchle"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oy82c"]
 radius = 8.0
@@ -258,6 +260,9 @@ graph_offset = Vector2(-94.4199, -51)
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ac7h"]
 radius = 17.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b7eww"]
+radius = 500.0
+
 [node name="builder" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_yn65f")
@@ -268,8 +273,8 @@ shape = SubResource("CapsuleShape2D_oy82c")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, -3)
 scale = Vector2(0.853333, 0.873333)
-texture = ExtResource("2_42i2i")
-hframes = 5
+texture = ExtResource("3_8nvew")
+hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -300,6 +305,10 @@ actor = NodePath("../..")
 script = ExtResource("9_tv234")
 actor = NodePath("../..")
 
+[node name="dead" type="Node" parent="finiteStateMachine_builder" node_paths=PackedStringArray("actor")]
+script = ExtResource("10_6qjdv")
+actor = NodePath("../..")
+
 [node name="build_range" type="Area2D" parent="."]
 monitoring = false
 script = ExtResource("10_6w4gl")
@@ -307,5 +316,18 @@ script = ExtResource("10_6w4gl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="build_range"]
 shape = SubResource("CircleShape2D_1ac7h")
 
+[node name="EnemyDetectionComponent" parent="." node_paths=PackedStringArray("detection_area") instance=ExtResource("11_lchle")]
+visible = false
+detection_area = NodePath("EnemyDetection")
+
+[node name="EnemyDetection" type="Area2D" parent="EnemyDetectionComponent"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionComponent/EnemyDetection"]
+shape = SubResource("CircleShape2D_b7eww")
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="area_entered" from="build_range" to="." method="_on_build_range_area_entered"]
+[connection signal="body_entered" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_entered"]
+[connection signal="body_exited" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_exited"]

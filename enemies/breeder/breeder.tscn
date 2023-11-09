@@ -351,7 +351,7 @@ radius = 700.0
 size = Vector2(43.3333, 53.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsqae"]
-size = Vector2(35, 53.3333)
+size = Vector2(31, 53.3333)
 
 [node name="Breeder" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "attack1_component") groups=["enemy"]]
 collision_layer = 4
@@ -453,11 +453,12 @@ cd_time = 3.0
 attack_name = "Attack"
 use_state = NodePath("../CharacterStateMachine/Ground")
 
-[node name="AttackArea" type="Area2D" parent="Attack"]
+[node name="AttackArea" type="Area2D" parent="Attack" node_paths=PackedStringArray("ground_state")]
 collision_layer = 0
 collision_mask = 42
 monitoring = false
 script = ExtResource("19_vexv7")
+ground_state = NodePath("../../CharacterStateMachine/Ground")
 
 [node name="AttackCollisionComponent" parent="Attack/AttackArea" instance=ExtResource("20_1e7b5")]
 position = Vector2(21.5, 0)
@@ -471,10 +472,10 @@ collision_mask = 42
 attack_component = NodePath("..")
 
 [node name="DetectionCollision" parent="Attack/EnemyDetector" instance=ExtResource("20_1e7b5")]
-position = Vector2(17.5, 7.94729e-07)
+position = Vector2(15, 0)
 shape = SubResource("RectangleShape2D_nsqae")
-facing_left_position = Vector2(-17.5, 0)
-facing_right_position = Vector2(17.5, 0)
+facing_left_position = Vector2(-15, 0)
+facing_right_position = Vector2(15, 0)
 
 [node name="BreedTimer" type="Timer" parent="."]
 process_callback = 0

@@ -356,7 +356,7 @@ radius = 800.0
 size = Vector2(35.5, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hawr"]
-size = Vector2(30.9685, 32)
+size = Vector2(17.7421, 32)
 
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "attack1_component") groups=["enemy"]]
 collision_layer = 4
@@ -478,10 +478,10 @@ collision_mask = 42
 attack_component = NodePath("..")
 
 [node name="DetectionCollisionComponent" parent="Attack1/EnemyDetector" instance=ExtResource("9_3kuty")]
-position = Vector2(15, 0)
+position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_5hawr")
-facing_left_position = Vector2(-15, 0)
-facing_right_position = Vector2(15, 0)
+facing_left_position = Vector2(-8, 0)
+facing_right_position = Vector2(8, 0)
 
 [connection signal="on_death" from="HealthComponent" to="CharacterStateMachine" method="_on_health_component_on_death"]
 [connection signal="on_hit" from="HitBoxComponent" to="CharacterStateMachine/Hit" method="_on_hit_box_component_on_hit"]

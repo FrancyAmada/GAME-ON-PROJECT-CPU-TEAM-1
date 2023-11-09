@@ -20,6 +20,10 @@ func _ready():
 	enemy_detector.connect("is_enemy_detected", _on_enemy_is_detected)
 
 func _on_attack_body_entered(body):
+	if body is builder:
+		attack_builder(body)
+		return 0
+		
 	for child in body.get_children():
 		if child is HitBoxComponent:
 			# get direction from the sword to the body
@@ -44,6 +48,9 @@ func _on_attack_area_body_shape_entered(body_rid, body, body_shape_index, local_
 func do_melee_attack(hit_box: HitBoxComponent, direction: float):
 	var knockback = Vector2(knockback_distance * direction, -200)
 	hit_box.receive_hit(damage, knockback)
+
+func attack_builder(body: CharacterBody2D):
+	body.take_hit(damage)
 
 func _on_facing_direction_changed(facing_right: bool):
 	if facing_right:
