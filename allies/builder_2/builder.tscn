@@ -1,11 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://fcf6dvm3trqp"]
+[gd_scene load_steps=43 format=3 uid="uid://fcf6dvm3trqp"]
 
 [ext_resource type="Script" path="res://allies/builder_2/builder.gd" id="1_hvw3h"]
 [ext_resource type="Texture2D" uid="uid://d71uacgugxcf" path="res://game assets test/Huntress/Huntress/Sprites/Death.png" id="2_3q3n7"]
+[ext_resource type="Texture2D" uid="uid://sprvklfrsucl" path="res://game assets test/custom/entities/humans/builder/builder_idle.png" id="2_50ohf"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="2_ejo7v"]
-[ext_resource type="Texture2D" uid="uid://dmcbryijfksh1" path="res://game assets test/Huntress/Huntress/Sprites/Take hit.png" id="2_t25tc"]
-[ext_resource type="Texture2D" uid="uid://cn6vc1q8fruc" path="res://game assets test/Huntress/Huntress/Sprites/Idle.png" id="2_tjdcu"]
-[ext_resource type="Texture2D" uid="uid://b34crdnt6kbwi" path="res://game assets test/Huntress/Huntress/Sprites/Run.png" id="2_x7xkb"]
+[ext_resource type="Texture2D" uid="uid://b7q0e2syn4381" path="res://game assets test/custom/entities/humans/builder/builder_build.png" id="2_ga7pg"]
 [ext_resource type="PackedScene" uid="uid://bci8dwt4iycg0" path="res://components/character_components/velocity_component.tscn" id="3_4tbtm"]
 [ext_resource type="PackedScene" uid="uid://dprnmdpqf2q34" path="res://components/character_components/hit_box_component.tscn" id="4_4apnp"]
 [ext_resource type="PackedScene" uid="uid://ba2mdypfi1l0u" path="res://components/character_components/animation_component.tscn" id="5_vsu7l"]
@@ -13,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bo3jadkrsersr" path="res://components/character_components/enemy_detection_component.tscn" id="7_bi7e1"]
 [ext_resource type="PackedScene" uid="uid://cni7yp7s8ub7m" path="res://components/character_states/state_component.tscn" id="7_lsq1t"]
 [ext_resource type="PackedScene" uid="uid://bgedrb0rxmvnc" path="res://components/character_states/hit_state.tscn" id="9_b0y65"]
-[ext_resource type="Texture2D" uid="uid://c2h2ydg5164bf" path="res://game assets test/Huntress/Huntress/Sprites/Attack1.png" id="10_ohkmb"]
+[ext_resource type="Texture2D" uid="uid://cwrwyc5s5c83l" path="res://game assets test/custom/entities/humans/builder/builder_run.png" id="9_c8wys"]
 [ext_resource type="PackedScene" uid="uid://d1ryhs5mbdtww" path="res://components/character_states/enemy_dead_state.tscn" id="10_pbecn"]
 [ext_resource type="Script" path="res://allies/builder_2/Build_Range.gd" id="12_6gsed"]
 [ext_resource type="Script" path="res://allies/builder_2/BuilderGroundState.gd" id="13_tfvrp"]
@@ -25,10 +24,9 @@ height = 28.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbtja"]
 size = Vector2(20, 27)
 
-[sub_resource type="Animation" id="Animation_vvgqm"]
-resource_name = "Idle"
-length = 0.8
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_qqsy5"]
+resource_name = "Build"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -39,7 +37,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_tjdcu")]
+"values": [ExtResource("2_ga7pg")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -51,60 +49,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Sprite2D:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_bdyx0"]
-resource_name = "Walk"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_x7xkb")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
+"values": [2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -113,50 +58,10 @@ tracks/2/path = NodePath("../Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_o2fsy"]
-resource_name = "Hit"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_t25tc")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
+"values": [0, 1, 0, 1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_1fg6i"]
@@ -199,9 +104,9 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_qqsy5"]
-resource_name = "Build"
-length = 0.5
+[sub_resource type="Animation" id="Animation_o2fsy"]
+resource_name = "Hit"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -212,7 +117,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_ohkmb")]
+"values": [ExtResource("2_50ohf")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -224,7 +129,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -233,10 +138,51 @@ tracks/2/path = NodePath("../Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [0, 1, 1]
+}
+
+[sub_resource type="Animation" id="Animation_vvgqm"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_50ohf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_ft2ix"]
@@ -252,6 +198,47 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_bdyx0"]
+resource_name = "Walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_c8wys")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4aojy"]
@@ -334,9 +321,10 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_2qdcq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_tjdcu")
-hframes = 8
+position = Vector2(0, 1)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_50ohf")
+hframes = 2
 frame = 1
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("dead_state") instance=ExtResource("2_ejo7v")]
