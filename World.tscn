@@ -2137,6 +2137,9 @@ spawn_interval = 100.0
 [node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
 position = Vector2(2654, 310)
 
+[node name="Breeder" parent="Enemies" instance=ExtResource("5_cisid")]
+position = Vector2(2728, 304)
+
 [node name="Allies" type="Node2D" parent="."]
 
 [node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
@@ -2157,7 +2160,7 @@ script = ExtResource("6_53mfs")
 
 [node name="Timer" type="Timer" parent="collectables/coinSpawner"]
 process_callback = 0
-wait_time = 0.43
+wait_time = 5.0
 autostart = true
 
 [node name="coin" parent="collectables" instance=ExtResource("5_8jj52")]
@@ -2192,14 +2195,11 @@ position = Vector2(720, 337)
 [node name="wall2" parent="." instance=ExtResource("11_sbetg")]
 position = Vector2(796, 337)
 
-[node name="Breeder" parent="." instance=ExtResource("5_cisid")]
-position = Vector2(2728, 304)
-
 [node name="homeless" parent="." instance=ExtResource("20_ptnhe")]
 position = Vector2(912, 315)
 
 [node name="Goblin" parent="." instance=ExtResource("4_yt5yi")]
-position = Vector2(1756, 316)
+position = Vector2(81, 319)
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]
