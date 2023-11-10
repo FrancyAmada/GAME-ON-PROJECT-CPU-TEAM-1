@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cn0mt73uxjtkd"]
+[gd_scene load_steps=21 format=3 uid="uid://cn0mt73uxjtkd"]
 
 [ext_resource type="Script" path="res://allies/jobless/jobless.gd" id="1_fpgk2"]
 [ext_resource type="Texture2D" uid="uid://vw8cfdh1qyq3" path="res://game assets test/custom/entities/humans/jobless/jobless_run.png" id="2_4eyut"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bu8d4cu72n1pt" path="res://game assets test/custom/entities/humans/jobless/jobless_idle.png" id="4_rj375"]
 [ext_resource type="PackedScene" uid="uid://bci8dwt4iycg0" path="res://components/character_components/velocity_component.tscn" id="5_o175n"]
 [ext_resource type="PackedScene" uid="uid://bo3jadkrsersr" path="res://components/character_components/enemy_detection_component.tscn" id="6_kftw5"]
+[ext_resource type="Script" path="res://allies/jobless/ToolDetectionComponent.gd" id="7_v75nu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5e7rk"]
 height = 42.0
@@ -145,7 +146,12 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_yaqb4"]
 radius = 600.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ro0xl"]
+radius = 207.163
+
 [node name="jobless" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
+collision_layer = 8
 script = ExtResource("1_fpgk2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -154,11 +160,14 @@ shape = SubResource("CapsuleShape2D_5e7rk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.23, 0.23)
-texture = ExtResource("2_4eyut")
+texture = ExtResource("4_rj375")
 hframes = 2
 
-[node name="AnimationComponent" type="Node2D" parent="."]
+[node name="AnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("sprite", "animation_player", "animation_tree")]
 script = ExtResource("3_aro2m")
+sprite = NodePath("../Sprite2D")
+animation_player = NodePath("AnimationPlayer")
+animation_tree = NodePath("AnimationTree")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationComponent"]
 root_node = NodePath("../..")
@@ -190,6 +199,18 @@ process_callback = 0
 wait_time = 2.0
 one_shot = true
 
+[node name="ToolDetectionComponent" type="Node2D" parent="."]
+script = ExtResource("7_v75nu")
+
+[node name="ToolDetection" type="Area2D" parent="ToolDetectionComponent"]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToolDetectionComponent/ToolDetection"]
+shape = SubResource("CircleShape2D_ro0xl")
+
 [connection signal="animation_finished" from="AnimationComponent/AnimationTree" to="AnimationComponent" method="_on_animation_tree_animation_finished"]
 [connection signal="body_entered" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_exited"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="body_entered" from="ToolDetectionComponent/ToolDetection" to="ToolDetectionComponent" method="_on_tool_detection_body_entered"]
+[connection signal="body_exited" from="ToolDetectionComponent/ToolDetection" to="ToolDetectionComponent" method="_on_tool_detection_body_exited"]
