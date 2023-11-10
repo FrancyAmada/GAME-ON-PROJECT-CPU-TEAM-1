@@ -106,9 +106,13 @@ func set_target_enemy():
 	
 func set_shooting_angle():
 	var initial_velocity = 500
+	var height: float = 0.8
+	
+	if enemy.is_in_group("enemy"):
+		height = 1.0
 	
 	# Just for testing only
-	var range_multiplier = map_range(enemy_distance, 200, 0, 0.8, 0.5)
+	var range_multiplier = map_range(enemy_distance, 200, 0, height, 0.5)
 	
 	var angle = range_multiplier * asin((gravity * enemy_distance * direction.x) / (initial_velocity ** 2))
 	shooting_angle = rad2deg(angle)

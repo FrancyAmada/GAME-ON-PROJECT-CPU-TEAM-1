@@ -6,4 +6,4 @@ func change_time(is_day: bool):
 		energy -= 0.045
 	else:
 		energy += 0.045
-	print_debug("Day Energy: ", str(energy))
+#	print_debug("Day Energy: ", str(energy))
