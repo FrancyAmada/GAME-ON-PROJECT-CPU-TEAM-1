@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://py8eaf6rn7ys" path="res://bg/bg_forest.tscn" id="3_i7qhs"]
 [ext_resource type="PackedScene" uid="uid://cluxufpss8t4q" path="res://animals/spawner/animal_spawner.tscn" id="3_li35a"]
 [ext_resource type="PackedScene" uid="uid://nsut2g2m8jue" path="res://animals/chicken/chicken_white.tscn" id="3_ytuoy"]
+[ext_resource type="PackedScene" uid="uid://b3dn6npd4hs8a" path="res://day_night_light.tscn" id="4_brwpm"]
 [ext_resource type="PackedScene" uid="uid://ohij7grph7uc" path="res://enemies/goblin_spawner.tscn" id="4_cwq77"]
 [ext_resource type="PackedScene" uid="uid://cgxh5ragit4wm" path="res://animals/chicken/chicken_light_brown.tscn" id="4_u43c1"]
 [ext_resource type="PackedScene" uid="uid://djfo2ggqgpq5m" path="res://enemies/goblin/goblin.tscn" id="4_yt5yi"]
@@ -20,8 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ba84lifj0uers" path="res://buildings/wall.tscn" id="11_sbetg"]
 [ext_resource type="PackedScene" uid="uid://fcf6dvm3trqp" path="res://allies/builder_2/builder.tscn" id="12_7yipq"]
 [ext_resource type="PackedScene" uid="uid://b0lrnpdo2jceo" path="res://props/tree.tscn" id="12_lkdhx"]
-[ext_resource type="PackedScene" uid="uid://dxs5oxpk1uh6s" path="res://allies/homeless/homeless.tscn" id="20_ptnhe"]
-[ext_resource type="PackedScene" uid="uid://cn0mt73uxjtkd" path="res://allies/jobless/jobless.tscn" id="21_tyrl0"]
+[ext_resource type="PackedScene" uid="uid://uyb7ag4gjakv" path="res://allies/human.tscn" id="16_8wu52"]
 [ext_resource type="PackedScene" uid="uid://y66u0xbne8om" path="res://collectables/bow.tscn" id="22_e82pd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ed260"]
@@ -2107,10 +2107,14 @@ position = Vector2(210, 305)
 [node name="BG Forest" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("3_i7qhs")]
 offset = Vector2(-100, -100)
 transform = Transform2D(1, 0, 0, 1, -100, -100)
-timer = NodePath("DayNight")
+timer = NodePath("../DayNight")
 
-[node name="DayNight" type="Timer" parent="BG Forest"]
+[node name="DayNightLight" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("4_brwpm")]
+timer = NodePath("../DayNight")
+
+[node name="DayNight" type="Timer" parent="."]
 process_callback = 0
+wait_time = 0.05
 one_shot = true
 autostart = true
 
@@ -2157,16 +2161,22 @@ position = Vector2(-910, 311)
 [node name="Allies" type="Node2D" parent="."]
 
 [node name="Builder" parent="Allies" instance=ExtResource("12_7yipq")]
-position = Vector2(-225, 312)
-
-[node name="homeless" parent="Allies" instance=ExtResource("20_ptnhe")]
-position = Vector2(537, 321)
-
-[node name="jobless" parent="Allies" instance=ExtResource("21_tyrl0")]
-position = Vector2(514, 320)
+position = Vector2(649, 311)
 
 [node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
 position = Vector2(557, 119)
+
+[node name="human" parent="Allies" instance=ExtResource("16_8wu52")]
+position = Vector2(71, 320)
+
+[node name="human2" parent="Allies" instance=ExtResource("16_8wu52")]
+position = Vector2(95, 318)
+
+[node name="human3" parent="Allies" instance=ExtResource("16_8wu52")]
+position = Vector2(120, 321)
+
+[node name="human4" parent="Allies" instance=ExtResource("16_8wu52")]
+position = Vector2(438, 319)
 
 [node name="collectables" type="Node2D" parent="."]
 position = Vector2(2, 1)
@@ -2215,5 +2225,6 @@ position = Vector2(796, 337)
 [node name="bow" parent="." instance=ExtResource("22_e82pd")]
 position = Vector2(625, 274)
 
-[connection signal="timeout" from="BG Forest/DayNight" to="BG Forest" method="_on_day_night_timeout"]
+[connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
+[connection signal="timeout" from="DayNight" to="DayNightLight" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]
