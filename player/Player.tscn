@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://d3ipjerk8uya8"]
+[gd_scene load_steps=50 format=3 uid="uid://d3ipjerk8uya8"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_bktfi"]
 [ext_resource type="Texture2D" uid="uid://dncra0lssup53" path="res://game assets test/Medieval King Pack 2/Sprites/Run.png" id="2_1japs"]
@@ -22,6 +22,15 @@
 [ext_resource type="Script" path="res://player/MeleeArea.gd" id="19_b2esm"]
 [ext_resource type="Script" path="res://gold.gd" id="21_ciwsi"]
 [ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="22_agr8t"]
+
+[sub_resource type="Gradient" id="Gradient_64cmo"]
+offsets = PackedFloat32Array(0, 0.670968)
+colors = PackedColorArray(0.954839, 0.954839, 0.954839, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yolqd"]
+gradient = SubResource("Gradient_64cmo")
+fill = 1
+fill_from = Vector2(0.513761, 0.481651)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4amk"]
 radius = 8.0
@@ -350,9 +359,17 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 size = Vector2(43, 48)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hit_state") groups=["CharacterBody2D"]]
+z_index = -10
 collision_layer = 2
 script = ExtResource("1_bktfi")
 hit_state = NodePath("CharacterStateMachine/Hit")
+
+[node name="Torchlight" type="PointLight2D" parent="."]
+position = Vector2(0, -11)
+scale = Vector2(4.5, 4.5)
+color = Color(0.941176, 0.776471, 0.498039, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_yolqd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_a4amk")

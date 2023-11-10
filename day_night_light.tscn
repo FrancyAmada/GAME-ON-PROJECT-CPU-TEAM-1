@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3dn6npd4hs8a"]
+
+[ext_resource type="Script" path="res://day_night_light.gd" id="1_hp7fa"]
+[ext_resource type="Script" path="res://Day.gd" id="2_gw6dx"]
+[ext_resource type="Script" path="res://Night.gd" id="3_utigj"]
+
+[node name="DayNightLight" type="Node2D"]
+script = ExtResource("1_hp7fa")
+
+[node name="Day" type="DirectionalLight2D" parent="."]
+color = Color(0.890196, 0.705882, 0.380392, 1)
+script = ExtResource("2_gw6dx")
+
+[node name="Night" type="DirectionalLight2D" parent="."]
+color = Color(0.87451, 0.87451, 0.87451, 1)
+energy = 0.4
+blend_mode = 1
+script = ExtResource("3_utigj")

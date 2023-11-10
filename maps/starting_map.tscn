@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c6v46g012i0d3"]
+[gd_scene load_steps=27 format=3 uid="uid://c6v46g012i0d3"]
 
 [ext_resource type="PackedScene" uid="uid://bcwledypnfy41" path="res://buildings/ineractable/trees/black_tree2.tscn" id="1_o4qk0"]
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="2_a4bxm"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://q1yp1jqcn7em" path="res://buildings/ineractable/wall_level_1.tscn" id="21_ogenx"]
 [ext_resource type="PackedScene" uid="uid://b12nggvfja8h5" path="res://buildings/ineractable/townhall_level_2.tscn" id="22_bgmd7"]
 [ext_resource type="Texture2D" uid="uid://bessh5aahmo6w" path="res://textures/gradient_circle.jpg" id="23_7dsx2"]
+[ext_resource type="PackedScene" uid="uid://b3dn6npd4hs8a" path="res://day_night_light.tscn" id="24_8qqes"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc6vf"]
 texture = ExtResource("2_coelw")
@@ -2743,10 +2744,6 @@ process_callback = 0
 wait_time = 617.62
 autostart = true
 
-[node name="campfire" parent="." instance=ExtResource("4_ccvat")]
-position = Vector2(475, 336)
-scale = Vector2(1.7, 1.7)
-
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color(0.818901, 0.872643, 0.686208, 1)
 tile_set = SubResource("TileSet_gqe6e")
@@ -2759,43 +2756,33 @@ layer_0/tile_data = PackedInt32Array(1572862, 196608, 2, 1638398, 196608, 2, 170
 
 [node name="coin" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(-313, 300)
-scale = Vector2(1, 1)
 
 [node name="coin2" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(175, 270)
-scale = Vector2(1, 1)
 
 [node name="coin3" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(29, 284)
-scale = Vector2(1, 1)
 
 [node name="coin4" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(136, 271)
-scale = Vector2(1, 1)
 
 [node name="coin5" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(96, 300)
-scale = Vector2(1, 1)
 
 [node name="coin6" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(-29, 288)
-scale = Vector2(1, 1)
 
 [node name="coin7" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(-99, 295)
-scale = Vector2(1, 1)
 
 [node name="coin8" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(-164, 303)
-scale = Vector2(1, 1)
 
 [node name="coin9" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(-230, 313)
-scale = Vector2(1, 1)
 
 [node name="coin10" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(-278, 315)
-scale = Vector2(1, 1)
 
 [node name="allies" type="Node" parent="."]
 
@@ -2904,52 +2891,58 @@ position = Vector2(-945, 304)
 
 [node name="bushes" type="Node" parent="."]
 
-[node name="bush1" parent="." instance=ExtResource("15_av4gu")]
+[node name="bush1" parent="bushes" instance=ExtResource("15_av4gu")]
 position = Vector2(-309, 313)
 
-[node name="bush2" parent="." instance=ExtResource("16_w1doe")]
+[node name="bush2" parent="bushes" instance=ExtResource("16_w1doe")]
 position = Vector2(-52, 315)
 
-[node name="bush3" parent="." instance=ExtResource("16_w1doe")]
+[node name="bush3" parent="bushes" instance=ExtResource("16_w1doe")]
 position = Vector2(-189, 313)
 
-[node name="bush4" parent="." instance=ExtResource("16_w1doe")]
+[node name="bush4" parent="bushes" instance=ExtResource("16_w1doe")]
 position = Vector2(206, 313)
 
-[node name="bush5" parent="." instance=ExtResource("17_gixr5")]
+[node name="bush5" parent="bushes" instance=ExtResource("17_gixr5")]
 modulate = Color(0.596078, 0.596078, 0.596078, 1)
 position = Vector2(58, 316)
 
-[node name="bush6" parent="." instance=ExtResource("18_m0875")]
+[node name="bush6" parent="bushes" instance=ExtResource("18_m0875")]
 modulate = Color(0.760784, 0.760784, 0.760784, 1)
 position = Vector2(-129, 315)
 
-[node name="bush7" parent="." instance=ExtResource("17_gixr5")]
+[node name="bush7" parent="bushes" instance=ExtResource("17_gixr5")]
 modulate = Color(0.764706, 0.764706, 0.764706, 1)
 position = Vector2(271, 314)
 
-[node name="bush8" parent="." instance=ExtResource("17_gixr5")]
+[node name="bush8" parent="bushes" instance=ExtResource("17_gixr5")]
 modulate = Color(0.764706, 0.784314, 0.611765, 1)
 position = Vector2(144, 314)
 
-[node name="archer_house" parent="." instance=ExtResource("19_hhi7e")]
+[node name="Structures" type="Node" parent="."]
+
+[node name="campfire" parent="Structures" instance=ExtResource("4_ccvat")]
+position = Vector2(475, 336)
+scale = Vector2(1.7, 1.7)
+
+[node name="archer_house" parent="Structures" instance=ExtResource("19_hhi7e")]
 position = Vector2(554, 321)
 
-[node name="builder_house" parent="." instance=ExtResource("20_5w7k0")]
+[node name="builder_house" parent="Structures" instance=ExtResource("20_5w7k0")]
 position = Vector2(391, 320)
 
-[node name="wall_level_1" parent="." instance=ExtResource("21_ogenx")]
+[node name="wall_level_1" parent="Structures" instance=ExtResource("21_ogenx")]
 position = Vector2(232, 337)
 
-[node name="wall_level_2" parent="." instance=ExtResource("21_ogenx")]
+[node name="wall_level_2" parent="Structures" instance=ExtResource("21_ogenx")]
 position = Vector2(787, 337)
 
-[node name="townhall_level_2" parent="." instance=ExtResource("22_bgmd7")]
+[node name="townhall_level_2" parent="Structures" instance=ExtResource("22_bgmd7")]
 z_index = -1
 position = Vector2(589, 299)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.65098, 0.533333, 0.407843, 1)
+color = Color(0.65098, 0.52549, 0.407843, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(476, 318)
@@ -2957,5 +2950,7 @@ scale = Vector2(1.16667, 1.14444)
 color = Color(0.764706, 0.584314, 0.254902, 1)
 texture = ExtResource("23_7dsx2")
 texture_scale = 0.5
+
+[node name="DayNightLight" parent="." instance=ExtResource("24_8qqes")]
 
 [connection signal="timeout" from="coinSpawner/Timer" to="coinSpawner" method="_on_timer_timeout"]
