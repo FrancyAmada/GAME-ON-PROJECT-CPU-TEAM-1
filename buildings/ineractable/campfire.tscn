@@ -82,7 +82,7 @@ shape = SubResource("CircleShape2D_2jbg8")
 position = Vector2(0, -21)
 scale = Vector2(1, 1.125)
 sprite_frames = SubResource("SpriteFrames_gu5vi")
-frame_progress = 0.432143
+frame_progress = 0.188547
 
 [node name="Townhall1" type="Sprite2D" parent="."]
 position = Vector2(1, -13)

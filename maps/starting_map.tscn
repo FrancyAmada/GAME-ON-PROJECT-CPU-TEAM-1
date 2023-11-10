@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://q1yp1jqcn7em" path="res://buildings/ineractable/wall_level_1.tscn" id="21_ogenx"]
 [ext_resource type="PackedScene" uid="uid://b12nggvfja8h5" path="res://buildings/ineractable/townhall_level_2.tscn" id="22_bgmd7"]
 [ext_resource type="Texture2D" uid="uid://bessh5aahmo6w" path="res://textures/gradient_circle.jpg" id="23_7dsx2"]
+[ext_resource type="PackedScene" uid="uid://drj0wuqxbx5u8" path="res://props/other_datu.tscn" id="24_dpepb"]
 [ext_resource type="PackedScene" uid="uid://b3dn6npd4hs8a" path="res://day_night_light.tscn" id="24_8qqes"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc6vf"]
@@ -2951,6 +2952,9 @@ color = Color(0.764706, 0.584314, 0.254902, 1)
 texture = ExtResource("23_7dsx2")
 texture_scale = 0.5
 
+[node name="other_datu" parent="." instance=ExtResource("24_dpepb")]
+position = Vector2(506, 320)
+scale = Vector2(0.67, 0.67)
 [node name="DayNightLight" parent="." instance=ExtResource("24_8qqes")]
 
 [connection signal="timeout" from="coinSpawner/Timer" to="coinSpawner" method="_on_timer_timeout"]

@@ -1,9 +1,7 @@
 [gd_scene load_steps=50 format=3 uid="uid://d3ipjerk8uya8"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_bktfi"]
-[ext_resource type="Texture2D" uid="uid://dncra0lssup53" path="res://game assets test/Medieval King Pack 2/Sprites/Run.png" id="2_1japs"]
 [ext_resource type="Texture2D" uid="uid://1mskgmx1ugwv" path="res://game assets test/Medieval King Pack 2/Sprites/Attack1.png" id="2_4tgc8"]
-[ext_resource type="Texture2D" uid="uid://5x2nl5bmwrt8" path="res://game assets test/Medieval King Pack 2/Sprites/Idle.png" id="2_bxde3"]
 [ext_resource type="Texture2D" uid="uid://dipumig8hrd2q" path="res://game assets test/Medieval King Pack 2/Sprites/Take Hit - white silhouette.png" id="2_j0opl"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="3_duv6c"]
 [ext_resource type="PackedScene" uid="uid://bci8dwt4iycg0" path="res://components/character_components/velocity_component.tscn" id="4_invhr"]
@@ -12,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bmqtc073dk43x" path="res://components/character_components/attack_component.tscn" id="7_uwl1n"]
 [ext_resource type="Texture2D" uid="uid://coayxxot6yir1" path="res://game assets test/Medieval King Pack 2/Sprites/Death.png" id="8_gkfrb"]
 [ext_resource type="PackedScene" uid="uid://cnb86u6w26c04" path="res://components/character_states/character_state_machine.tscn" id="8_r5g2f"]
+[ext_resource type="Texture2D" uid="uid://b6gv1wg6mflly" path="res://game assets test/custom/entities/player/player_idle.png" id="9_gl80l"]
+[ext_resource type="Texture2D" uid="uid://or60oyd1cm2f" path="res://game assets test/custom/entities/player/player_run.png" id="10_byqjl"]
 [ext_resource type="PackedScene" uid="uid://82fic0hyyxbq" path="res://components/character_components/attack_collision_component.tscn" id="10_stw7g"]
 [ext_resource type="PackedScene" uid="uid://cni7yp7s8ub7m" path="res://components/character_states/state_component.tscn" id="12_2nwvh"]
 [ext_resource type="PackedScene" uid="uid://bgedrb0rxmvnc" path="res://components/character_states/hit_state.tscn" id="13_fjouc"]
@@ -175,8 +175,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_hmkwr"]
 resource_name = "Idle"
-length = 0.8
+length = 0.6
 loop_mode = 1
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -187,7 +188,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_bxde3")]
+"values": [ExtResource("9_gl80l")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -199,7 +200,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
+"values": [2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -208,10 +209,10 @@ tracks/2/path = NodePath("../Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_6d3as"]
@@ -255,8 +256,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_14s22"]
 resource_name = "Walk"
-length = 0.8
+length = 0.45
 loop_mode = 1
+step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -267,7 +269,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_1japs")]
+"values": [ExtResource("10_byqjl")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -279,7 +281,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
+"values": [3]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -288,10 +290,10 @@ tracks/2/path = NodePath("../Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
+"values": [0, 1, 2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rirbf"]
@@ -375,8 +377,8 @@ texture = SubResource("GradientTexture2D_yolqd")
 shape = SubResource("CapsuleShape2D_a4amk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -15)
-scale = Vector2(0.6, 0.6)
+position = Vector2(1, -6)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_j0opl")
 hframes = 4
 
@@ -481,6 +483,7 @@ facing_left_position = Vector2(-21.5, -9)
 facing_right_position = Vector2(21.5, -9)
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="gold" type="Label" parent="UI"]
 offset_left = 36.0
