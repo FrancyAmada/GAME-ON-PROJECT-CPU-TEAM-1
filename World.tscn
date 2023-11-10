@@ -2150,7 +2150,7 @@ spawn_interval = 100.0
 position = Vector2(2654, 310)
 
 [node name="Breeder" parent="Enemies" instance=ExtResource("5_cisid")]
-position = Vector2(2728, 304)
+position = Vector2(548, 304)
 
 [node name="Goblin2" parent="Enemies" instance=ExtResource("4_yt5yi")]
 position = Vector2(-341, 308)

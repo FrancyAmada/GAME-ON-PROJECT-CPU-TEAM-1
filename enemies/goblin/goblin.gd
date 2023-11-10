@@ -33,9 +33,11 @@ func _physics_process(delta):
 		direction.x = 0
 		velocity.x = move_toward(velocity.x, 0, max_speed)
 	
+	var reversed_direction = Vector2(-direction.x, direction.y)
+	
 	move_and_slide()
 	animation_component.update_animation(direction)
-	animation_component.update_facing_direction(direction)
+	animation_component.update_facing_direction(reversed_direction)
 
 func get_direction():
 	if not attack1_component.check_if_enemy_is_detected():
