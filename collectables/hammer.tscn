@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq8iklhe4oog"]
+
+[ext_resource type="Script" path="res://collectables/hammer.gd" id="1_hgve4"]
+[ext_resource type="Texture2D" uid="uid://b6r2w4wlnoqog" path="res://game assets test/custom/others/hammer.png" id="1_hn6f0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kco6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hn6f0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lcloh"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q6545"]
+radius = 5.0
+
+[node name="hammer" type="RigidBody2D" groups=["tool"]]
+collision_layer = 16
+collision_mask = 11
+script = ExtResource("1_hgve4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -1)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_kco6i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_lcloh")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_q6545")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

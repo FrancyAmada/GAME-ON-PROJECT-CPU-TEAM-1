@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=26 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://fcf6dvm3trqp" path="res://allies/builder_2/builder.tscn" id="12_7yipq"]
 [ext_resource type="PackedScene" uid="uid://b0lrnpdo2jceo" path="res://props/tree.tscn" id="12_lkdhx"]
 [ext_resource type="PackedScene" uid="uid://dxs5oxpk1uh6s" path="res://allies/homeless/homeless.tscn" id="20_ptnhe"]
+[ext_resource type="PackedScene" uid="uid://cn0mt73uxjtkd" path="res://allies/jobless/jobless.tscn" id="21_tyrl0"]
+[ext_resource type="PackedScene" uid="uid://y66u0xbne8om" path="res://collectables/bow.tscn" id="22_e82pd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
 texture = ExtResource("2_0wty5")
@@ -2196,10 +2198,19 @@ position = Vector2(720, 337)
 position = Vector2(796, 337)
 
 [node name="homeless" parent="." instance=ExtResource("20_ptnhe")]
-position = Vector2(912, 315)
+position = Vector2(537, 321)
 
 [node name="Goblin" parent="." instance=ExtResource("4_yt5yi")]
 position = Vector2(81, 319)
+
+[node name="Goblin2" parent="." instance=ExtResource("4_yt5yi")]
+position = Vector2(470, 236)
+
+[node name="jobless" parent="." instance=ExtResource("21_tyrl0")]
+position = Vector2(514, 320)
+
+[node name="bow" parent="." instance=ExtResource("22_e82pd")]
+position = Vector2(625, 274)
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]
