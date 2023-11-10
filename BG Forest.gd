@@ -17,7 +17,7 @@ func _ready():
 
 func _on_day_night_timeout():
 	change_time()
-#	print_debug(DayNight.is_day)
+	print_debug("Day: ", DayNight.is_day, " Time: ", str(count))
 	if count >= TIME_CYCLE: 
 		for layer in parallax_layers:
 			layer.change_alpha(DayNight.is_day)
@@ -27,5 +27,4 @@ func _on_day_night_timeout():
 func change_time():
 	var stop_count = TIME_CYCLE + TIME_TRANSITION
 	if count == stop_count:
-		DayNight.is_day = not DayNight.is_day
 		count = 0
