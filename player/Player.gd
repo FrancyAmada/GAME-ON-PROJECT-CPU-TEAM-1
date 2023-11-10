@@ -7,7 +7,8 @@ class_name Player
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var animation_component: AnimationComponent = $AnimationComponent
-@onready var max_speed = 130
+@onready var max_speed = velocity_component.max_speed
+@onready var torch_light: PointLight2D = $Torchlight
 
 var interactable_object : interactable_object = null
 
@@ -40,6 +41,8 @@ func _unhandled_input(event):
 		coin_dropped = false
 
 func _physics_process(delta):
+	get_light_for_night()
+	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
@@ -71,3 +74,10 @@ func _on_health_component_health_changed(node, health_change):
 	if Game.player_gold > 0:
 		Signals.emit_signal("remove_coin")
 		coin_dropped = true
+
+func get_light_for_night():
+	if DayNight.transitioning_phase == true:
+		if DayNight.is_day:
+			torch_light.energy = 2.5
+		else:
+			torch_light.energy = 0

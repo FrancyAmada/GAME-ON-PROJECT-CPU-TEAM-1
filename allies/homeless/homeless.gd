@@ -62,9 +62,9 @@ func _physics_process(delta):
 
 func get_direction():
 	if enemy != null:
-		if enemy_distance < 120 and not run_away:
+		if enemy_distance < 60 and not run_away:
 			run_away = true
-		elif enemy_distance > 200 and run_away:
+		elif enemy_distance > 100 and run_away:
 			run_away = false
 		elif run_away:
 			direction.x = -sign(enemy.global_position.x - global_position.x)
