@@ -10,6 +10,7 @@ signal start_building
 
 @export var hit_state: State
 @export var build_state: State
+@export var death_anim_name: String = "Death"
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
@@ -34,9 +35,10 @@ var run_away: bool = false
 var idle_time: float = 0
 
 
+
 func _ready():
 	build_state.connect("stop_building", _on_stop_building)
-
+	
 func _physics_process(delta):
 	check_enemies()
 	check_enemy_distance()
@@ -94,7 +96,6 @@ func check_enemy_distance():
 			idle = true
 			run_away = false
 			direction.x = 0
-
 		
 func find_buildings():
 	var buildings_in_construction = Game.buildings_construction
@@ -131,3 +132,4 @@ func check_enemies():
 	enemy = enemy_data[0]
 	enemy_distance = enemy_data[1]
 #	print_debug(enemy, enemy_distance)
+

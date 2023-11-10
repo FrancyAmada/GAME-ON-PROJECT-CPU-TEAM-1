@@ -49,7 +49,8 @@ func _input(event: InputEvent):
 func on_state_interrupt_state(new_state: State):
 	switch_states(new_state)
 
-func _on_animation_tree_animation_finished(anim_name):
+func _on_animation_tree_animation_finished(anim_name: String):
+#	print(get_parent().name, " animation is finished : ", anim_name)
 	if anim_name == death_anim_name:
 		if get_parent().name == "Player":
 			pass

@@ -40,7 +40,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	if idle:
+	if idle and !tool:
 		direction.x = new_direction
 		velocity.x = direction.x * max_speed
 	elif enemy != null:
@@ -60,13 +60,12 @@ func _physics_process(delta):
 
 func get_direction():
 	if enemy != null:
-		direction = (enemy.global_position - global_position).normalized()
-		if enemy_distance < 120 and not run_away:
+		if enemy_distance < 150 and not run_away:
 			run_away = true
-		elif enemy_distance > 200 and run_away:
+		elif enemy_distance > 250 and run_away:
 			run_away = false
 		elif run_away:
-			direction.x = -direction.x
+			direction.x = -sign(enemy.global_position.x - global_position.x)
 
 func on_idle():
 	if enemy != null:
