@@ -41,6 +41,10 @@ func _on_body_entered(body):
 		var hitbox: HitBoxComponent = body.find_child("HitBoxComponent")
 		var knockback: Vector2 = Vector2(sign(velocity.x) * 150, -30)
 		if hitbox:
+			var chance: int = randi_range(0, 1)
+			print_debug("chance ", chance)
+			if chance == 1:
+				damage *= 2
 			hitbox.receive_hit(damage, knockback)
 			queue_free()
 	

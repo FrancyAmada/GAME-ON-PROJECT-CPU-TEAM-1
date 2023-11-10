@@ -2101,9 +2101,9 @@ position = Vector2(210, 305)
 [node name="BG Forest" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("3_i7qhs")]
 offset = Vector2(-100, -100)
 transform = Transform2D(1, 0, 0, 1, -100, -100)
-timer = NodePath("../DayNight")
+timer = NodePath("DayNight")
 
-[node name="DayNight" type="Timer" parent="."]
+[node name="DayNight" type="Timer" parent="BG Forest"]
 process_callback = 0
 one_shot = true
 autostart = true
@@ -2139,16 +2139,28 @@ spawn_interval = 100.0
 [node name="Goblin" parent="Enemies" instance=ExtResource("4_yt5yi")]
 position = Vector2(2654, 310)
 
+[node name="Breeder" parent="Enemies" instance=ExtResource("5_cisid")]
+position = Vector2(2728, 304)
+
+[node name="Goblin2" parent="Enemies" instance=ExtResource("4_yt5yi")]
+position = Vector2(-341, 308)
+
+[node name="Goblin3" parent="Enemies" instance=ExtResource("4_yt5yi")]
+position = Vector2(-910, 311)
+
 [node name="Allies" type="Node2D" parent="."]
 
-[node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
-position = Vector2(450, 312)
-
 [node name="Builder" parent="Allies" instance=ExtResource("12_7yipq")]
-position = Vector2(324, 314)
+position = Vector2(-225, 312)
 
-[node name="Builder2" parent="Allies" instance=ExtResource("12_7yipq")]
-position = Vector2(608, 318)
+[node name="homeless" parent="Allies" instance=ExtResource("20_ptnhe")]
+position = Vector2(537, 321)
+
+[node name="jobless" parent="Allies" instance=ExtResource("21_tyrl0")]
+position = Vector2(514, 320)
+
+[node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
+position = Vector2(557, 119)
 
 [node name="collectables" type="Node2D" parent="."]
 position = Vector2(2, 1)
@@ -2159,7 +2171,7 @@ script = ExtResource("6_53mfs")
 
 [node name="Timer" type="Timer" parent="collectables/coinSpawner"]
 process_callback = 0
-wait_time = 0.43
+wait_time = 5.0
 autostart = true
 
 [node name="coin" parent="collectables" instance=ExtResource("5_8jj52")]
@@ -2180,7 +2192,7 @@ position = Vector2(465, 282)
 position = Vector2(883, 306)
 
 [node name="Player" parent="." instance=ExtResource("1_tdels")]
-position = Vector2(368, 322)
+position = Vector2(360, 318)
 
 [node name="TileMap" type="TileMap" parent="." groups=["ground"]]
 tile_set = SubResource("TileSet_xaqel")
@@ -2194,23 +2206,8 @@ position = Vector2(720, 337)
 [node name="wall2" parent="." instance=ExtResource("11_sbetg")]
 position = Vector2(796, 337)
 
-[node name="Breeder" parent="." instance=ExtResource("5_cisid")]
-position = Vector2(2728, 304)
-
-[node name="homeless" parent="." instance=ExtResource("20_ptnhe")]
-position = Vector2(537, 321)
-
-[node name="Goblin" parent="." instance=ExtResource("4_yt5yi")]
-position = Vector2(1756, 316)
-
-[node name="Goblin2" parent="." instance=ExtResource("4_yt5yi")]
-position = Vector2(470, 236)
-
-[node name="jobless" parent="." instance=ExtResource("21_tyrl0")]
-position = Vector2(514, 320)
-
 [node name="bow" parent="." instance=ExtResource("22_e82pd")]
 position = Vector2(625, 274)
 
-[connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
+[connection signal="timeout" from="BG Forest/DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="collectables/coinSpawner/Timer" to="collectables/coinSpawner" method="_on_timer_timeout"]

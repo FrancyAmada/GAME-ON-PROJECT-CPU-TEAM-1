@@ -75,11 +75,11 @@ func _physics_process(delta):
 func get_direction():
 	if enemy != null:
 		direction = (enemy.global_position - global_position).normalized()
-		if enemy_distance < 120 and not run_away:
+		if enemy_distance < 200 and not run_away:
 			set_shooting_angle()
 			emit_signal("use_attack", "Shoot")
 			run_away = true
-		elif (enemy_distance > 200 and run_away) or shoot_component.check_if_can_use():
+		elif (enemy_distance > 250 and run_away) or shoot_component.check_if_can_use():
 			run_away = false
 		elif run_away:
 			direction.x = -direction.x
@@ -108,7 +108,7 @@ func set_shooting_angle():
 	var initial_velocity = 500
 	
 	# Just for testing only
-	var range_multiplier = map_range(enemy_distance, 200, 0, 1.0, 0.5)
+	var range_multiplier = map_range(enemy_distance, 200, 0, 0.8, 0.5)
 	
 	var angle = range_multiplier * asin((gravity * enemy_distance * direction.x) / (initial_velocity ** 2))
 	shooting_angle = rad2deg(angle)

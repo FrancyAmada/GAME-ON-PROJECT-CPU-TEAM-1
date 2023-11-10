@@ -199,6 +199,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="CoinDetectionComponent" type="Node2D" parent="."]
+visible = false
 script = ExtResource("7_2rabk")
 
 [node name="CoinDetection" type="Area2D" parent="CoinDetectionComponent"]

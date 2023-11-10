@@ -11,6 +11,7 @@ signal stop_building
 
 
 func _ready():
+	set_physics_process(false)
 	animation_component.connect("animation_is_finished", _on_animation_is_finished)
 #	get_parent().character.connect("stop_building", )
 
