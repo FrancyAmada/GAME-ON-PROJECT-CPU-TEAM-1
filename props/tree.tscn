@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0lrnpdo2jceo"]
+[gd_scene load_steps=9 format=3 uid="uid://b0lrnpdo2jceo"]
 
-[ext_resource type="Script" path="res://buildings/ineractable/tree.gd" id="1_ligne"]
+[ext_resource type="Script" path="res://buildings/ineractable/trees/tree.gd" id="1_osb2o"]
 [ext_resource type="Texture2D" uid="uid://da6s3pr32134w" path="res://game assets test/custom/tree1.png" id="2_qtt6a"]
+[ext_resource type="Texture2D" uid="uid://cwj46e5yax6co" path="res://game assets test/custom/tree2.png" id="3_aetuj"]
+[ext_resource type="Texture2D" uid="uid://c58o5gxckwfvh" path="res://game assets test/custom/tree3.png" id="4_n173l"]
+[ext_resource type="Texture2D" uid="uid://crvkw1si7sfu3" path="res://game assets test/custom/tree4.png" id="5_jwruy"]
+[ext_resource type="Texture2D" uid="uid://cjxdtjcb6qh0y" path="res://game assets test/custom/tree5.png" id="6_segi5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xhxod"]
 animations = [{
@@ -10,7 +14,39 @@ animations = [{
 "texture": ExtResource("2_qtt6a")
 }],
 "loop": true,
-"name": &"default",
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aetuj")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_n173l")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jwruy")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_segi5")
+}],
+"loop": true,
+"name": &"5",
 "speed": 5.0
 }]
 
@@ -18,12 +54,14 @@ animations = [{
 height = 62.0
 
 [node name="tree" type="Area2D" groups=["interactable"]]
-script = ExtResource("1_ligne")
+script = ExtResource("1_osb2o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -37)
 scale = Vector2(0.695313, 0.823171)
 sprite_frames = SubResource("SpriteFrames_xhxod")
+animation = &"5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9, -5)
 shape = SubResource("CapsuleShape2D_0dog3")

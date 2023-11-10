@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://uyb7ag4gjakv"]
+[gd_scene load_steps=3 format=3 uid="uid://uyb7ag4gjakv"]
+
+[ext_resource type="PackedScene" uid="uid://dxs5oxpk1uh6s" path="res://allies/homeless/homeless.tscn" id="1_bka65"]
+[ext_resource type="Script" path="res://allies/human.gd" id="1_jyjol"]
 
 [node name="human" type="Node2D"]
+script = ExtResource("1_jyjol")
+
+[node name="homeless" parent="." instance=ExtResource("1_bka65")]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=28 format=3 uid="uid://wn136btlbtdg"]
 
+[ext_resource type="Shader" path="res://World.gdshader" id="1_pfbsb"]
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_0wty5"]
 [ext_resource type="PackedScene" uid="uid://py8eaf6rn7ys" path="res://bg/bg_forest.tscn" id="3_i7qhs"]
@@ -22,6 +23,10 @@
 [ext_resource type="PackedScene" uid="uid://dxs5oxpk1uh6s" path="res://allies/homeless/homeless.tscn" id="20_ptnhe"]
 [ext_resource type="PackedScene" uid="uid://cn0mt73uxjtkd" path="res://allies/jobless/jobless.tscn" id="21_tyrl0"]
 [ext_resource type="PackedScene" uid="uid://y66u0xbne8om" path="res://collectables/bow.tscn" id="22_e82pd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ed260"]
+shader = ExtResource("1_pfbsb")
+shader_parameter/pixel_size = 5.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swccr"]
 texture = ExtResource("2_0wty5")
@@ -2094,6 +2099,7 @@ sources/0 = SubResource("TileSetAtlasSource_swccr")
 [sub_resource type="GDScript" id="GDScript_htodp"]
 
 [node name="world" type="Node2D"]
+material = SubResource("ShaderMaterial_ed260")
 
 [node name="lamp_to_house" parent="." instance=ExtResource("8_qjbtu")]
 position = Vector2(210, 305)

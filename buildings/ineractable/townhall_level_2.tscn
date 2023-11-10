@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b12nggvfja8h5"]
+
+[ext_resource type="Texture2D" uid="uid://tid8cc2j0jok" path="res://game assets test/custom/structures/town hall/Townhall 2.png" id="1_0do2o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kubow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0do2o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p6hp"]
+
+[node name="townhall_level_2" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_kubow")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5p6hp")

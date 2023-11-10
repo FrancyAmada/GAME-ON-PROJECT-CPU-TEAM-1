@@ -147,7 +147,7 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 radius = 600.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fsry1"]
-radius = 428.593
+radius = 192.963
 
 [node name="homeless" type="CharacterBody2D" groups=["homeless"]]
 scale = Vector2(0.7, 0.7)
@@ -199,6 +199,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="CoinDetectionComponent" type="Node2D" parent="."]
+visible = false
 script = ExtResource("7_2rabk")
 
 [node name="CoinDetection" type="Area2D" parent="CoinDetectionComponent"]

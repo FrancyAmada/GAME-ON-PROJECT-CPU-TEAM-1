@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcwledypnfy41"]
+
+[ext_resource type="Texture2D" uid="uid://df744q827dttd" path="res://game assets test/custom/treeback2.png" id="1_vkrot"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qgai4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vkrot")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="black_tree2" type="Node2D"]
+show_behind_parent = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -38)
+sprite_frames = SubResource("SpriteFrames_qgai4")

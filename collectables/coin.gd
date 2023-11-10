@@ -13,4 +13,5 @@ func _on_body_entered(body):
 	
 	if body.name == "homeless":
 		Signals.emit_signal("coin_collected", coin)
-		body.sayhi()
+		body.change_role()
+		queue_free()

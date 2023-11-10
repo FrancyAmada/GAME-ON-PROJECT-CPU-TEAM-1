@@ -1,6 +1,7 @@
 extends interactable_object
 
 var x_mark = preload("res://props/extra/x_mark.tscn")
+@onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
 	set_process(true)

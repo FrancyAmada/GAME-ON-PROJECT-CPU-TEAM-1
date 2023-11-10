@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkavgdnn76lrm"]
 
-[ext_resource type="Script" path="res://buildings/ineractable/tree.gd" id="1_pynwf"]
-[ext_resource type="Texture2D" uid="uid://da6s3pr32134w" path="res://game assets test/custom/tree1.png" id="2_fen5s"]
+[ext_resource type="Script" path="res://buildings/ineractable/trees/tree.gd" id="1_nq806"]
+[ext_resource type="Texture2D" uid="uid://da6s3pr32134w" path="res://game assets test/custom/tree1.png" id="2_2gfyb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xhxod"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_fen5s")
+"texture": ExtResource("2_2gfyb")
 }],
 "loop": true,
 "name": &"default",
@@ -18,10 +18,11 @@ animations = [{
 height = 62.0
 
 [node name="tree" type="Area2D" groups=["interactable"]]
-script = ExtResource("1_pynwf")
+scale = Vector2(1.1, 1.1)
+script = ExtResource("1_nq806")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2, -37)
+position = Vector2(3, -37)
 scale = Vector2(0.695313, 0.823171)
 sprite_frames = SubResource("SpriteFrames_xhxod")
 
