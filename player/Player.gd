@@ -7,7 +7,7 @@ class_name Player
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var animation_component: AnimationComponent = $AnimationComponent
-@onready var max_speed = velocity_component.max_speed
+@onready var max_speed = 130
 
 var interactable_object : interactable_object = null
 

@@ -189,7 +189,7 @@ detection_area = NodePath("EnemyDetection")
 [node name="EnemyDetection" type="Area2D" parent="EnemyDetectionComponent"]
 visible = false
 collision_layer = 0
-collision_mask = 4
+collision_mask = 68
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionComponent/EnemyDetection"]
 shape = SubResource("CircleShape2D_yaqb4")
@@ -200,10 +200,10 @@ wait_time = 2.0
 one_shot = true
 
 [node name="ToolDetectionComponent" type="Node2D" parent="."]
-visible = false
 script = ExtResource("7_v75nu")
 
 [node name="ToolDetection" type="Area2D" parent="ToolDetectionComponent"]
+visible = false
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToolDetectionComponent/ToolDetection"]
