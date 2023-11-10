@@ -11,6 +11,7 @@ transform = Transform2D(1.2, 0, 0, 1.2, 0, -450)
 script = ExtResource("1_clb2a")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+modulate = Color(0.603922, 0.423529, 0.360784, 1)
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(2335, 0)
 script = ExtResource("2_62q65")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c6v46g012i0d3"]
+[gd_scene load_steps=26 format=3 uid="uid://c6v46g012i0d3"]
 
 [ext_resource type="PackedScene" uid="uid://bcwledypnfy41" path="res://buildings/ineractable/trees/black_tree2.tscn" id="1_o4qk0"]
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="2_a4bxm"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dpvh8jff22xqu" path="res://buildings/ineractable/builder_house.tscn" id="20_5w7k0"]
 [ext_resource type="PackedScene" uid="uid://q1yp1jqcn7em" path="res://buildings/ineractable/wall_level_1.tscn" id="21_ogenx"]
 [ext_resource type="PackedScene" uid="uid://b12nggvfja8h5" path="res://buildings/ineractable/townhall_level_2.tscn" id="22_bgmd7"]
+[ext_resource type="Texture2D" uid="uid://bessh5aahmo6w" path="res://textures/gradient_circle.jpg" id="23_7dsx2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc6vf"]
 texture = ExtResource("2_coelw")
@@ -2838,7 +2839,7 @@ position = Vector2(-571, 303)
 
 [node name="tree19" parent="trees" instance=ExtResource("11_qjksi")]
 z_index = 2
-position = Vector2(-80, 304)
+position = Vector2(172, 303)
 
 [node name="tree15" parent="trees" instance=ExtResource("11_qjksi")]
 z_index = 2
@@ -2856,6 +2857,14 @@ scale = Vector2(1.2, 1.2)
 [node name="tree2" parent="trees" instance=ExtResource("10_t0wux")]
 z_index = 2
 position = Vector2(-473, 294)
+
+[node name="tree22" parent="trees" instance=ExtResource("10_t0wux")]
+z_index = 2
+position = Vector2(730, 296)
+
+[node name="tree20" parent="trees" instance=ExtResource("10_t0wux")]
+z_index = 2
+position = Vector2(-241, 295)
 
 [node name="tree11" parent="trees" instance=ExtResource("10_t0wux")]
 z_index = 2
@@ -2884,6 +2893,10 @@ position = Vector2(-1050, 304)
 [node name="tree12" parent="trees" instance=ExtResource("14_a5naf")]
 z_index = 2
 position = Vector2(-1019, 304)
+
+[node name="tree21" parent="trees" instance=ExtResource("14_a5naf")]
+z_index = 2
+position = Vector2(-106, 303)
 
 [node name="tree13" parent="trees" instance=ExtResource("14_a5naf")]
 z_index = 2
@@ -2916,7 +2929,7 @@ modulate = Color(0.764706, 0.764706, 0.764706, 1)
 position = Vector2(271, 314)
 
 [node name="bush8" parent="." instance=ExtResource("17_gixr5")]
-modulate = Color(0.764706, 0.764706, 0.764706, 1)
+modulate = Color(0.764706, 0.784314, 0.611765, 1)
 position = Vector2(144, 314)
 
 [node name="archer_house" parent="." instance=ExtResource("19_hhi7e")]
@@ -2934,5 +2947,15 @@ position = Vector2(787, 337)
 [node name="townhall_level_2" parent="." instance=ExtResource("22_bgmd7")]
 z_index = -1
 position = Vector2(589, 299)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.65098, 0.533333, 0.407843, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(476, 318)
+scale = Vector2(1.16667, 1.14444)
+color = Color(0.764706, 0.584314, 0.254902, 1)
+texture = ExtResource("23_7dsx2")
+texture_scale = 0.5
 
 [connection signal="timeout" from="coinSpawner/Timer" to="coinSpawner" method="_on_timer_timeout"]
