@@ -14,9 +14,9 @@ signal reset_attack_monitoring
 func _ready():
 	melee_attack.connect("is_attack_used", _on_melee_attack_used)
 
-func state_input(event: InputEvent):
-	if event.is_action_pressed("attack1"):
-		emit_signal("use_attack", "Melee")	
+func state_input(event: InputEvent): pass
+#	if event.is_action_pressed("attack1"):
+#		emit_signal("use_attack", "Melee")	
 
 func _on_melee_attack_used(is_attack_used: bool):
 	if is_attack_used:

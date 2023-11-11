@@ -21,7 +21,7 @@ func change_to_jobless():
 	
 	var new_jobless = jobless_role.instantiate()
 	add_child(new_jobless)
-	print(position_at)
+	print_debug(position_at)
 	new_jobless.global_position = position_at
 	new_jobless.connect("to_builder", change_to_builder)
 	new_jobless.connect("to_archer", change_to_archer)
