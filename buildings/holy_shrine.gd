@@ -73,7 +73,7 @@ func upgrade():
 	
 	level += 1
 	coins_in = 0
-	point_light.energy += 0.12
+	point_light.energy += 0.1
 	point_light.set_texture_scale(level * 1.3)
 	if level == 6:
 		destroy_spawner()
