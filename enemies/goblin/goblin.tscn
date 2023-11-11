@@ -521,6 +521,7 @@ use_state = NodePath("../CharacterStateMachine/Ground")
 [node name="Attack1Area" type="Area2D" parent="Attack1" node_paths=PackedStringArray("ground_state")]
 collision_layer = 0
 collision_mask = 42
+monitoring = false
 script = ExtResource("20_33v7t")
 ground_state = NodePath("../../CharacterStateMachine/Ground")
 

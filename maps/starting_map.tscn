@@ -2744,7 +2744,7 @@ script = ExtResource("8_88g3q")
 
 [node name="Timer" type="Timer" parent="coinSpawner"]
 process_callback = 0
-wait_time = 0.277
+wait_time = 10.0
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -2948,7 +2948,8 @@ color = Color(0.65098, 0.52549, 0.407843, 1)
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(476, 318)
 scale = Vector2(1.16667, 1.14444)
-color = Color(0.448668, 0.333822, 0.119926, 1)
+color = Color(0.866667, 0.54902, 0.278431, 1)
+energy = 1.2
 texture = ExtResource("23_7dsx2")
 texture_scale = 0.5
 
