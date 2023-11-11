@@ -3928,7 +3928,7 @@ script = ExtResource("8_88g3q")
 
 [node name="Timer" type="Timer" parent="coinSpawner"]
 process_callback = 0
-wait_time = 10.0
+wait_time = 0.5
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -4159,19 +4159,22 @@ position = Vector2(-3472, 316)
 
 [node name="GoblinSpawner2" parent="non-base structures" instance=ExtResource("26_poinv")]
 position = Vector2(-8417, 319)
-initial_spawn_interval = 10000.0
+spawner_id = 1
+
+[node name="GoblinSpawner3" parent="non-base structures" instance=ExtResource("26_poinv")]
+position = Vector2(-14638, 317)
+spawner_id = 2
 
 [node name="holy_shrine" parent="non-base structures" instance=ExtResource("26_2mafu")]
 position = Vector2(-1579, 336)
 
 [node name="holy_shrine2" parent="non-base structures" instance=ExtResource("26_2mafu")]
 position = Vector2(-7550, 337)
+shrine_id = 1
 
 [node name="holy_shrine3" parent="non-base structures" instance=ExtResource("26_2mafu")]
 position = Vector2(-12698, 337)
-
-[node name="GoblinSpawner3" parent="non-base structures" instance=ExtResource("26_poinv")]
-position = Vector2(-14638, 317)
+shrine_id = 2
 
 [node name="AnimalSpawner" parent="non-base structures" instance=ExtResource("29_vm2lk")]
 position = Vector2(2, 323)

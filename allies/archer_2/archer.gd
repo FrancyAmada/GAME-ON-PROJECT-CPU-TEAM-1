@@ -87,8 +87,8 @@ func _physics_process(delta):
 	animation_component.update_animation(direction)
 	animation_component.update_facing_direction(direction)
 	
-	print_debug(self.name, " idle: ", idle, " direction: ", direction.x, 
-	"\n enemy: ", enemy, " on wall position: ", on_wall_position, " go to wall: ", go_to_target_wall)
+#	print_debug(self.name, " idle: ", idle, " direction: ", direction.x, 
+#	"\n enemy: ", enemy, " on wall position: ", on_wall_position, " go to wall: ", go_to_target_wall)
 
 func get_direction():
 	if enemy != null:
