@@ -21,7 +21,8 @@ func _process(delta):
 			coins_in = coins
 	if coins >= coins_needed:
 		await get_tree().create_timer(.6).timeout
-		self.queue_free()
+		build_me.emit()
+		queue_free()
 		
 	if coins_in > 0:
 		last_coin_pass_time += delta

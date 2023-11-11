@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cirtn85kxxy6k"]
+[gd_scene load_steps=5 format=3 uid="uid://cirtn85kxxy6k"]
 
+[ext_resource type="Script" path="res://buildings/ineractable/archer_house.gd" id="1_jsllh"]
 [ext_resource type="Texture2D" uid="uid://hi6wrx4fsxq4" path="res://game assets test/custom/structures/Archer Area.png" id="1_owenm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fq4vw"]
@@ -14,12 +15,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q65xr"]
+size = Vector2(53, 43)
 
-[node name="archer_house" type="Area2D"]
-scale = Vector2(0.2, 0.2)
+[node name="archer_house" type="Area2D" groups=["interactable"]]
+script = ExtResource("1_jsllh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_fq4vw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -5.5)
 shape = SubResource("RectangleShape2D_q65xr")

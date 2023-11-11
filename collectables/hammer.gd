@@ -8,3 +8,5 @@ func _ready():
 func _on_body_entered(body):
 	if body.name == "jobless":
 		Signals.emit_signal("tool_collected", hammer)
+		body.change_role("builder")
+		queue_free()

@@ -1,6 +1,6 @@
 extends interactable_object
 
-var hammer = preload("res://collectables/hammer.tscn")
+var bow = preload("res://collectables/bow.tscn")
 
 func _ready():
 	set_process(true)
@@ -17,7 +17,7 @@ func _process(delta):
 			coins += 1
 			coins_in = coins
 	if coins >= coins_needed:
-		drop_hammer()
+		drop_bow()
 		
 	if coins_in > 0:
 		last_coin_pass_time += delta
@@ -53,12 +53,12 @@ func close_coins_need():
 		if child.is_in_group("coin holder"):
 			child.queue_free()
 
-func drop_hammer():
+func drop_bow():
 	for child in get_children():
 		if child.is_in_group("submitted_coin"):
 			child.queue_free()
 	
-	var new_hammer = hammer.instantiate()
-	add_child(new_hammer)
-	new_hammer.global_position = global_position + Vector2(0, -35)
+	var new_bow = bow.instantiate()
+	add_child(new_bow)
+	new_bow.global_position = global_position + Vector2(0, -35)
 	coins_in = 0

@@ -30,10 +30,9 @@ func _process(delta):
 	if last_coin_pass_time >= delay_before_drop:
 		await get_tree().create_timer(.6).timeout
 		drop_all_coins()
-		print("please")
 		last_coin_pass_time = 0
 	displayAnimation()
-	
+
 func on_pass_coin():
 	var new_coin = Coin.instantiate()
 	add_child(new_coin)
@@ -68,11 +67,11 @@ func upgrade():
 		if child.is_in_group("submitted_coin"):
 			child.queue_free()
 	
-	print("upgrade!")
 	level += 1
 	coins_in = 0
 	point_light.set_texture_scale(level * 1.3)
 	if level == 6:
+		close_coins_need()
 		remove_from_group("interactable")
 
 func displayAnimation():

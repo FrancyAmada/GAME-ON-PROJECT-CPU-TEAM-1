@@ -40,7 +40,6 @@ func _physics_process(delta):
 		enemy_distance = 600
 		target_enemy = null
 		stop_chase()
-#	print_debug(enemy_list)
 	
 func start_chase(body: CharacterBody2D):
 	emit_signal("chase_enemy", body)

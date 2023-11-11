@@ -24,13 +24,10 @@ func add_scaffolding():
 	done = false
 
 func add_construction_points():
-	print("add!")
 	construction_points_current += 1
-	var progress = ceil(construction_points_current / construction_points_needed) * 5
-	
+	var progress = (construction_points_current * 5 / construction_points_needed)
 	for child in get_children():
 		if child.is_in_group("scaffolding"):
-			print(progress)
 			child.set_progress(progress)
 
 	if construction_points_current == construction_points_needed:

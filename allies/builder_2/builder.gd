@@ -43,11 +43,9 @@ func _physics_process(delta):
 	check_enemies()
 	check_enemy_distance()
 	
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-#	print_debug(self, " at state ", state_machine.current_state, " is run away ", run_away, " enemy = ", enemy)
 	if idle and !run_away:
 		idle_time += delta
 		get_idle_direction()
@@ -131,5 +129,4 @@ func check_enemies():
 	var enemy_data = enemydetection_component.get_enemy()
 	enemy = enemy_data[0]
 	enemy_distance = enemy_data[1]
-#	print_debug(enemy, enemy_distance)
 
