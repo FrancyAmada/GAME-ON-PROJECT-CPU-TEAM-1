@@ -30,6 +30,8 @@ var target_animal: CharacterBody2D = null
 var target_animal_distance: int = 1000
 var animals_list: Array
 
+var campfire_radius: int = 300
+
 
 func _ready():
 	idle_timer.start()
@@ -78,8 +80,19 @@ func on_idle():
 
 func _on_idle_timer_timeout():
 	var choice: int = rng.randi_range(-1, 1)
-	if idle:
+	
+	var campfire: Campfire = get_node("/root/starting_map/Structures/campfire")
+#	print_debug(campfire)
+	var distance_to_campfire: int = abs(global_position.x - campfire.global_position.x)
+	
+	if idle and distance_to_campfire <= campfire_radius:
 		new_direction = choice
+	elif distance_to_campfire > campfire_radius:
+		var direction_to_campfire: int = sign(campfire.global_position.x - global_position.x)
+		new_direction = direction_to_campfire
+#		print_debug(self, " going to campfire")
+		
+#	print_debug(self, " distance to campfire: ", distance_to_campfire, " direction: ", new_direction)
 	
 func set_target_enemy():
 	var enemy_data = enemydetection_component.get_enemy()

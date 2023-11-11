@@ -34,6 +34,7 @@ var idle: bool = true
 var run_away: bool = false
 var idle_time: float = 0
 
+var campfire_radius: int = 300
 
 
 func _ready():
@@ -78,7 +79,17 @@ func _physics_process(delta):
 
 func get_idle_direction():
 	if idle_time >= 2:
-		direction.x = randi_range(-1, 1)
+		var campfire: Campfire = get_node("/root/starting_map/Structures/campfire")
+	#	print_debug(campfire)
+		var distance_to_campfire: int = abs(global_position.x - campfire.global_position.x)
+		
+		if idle and distance_to_campfire <= campfire_radius:
+			direction.x = randi_range(-1, 1)
+		elif distance_to_campfire > campfire_radius:
+			var direction_to_campfire: int = sign(campfire.global_position.x - global_position.x)
+			direction.x = direction_to_campfire
+#			print_debug(self, " going to campfire")
+			
 		idle_time = 0
 
 func get_direction():
