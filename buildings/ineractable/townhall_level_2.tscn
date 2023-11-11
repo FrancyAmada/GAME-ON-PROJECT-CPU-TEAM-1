@@ -13,8 +13,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_20rup"]
-radius = 75.2396
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p6hp"]
 
 [sub_resource type="Gradient" id="Gradient_8g0cc"]
 offsets = PackedFloat32Array(0, 0.448413, 1)
@@ -27,8 +26,6 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.423077, 1)
 
 [node name="townhall_level_2" type="Area2D"]
-collision_layer = 256
-collision_mask = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.35, 0.35)
@@ -42,6 +39,3 @@ position = Vector2(-4, -5.5)
 scale = Vector2(2, 2)
 color = Color(0.866667, 0.54902, 0.278431, 1)
 texture = SubResource("GradientTexture2D_m4fol")
-shape = SubResource("CircleShape2D_20rup")
-
-[node name="VillagePlay" type="AudioStreamPlayer2D" parent="."]

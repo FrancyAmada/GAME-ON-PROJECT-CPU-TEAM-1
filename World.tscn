@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=28 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="Shader" path="res://World.gdshader" id="1_pfbsb"]
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://uyb7ag4gjakv" path="res://allies/human.tscn" id="16_8wu52"]
 [ext_resource type="PackedScene" uid="uid://y66u0xbne8om" path="res://collectables/bow.tscn" id="22_e82pd"]
 [ext_resource type="PackedScene" uid="uid://ohxi5wchd7up" path="res://buildings/holy_shrine.tscn" id="23_vcxp1"]
-[ext_resource type="AudioStream" uid="uid://c0jbcogfifij5" path="res://sounds/Village Night Ambience.mp3" id="24_2xw01"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ed260"]
 shader = ExtResource("1_pfbsb")
@@ -2144,6 +2143,7 @@ position = Vector2(149, 327)
 
 [node name="GoblinSpawner" parent="Enemies" instance=ExtResource("4_cwq77")]
 position = Vector2(0, 257)
+spawn_interval = 100.0
 
 [node name="Allies" type="Node2D" parent="."]
 
@@ -2218,10 +2218,6 @@ position = Vector2(467, 318)
 
 [node name="holy_shrine" parent="." instance=ExtResource("23_vcxp1")]
 position = Vector2(569, 338)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("24_2xw01")
-volume_db = 1.0
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="DayNight" to="DayNightLight" method="_on_day_night_timeout"]
