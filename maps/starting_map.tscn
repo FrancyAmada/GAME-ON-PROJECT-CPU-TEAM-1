@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c6v46g012i0d3"]
+[gd_scene load_steps=58 format=3 uid="uid://c6v46g012i0d3"]
 
 [ext_resource type="Script" path="res://maps/starting_map.gd" id="1_3stfo"]
 [ext_resource type="PackedScene" uid="uid://dyr74sfe4sw3q" path="res://audio/ambiance.tscn" id="1_5bot0"]
@@ -34,6 +34,8 @@
 [ext_resource type="PackedScene" uid="uid://cvmv8iwtvljat" path="res://props/tiki_torch.tscn" id="30_vqjiy"]
 [ext_resource type="Texture2D" uid="uid://bnf4kgnfxo2rm" path="res://game assets test/particles/leaves_spritesheet.png" id="31_4lfh2"]
 [ext_resource type="AudioStream" uid="uid://qrfxr2ctu73q" path="res://game assets test/audio/Field Night Cricket.mp3" id="33_8rkao"]
+[ext_resource type="PackedScene" uid="uid://cilyc30dn8pj6" path="res://transitions.tscn" id="36_rm2yw"]
+[ext_resource type="PackedScene" uid="uid://sgsvndre30g1" path="res://screens/open_screen.tscn" id="37_w482v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc6vf"]
 texture = ExtResource("2_coelw")
@@ -5038,6 +5040,11 @@ randomness = 1.0
 [node name="night_ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_8rkao")
 volume_db = -10.295
+
+[node name="Transition" type="CanvasLayer" parent="."]
+
+[node name="Transitions" parent="Transition" instance=ExtResource("36_rm2yw")]
+scene_to_load = ExtResource("37_w482v")
 
 [connection signal="timeout" from="coinSpawner/Timer" to="coinSpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="DayNightLight/DayNight" to="bg_main" method="_on_day_night_timeout"]

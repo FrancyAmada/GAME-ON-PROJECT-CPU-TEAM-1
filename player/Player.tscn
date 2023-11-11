@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d3ipjerk8uya8"]
+[gd_scene load_steps=45 format=3 uid="uid://d3ipjerk8uya8"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_bktfi"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="3_duv6c"]
@@ -38,6 +38,46 @@ radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbpw5"]
 size = Vector2(20, 32)
+
+[sub_resource type="Animation" id="Animation_rfibc"]
+resource_name = "Death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_gl80l")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
 
 [sub_resource type="Animation" id="Animation_jsd63"]
 resource_name = "Hit"
@@ -122,6 +162,21 @@ tracks/2/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_7fjah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="Animation" id="Animation_14s22"]
 resource_name = "Walk"
 length = 0.45
@@ -166,8 +221,10 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rirbf"]
 _data = {
+"Death": SubResource("Animation_rfibc"),
 "Hit": SubResource("Animation_jsd63"),
 "Idle": SubResource("Animation_hmkwr"),
+"RESET": SubResource("Animation_7fjah"),
 "Walk": SubResource("Animation_14s22")
 }
 
@@ -240,6 +297,7 @@ position = Vector2(1, -6)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("9_gl80l")
 hframes = 2
+frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -50)
@@ -255,7 +313,7 @@ position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_d13en")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("dead_state") instance=ExtResource("3_duv6c")]
-max_health = 50.0
+max_health = 1e+11
 dead_state = NodePath("../CharacterStateMachine/Dead")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_invhr")]
