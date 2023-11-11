@@ -2,6 +2,8 @@ extends Area2D
 
 class_name Campfire
 
+@export var camp_id: int = 0
+
 var animated_sprite : AnimatedSprite2D
 @onready var audio_stream_player = $AudioStreamPlayer
 

@@ -73,6 +73,7 @@ func upgrade():
 	
 	level += 1
 	coins_in = 0
+	point_light.energy += 0.12
 	point_light.set_texture_scale(level * 1.3)
 	if level == 6:
 		destroy_spawner()
@@ -85,7 +86,18 @@ func destroy_spawner():
 			if structure.spawner_id == shrine_id:
 				structure.queue_free()
 				print_debug("SUCCESSFULLY DESTROYED SPAWNER : ", structure.spawner_id)
-
+			else:
+				structure.start_spawn_day = DayNight.day_count + 2
+				
+	var humans = get_node("/root/starting_map/allies")
+	for human in humans.get_children():
+		if human.camp_id == shrine_id and shrine_id < 2:
+			human.camp_id += 1
+			for human_type in human.get_children():
+				human_type.camp_id = human.camp_id
+				human_type.find_camp()
+				print(human_type.name, " is finding camp")
+	
 func displayAnimation():
 	var animation_name = str(level)
 	animated_sprite_2d.play(animation_name)

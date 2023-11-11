@@ -40,11 +40,14 @@ var run_away: bool = false
 var idle_time: float = 0
 
 var campfire_radius: int = 300
+@onready var camp_id: int = get_parent().camp_id
+var campfire: Campfire
 
 
 func _ready():
 	build_state.connect("stop_building", _on_stop_building)
 	hit.dropHammer.connect(drop_hammer)
+	find_camp()
 	
 func _physics_process(delta):
 	check_enemies()
@@ -156,3 +159,10 @@ func check_enemies():
 	enemy = enemy_data[0]
 	enemy_distance = enemy_data[1]
 
+func find_camp():
+	var structures_node = get_node("/root/starting_map/Structures")
+	for structure in structures_node.get_children():
+		if structure is Campfire:
+			if structure.camp_id == camp_id:
+				campfire = structure
+				
