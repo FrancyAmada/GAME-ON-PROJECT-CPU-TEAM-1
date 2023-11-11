@@ -31,10 +31,13 @@ var target_animal_distance: int = 1000
 var animals_list: Array
 
 var campfire_radius: int = 300
+@onready var camp_id: int = get_parent().camp_id
+var campfire: Campfire
 
 
 func _ready():
 	idle_timer.start()
+	find_camp()
 
 func _physics_process(delta):
 	on_idle()
@@ -81,7 +84,6 @@ func on_idle():
 func _on_idle_timer_timeout():
 	var choice: int = rng.randi_range(-1, 1)
 	
-	var campfire = get_node("/root/starting_map/Structures/campfire")
 	var distance_to_campfire: int = abs(global_position.x - campfire.global_position.x)
 	
 	if idle and distance_to_campfire <= campfire_radius:
@@ -108,3 +110,11 @@ func map_range(value: float, start1: float, stop1: float, start2: float, stop2: 
 
 func change_role():
 	to_jobless.emit()
+
+func find_camp():
+	var structures_node = get_node("/root/starting_map/Structures")
+	for structure in structures_node.get_children():
+		if structure is Campfire:
+			if structure.camp_id == camp_id:
+				campfire = structure
+			
