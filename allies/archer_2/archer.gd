@@ -35,6 +35,14 @@ var target_animal: CharacterBody2D = null
 var target_animal_distance: int = 1000
 var animals_list: Array
 
+@onready var wall_position: int = randi_range(30, 80)
+var target_wall: Wall
+var night: bool = false
+var go_to_target_wall: bool = false
+var direction_to_wall: float = 0
+var target_wall_position: int = 0
+
+
 func _ready():
 	idle_timer.start()
 	hit.dropBow.connect(drop_bow)
@@ -43,6 +51,8 @@ func _physics_process(delta):
 	on_idle()
 	set_target_enemy()
 	get_target_animal()
+	on_night()
+	get_direction_to_target_wall()
 	
 	if enemy == null:
 		hunt_area.monitoring = true
@@ -59,6 +69,9 @@ func _physics_process(delta):
 	
 	if idle:
 		direction.x = new_direction
+		velocity.x = direction.x * max_speed
+	elif go_to_target_wall:
+		direction.x = direction_to_wall
 		velocity.x = direction.x * max_speed
 	elif enemy != null and state_machine.check_if_can_move():
 		get_direction()
@@ -83,10 +96,47 @@ func get_direction():
 		elif run_away:
 			direction.x = -direction.x
 
+func on_night():
+	go_to_target_wall = false
+	if DayNight.transitioning_phase:
+		if DayNight.is_day:  # going to be night time
+			night = true
+			idle = false
+			find_leftmost_wall()
+		else:
+			night = false
+			idle = true
+	elif !DayNight.is_day:  # at night
+		find_leftmost_wall()
+
+func get_direction_to_target_wall():
+	if target_wall != null:
+		if not (target_wall_position - 1 < global_position.x and global_position.x < target_wall_position + 1):
+			direction_to_wall = sign(target_wall_position - global_position.x)
+			go_to_target_wall = true
+		else:
+			go_to_target_wall = false
+			direction_to_wall = 0
+
+func find_leftmost_wall():
+	target_wall = null
+	var structures_node = get_node("/root/starting_map/Structures")
+	var distance_to_left: int = 10000
+	for structure in structures_node.get_children():
+		if structure is Wall:
+			for child in structure.get_children():
+				if child.is_in_group("wall"):
+					if child.global_position.x < distance_to_left:
+						target_wall = structure
+						distance_to_left = structure.global_position.x
+						
+	if target_wall != null:
+		target_wall_position = target_wall.global_position.x + wall_position
+
 func on_idle():
 	if enemy != null:
 		idle = false
-	elif idle_timer.is_stopped():
+	elif idle_timer.is_stopped() and !night:
 		idle = true
 		idle_timer.start()
 
