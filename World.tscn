@@ -2143,7 +2143,6 @@ position = Vector2(149, 327)
 
 [node name="GoblinSpawner" parent="Enemies" instance=ExtResource("4_cwq77")]
 position = Vector2(0, 257)
-goblin = ExtResource("4_yt5yi")
 spawn_interval = 100.0
 
 [node name="Allies" type="Node2D" parent="."]

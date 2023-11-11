@@ -24,9 +24,11 @@ func _on_day_night_timeout():
 	timer.start()
 	count += 1
 
+
 func change_time():
 	var stop_count = TIME_CYCLE + TIME_TRANSITION
 	if count == stop_count:
 		DayNight.transitioning_phase = false
 		DayNight.is_day = not DayNight.is_day
 		count = 0
+		DayNight.day_count += 1

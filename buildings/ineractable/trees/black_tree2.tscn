@@ -15,6 +15,7 @@ animations = [{
 
 [node name="black_tree2" type="Node2D"]
 show_behind_parent = true
+z_index = -2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -38)
