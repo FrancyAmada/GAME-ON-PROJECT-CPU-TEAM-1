@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 class_name Jobless
 
+signal to_archer
+signal to_builder
+
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var idle_timer: Timer = $IdleTimer
 @onready var velocity_component: VelocityComponent = $VelocityComponent
@@ -92,5 +95,8 @@ func set_target_tool():
 func map_range(value: float, start1: float, stop1: float, start2: float, stop2: float):
 	return (value - start1) / (stop1 - start1) * (stop2 - start2) + start2
 
-func sayhi():
-	print("hi")
+func change_role(role):
+	if role == "builder":
+		to_builder.emit()
+	if role == "archer":
+		to_archer.emit()

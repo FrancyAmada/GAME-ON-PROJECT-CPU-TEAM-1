@@ -20,7 +20,7 @@ size = Vector2(35, 42)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_atx67"]
 size = Vector2(38, 43)
 
-[node name="wall_level_3" type="Area2D"]
+[node name="wall_level_3" type="Area2D" groups=["interactable"]]
 script = ExtResource("1_4wami")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

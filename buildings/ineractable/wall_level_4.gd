@@ -23,7 +23,8 @@ func _process(delta):
 		build_me.emit()
 		queue_free()
 		
-	last_coin_pass_time += delta
+	if coins_in > 0:
+		last_coin_pass_time += delta
 	if last_coin_pass_time >= delay_before_drop:
 		await get_tree().create_timer(.6).timeout
 		drop_all_coins()

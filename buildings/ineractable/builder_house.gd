@@ -1,13 +1,10 @@
 extends interactable_object
 
-@export var maxHp: int = 30
-
-var building_name = "Wall"
-@onready var hp = maxHp
+var hammer = preload("res://collectables/hammer.tscn")
 
 func _ready():
 	set_process(true)
-	coins_needed = 5
+	coins_needed = 3
 
 func _pass_coin():
 	call_deferred("on_pass_coin")
@@ -20,8 +17,7 @@ func _process(delta):
 			coins += 1
 			coins_in = coins
 	if coins >= coins_needed:
-		build_me.emit()
-		queue_free()
+		drop_hammer()
 		
 	if coins_in > 0:
 		last_coin_pass_time += delta
@@ -53,9 +49,7 @@ func close_coins_need():
 		if child.is_in_group("coin holder"):
 			child.queue_free()
 
-func damage():
-	hp -= 1
-
-func repair():
-	if hp < maxHp:
-		hp += 1
+func drop_hammer():
+	var new_hammer = hammer.instantiate()
+	add_child(new_hammer)
+	new_hammer.global_position = global_position + Vector2(0, -35)

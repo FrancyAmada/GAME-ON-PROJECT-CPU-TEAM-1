@@ -16,7 +16,6 @@ func _physics_process(delta):
 		position_at = get_child(0).global_position
 
 func change_to_jobless():
-	print("test")
 	for child in get_children():
 		child.queue_free()
 	
@@ -24,3 +23,29 @@ func change_to_jobless():
 	add_child(new_jobless)
 	print(position_at)
 	new_jobless.global_position = position_at
+	new_jobless.connect("to_builder", change_to_builder)
+	new_jobless.connect("to_archer", change_to_archer)
+
+func change_to_homeless():
+	for child in get_children():
+		child.queue_free()
+	
+	var new_homeless = homeless_role.instantiate()
+	add_child(new_homeless)
+	new_homeless.global_position = position_at
+
+func change_to_builder():
+	for child in get_children():
+		child.queue_free()
+	
+	var new_builder = builder_role.instantiate()
+	add_child(new_builder)
+	new_builder.global_position = position_at
+
+func change_to_archer():
+	for child in get_children():
+		child.queue_free()
+	
+	var new_archer = archer_role.instantiate()
+	add_child(new_archer)
+	new_archer.global_position = position_at

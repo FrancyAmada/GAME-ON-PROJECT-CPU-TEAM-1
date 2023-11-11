@@ -4,7 +4,7 @@ extends Node2D
 
 var scaffolding = preload("res://buildings/scaffolding.tscn")
 
-var construction_points_needed = 2
+var construction_points_needed = 20
 var construction_points_current = 0
 var under_construction = false
 var has_builder = false

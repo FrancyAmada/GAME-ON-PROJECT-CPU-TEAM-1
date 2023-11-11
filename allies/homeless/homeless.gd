@@ -95,5 +95,4 @@ func map_range(value: float, start1: float, stop1: float, start2: float, stop2: 
 	return (value - start1) / (stop1 - start1) * (stop2 - start2) + start2
 
 func change_role():
-	print("whaa????")
 	to_jobless.emit()

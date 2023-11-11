@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://y66u0xbne8om"]
+[gd_scene load_steps=5 format=3 uid="uid://y66u0xbne8om"]
 
 [ext_resource type="Script" path="res://collectables/bow.gd" id="1_smb4f"]
 [ext_resource type="Texture2D" uid="uid://egyd0miu80b4" path="res://game assets test/custom/others/bow.png" id="2_ljx0o"]
@@ -14,30 +14,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tyops"]
-radius = 8.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_33xcl"]
-radius = 5.0
+radius = 8.0
 
 [node name="bow" type="RigidBody2D" groups=["tool"]]
 collision_layer = 16
 script = ExtResource("1_smb4f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -2.27374e-13)
 scale = Vector2(0.11, 0.11)
 sprite_frames = SubResource("SpriteFrames_1655h")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-shape = SubResource("CircleShape2D_tyops")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-2, -1)
+build_mode = 1
+polygon = PackedVector2Array(4, -7, 1, -4, 0, 0, 0, 3, 2, 7, 4, 9)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -1)
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_33xcl")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

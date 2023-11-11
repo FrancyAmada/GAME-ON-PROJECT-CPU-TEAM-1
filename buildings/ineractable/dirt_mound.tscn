@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6k3ok7ty0h33"]
 
 [ext_resource type="Script" path="res://buildings/ineractable/dirt_mound.gd" id="1_7u835"]
-[ext_resource type="Texture2D" uid="uid://bmmcjad4s3u8n" path="res://game assets test/custom/dirtmound.png" id="2_cs1se"]
+[ext_resource type="Texture2D" uid="uid://bcux1leaq6sji" path="res://game assets test/custom/structures/dirt.png" id="2_hi0bq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ebkaj"]
 radius = 16.0312
@@ -10,7 +10,7 @@ radius = 16.0312
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_cs1se")
+"texture": ExtResource("2_hi0bq")
 }],
 "loop": true,
 "name": &"default",
@@ -24,6 +24,6 @@ script = ExtResource("1_7u835")
 shape = SubResource("CircleShape2D_ebkaj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -22)
-scale = Vector2(0.65625, 0.895833)
+position = Vector2(1, -21)
+scale = Vector2(0.182812, 0.197865)
 sprite_frames = SubResource("SpriteFrames_empjc")

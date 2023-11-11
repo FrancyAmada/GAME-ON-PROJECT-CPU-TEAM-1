@@ -149,7 +149,7 @@ radius = 600.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ro0xl"]
 radius = 207.163
 
-[node name="jobless" type="CharacterBody2D"]
+[node name="jobless" type="CharacterBody2D" groups=["jobless"]]
 scale = Vector2(0.7, 0.7)
 collision_layer = 8
 script = ExtResource("1_fpgk2")

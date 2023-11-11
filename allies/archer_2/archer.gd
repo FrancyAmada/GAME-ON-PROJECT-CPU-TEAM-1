@@ -35,7 +35,6 @@ var target_animal: CharacterBody2D = null
 var target_animal_distance: int = 1000
 var animals_list: Array
 
-
 func _ready():
 	idle_timer.start()
 	hit.dropBow.connect(printMe)
