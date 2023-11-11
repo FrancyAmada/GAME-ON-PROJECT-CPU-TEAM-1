@@ -4,6 +4,7 @@ class_name Goblin
 
 @export var hit_state: State
 @export var attack1_component: AttackComponent
+@export var death_anim_name: String = "Death"
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
@@ -20,6 +21,7 @@ var direction: Vector2 = Vector2.RIGHT
 
 func _ready():
 	enemydetection_component.connect("chase_player", set_chase_player)
+	animation_component.connect("animation_is_finished", _on_animation_component_finished)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -47,3 +49,7 @@ func get_direction():
 		
 func set_chase_player(set_target: CharacterBody2D):
 	enemy = set_target
+
+func _on_animation_component_finished(anim_name: String):
+	if anim_name == death_anim_name:
+		queue_free()

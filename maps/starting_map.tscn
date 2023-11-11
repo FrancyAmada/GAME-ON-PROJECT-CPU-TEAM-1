@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c6v46g012i0d3"]
+[gd_scene load_steps=30 format=3 uid="uid://c6v46g012i0d3"]
 
 [ext_resource type="PackedScene" uid="uid://bcwledypnfy41" path="res://buildings/ineractable/trees/black_tree2.tscn" id="1_o4qk0"]
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="2_a4bxm"]

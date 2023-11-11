@@ -313,8 +313,8 @@ radius = 12.0
 [node name="Builder" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "build_state")]
 collision_layer = 8
 script = ExtResource("1_hvw3h")
-hit_state = NodePath("")
-build_state = NodePath("")
+hit_state = NodePath("CharacterStateMachine/Hit")
+build_state = NodePath("CharacterStateMachine/Build")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
