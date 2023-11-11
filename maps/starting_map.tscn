@@ -4570,7 +4570,10 @@ shrine_id = 2
 position = Vector2(2, 323)
 
 [node name="AnimalSpawner2" parent="non-base structures" instance=ExtResource("29_vm2lk")]
-position = Vector2(-9749, 314)
+position = Vector2(-6669, 327)
+
+[node name="AnimalSpawner3" parent="non-base structures" instance=ExtResource("29_vm2lk")]
+position = Vector2(-9916, 321)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.65098, 0.52549, 0.407843, 1)
