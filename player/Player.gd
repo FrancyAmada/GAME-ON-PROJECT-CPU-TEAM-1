@@ -4,6 +4,7 @@ class_name Player
 
 @export var hit_state: HitState
 @onready var audio_stream_player = $AudioStreamPlayer
+@onready var text_box = $UI/text_box
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
@@ -23,6 +24,7 @@ var direction: Vector2
 
 func _ready():
 	set_process_input(true)
+	text_box.visible = !text_box.visible
 
 func _process(delta):
 	Game.set_player_position(self.position)
@@ -42,6 +44,8 @@ func _input(event):
 func _unhandled_input(event):
 	if event.is_action_released("ui_down"):
 		coin_dropped = false
+	if event.is_action_released("ui_up"):
+		text_box.visible = !text_box.visible
 
 func _physics_process(delta):
 	get_light_for_night()
