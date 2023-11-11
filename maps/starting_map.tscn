@@ -4475,7 +4475,7 @@ script = ExtResource("8_88g3q")
 
 [node name="Timer" type="Timer" parent="coinSpawner"]
 process_callback = 0
-wait_time = 0.7
+wait_time = 10.0
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="." groups=["ground"]]
@@ -4595,6 +4595,7 @@ position = Vector2(-6355, 321)
 [node name="campfire2" parent="Structures" instance=ExtResource("4_ccvat")]
 z_index = -1
 position = Vector2(-6142, 336)
+camp_id = 1
 
 [node name="townhall_level_5" parent="Structures" instance=ExtResource("22_bgmd7")]
 position = Vector2(-11023, 294)
@@ -4611,6 +4612,7 @@ position = Vector2(-11340, 294)
 [node name="campfire3" parent="Structures" instance=ExtResource("4_ccvat")]
 z_index = -10
 position = Vector2(-11117, 337)
+camp_id = 2
 
 [node name="townhall_level_8" parent="Structures" instance=ExtResource("22_bgmd7")]
 z_index = -10
@@ -5032,27 +5034,6 @@ texture = ExtResource("31_4lfh2")
 lifetime = 4.0
 speed_scale = 0.7
 randomness = 1.0
-
-[node name="Tiki_torch" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(287, 323)
-
-[node name="Tiki_torch2" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-6567, 322)
-
-[node name="Tiki_torch3" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-6385, 323)
-
-[node name="Tiki_torch4" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-5861, 325)
-
-[node name="Tiki_torch5" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-11528, 322)
-
-[node name="Tiki_torch6" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-10704, 323)
-
-[node name="Tiki_torch7" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(764, 322)
 
 [node name="night_ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_8rkao")
