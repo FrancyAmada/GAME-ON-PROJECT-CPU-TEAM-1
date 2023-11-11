@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg3od4tbnqntc"]
+
+[ext_resource type="Script" path="res://text_box/text_box.gd" id="1_st0rs"]
+[ext_resource type="Texture2D" uid="uid://ctnfiho17jd0" path="res://game assets test/custom/note-open.png" id="2_3s2tt"]
+
+[node name="text_box" type="MarginContainer"]
+offset_right = 32.0
+offset_bottom = 23.0
+script = ExtResource("1_st0rs")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_3s2tt")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "saassssasasasa"
+vertical_alignment = 1
