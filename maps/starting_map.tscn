@@ -4512,5 +4512,7 @@ position = Vector2(-12524, 262)
 scale = Vector2(1.7, 1.7)
 
 [connection signal="timeout" from="coinSpawner/Timer" to="coinSpawner" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Structures/townhall_level_2" to="Player" method="_on_townhall_level_2_body_entered"]
+[connection signal="body_exited" from="Structures/townhall_level_2" to="Player" method="_on_townhall_level_2_body_exited"]
 [connection signal="timeout" from="DayNightLight/DayNight" to="bg_main" method="_on_day_night_timeout"]
 [connection signal="timeout" from="DayNightLight/DayNight" to="DayNightLight" method="_on_day_night_timeout"]
