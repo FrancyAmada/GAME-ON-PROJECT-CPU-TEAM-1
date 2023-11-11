@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://cvmv8iwtvljat"]
+
+[ext_resource type="Texture2D" uid="uid://crknlysi6borf" path="res://game assets test/custom/tiki_torch.png" id="1_jghyl"]
+[ext_resource type="Texture2D" uid="uid://bessh5aahmo6w" path="res://textures/gradient_circle.jpg" id="2_mwwpf"]
+[ext_resource type="Texture2D" uid="uid://bng3m8lomclat" path="res://game assets test/particles/Fire_spritesheet.png" id="3_upr61"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_okt5n"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_775lh"]
+max_value = 200.0
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uqa7i"]
+curve = SubResource("Curve_775lh")
+
+[sub_resource type="Gradient" id="Gradient_emoeg"]
+offsets = PackedFloat32Array(0, 0.551724, 1)
+colors = PackedColorArray(0.98, 0.9114, 0.1568, 1, 0.988235, 0.498039, 0.0705882, 1, 1, 1, 1, 0.215686)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q8n34"]
+gradient = SubResource("Gradient_emoeg")
+
+[sub_resource type="Curve" id="Curve_j0for"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ve5yg"]
+width = 32
+curve = SubResource("Curve_j0for")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eodqw"]
+emission_shape = 2
+emission_sphere_radius = 7.0
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+angular_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = -5.0
+radial_accel_max = 5.0
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_ve5yg")
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_q8n34")
+turbulence_enabled = true
+turbulence_noise_scale = 1.0
+anim_speed_curve = SubResource("CurveTexture_uqa7i")
+anim_offset_max = 1.0
+
+[node name="Tiki_torch" type="Node2D"]
+scale = Vector2(0.4, 0.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jghyl")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-2.5, -38)
+scale = Vector2(3, 2.941)
+color = Color(0.866667, 0.54902, 0.278431, 1)
+texture = ExtResource("2_mwwpf")
+texture_scale = 0.5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_okt5n")
+position = Vector2(-2.5, -38.0888)
+scale = Vector2(1.16667, 1.14444)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_eodqw")
+texture = ExtResource("3_upr61")

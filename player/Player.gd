@@ -78,6 +78,6 @@ func _on_health_component_health_changed(node, health_change):
 func get_light_for_night():
 	if DayNight.transitioning_phase == true:
 		if DayNight.is_day:
-			torch_light.energy = 2.5
+			torch_light.energy = 0.8
 		else:
 			torch_light.energy = 0

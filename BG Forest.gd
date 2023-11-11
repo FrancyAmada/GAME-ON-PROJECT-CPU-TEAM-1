@@ -21,7 +21,6 @@ func _on_day_night_timeout():
 	if count >= TIME_CYCLE: 
 		for layer in parallax_layers:
 			layer.change_alpha(DayNight.is_day)
-	timer.start()
 	count += 1
 
 func change_time():
