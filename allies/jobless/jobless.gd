@@ -107,7 +107,7 @@ func set_target_tool():
 func map_range(value: float, start1: float, stop1: float, start2: float, stop2: float):
 	return (value - start1) / (stop1 - start1) * (stop2 - start2) + start2
 
-func change_role(role):
+func change_role(role: String):
 	if role == "builder":
 		to_builder.emit()
 	if role == "archer":

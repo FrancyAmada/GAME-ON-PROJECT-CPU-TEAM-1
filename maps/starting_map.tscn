@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c6v46g012i0d3"]
+[gd_scene load_steps=53 format=3 uid="uid://c6v46g012i0d3"]
 
 [ext_resource type="Script" path="res://maps/starting_map.gd" id="1_3stfo"]
 [ext_resource type="PackedScene" uid="uid://dyr74sfe4sw3q" path="res://audio/ambiance.tscn" id="1_5bot0"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://cluxufpss8t4q" path="res://animals/spawner/animal_spawner.tscn" id="29_vm2lk"]
 [ext_resource type="PackedScene" uid="uid://cvmv8iwtvljat" path="res://props/tiki_torch.tscn" id="30_vqjiy"]
 [ext_resource type="AudioStream" uid="uid://qrfxr2ctu73q" path="res://game assets test/audio/Field Night Cricket.mp3" id="33_8rkao"]
+[ext_resource type="Texture2D" uid="uid://bnf4kgnfxo2rm" path="res://game assets test/particles/leaves_spritesheet.png" id="31_4lfh2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc6vf"]
 texture = ExtResource("2_coelw")
@@ -2687,7 +2688,9 @@ emission_box_extents = Vector3(200, 20, 10)
 particle_flag_disable_z = true
 spread = 90.0
 gravity = Vector3(0, -98, 0)
-initial_velocity_max = 200.0
+initial_velocity_min = 1.0
+initial_velocity_max = 700.0
+angular_velocity_max = 10.07
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 linear_accel_max = 1.0
@@ -2704,6 +2707,66 @@ turbulence_noise_strength = 0.0
 turbulence_noise_scale = 10.0
 turbulence_noise_speed = Vector3(0, 1, 0)
 turbulence_noise_speed_random = 0.5
+anim_offset_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_84wys"]
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_tl6cf"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.547832, 0.793765, 7.70092e-07, 1, 0.641281, 0.641083, 1.92523e-07, 1, 0, 0.303612, 9.62615e-08, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_agodq"]
+gradient = SubResource("Gradient_tl6cf")
+
+[sub_resource type="Gradient" id="Gradient_84ybw"]
+offsets = PackedFloat32Array(0, 0.525862, 1)
+colors = PackedColorArray(0.825397, 0.825397, 0.825397, 1, 0.54099, 0.54099, 0.54099, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ou7ji"]
+gradient = SubResource("Gradient_84ybw")
+
+[sub_resource type="Curve" id="Curve_f2vn3"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -0.0315789), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_56yok"]
+curve = SubResource("Curve_f2vn3")
+
+[sub_resource type="Curve" id="Curve_pndc3"]
+_data = [Vector2(0, 0.305263), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o04d2"]
+curve = SubResource("Curve_pndc3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m2l5d"]
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(1, 200, 10)
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+angular_velocity_max = 360.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 1.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_o04d2")
+color = Color(0.822757, 0.91928, 0, 1)
+color_ramp = SubResource("GradientTexture1D_ou7ji")
+color_initial_ramp = SubResource("GradientTexture1D_agodq")
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("CurveTexture_56yok")
+turbulence_enabled = true
+turbulence_noise_strength = 2.0
+turbulence_noise_scale = 1.0
 anim_offset_max = 1.0
 
 [node name="starting_map" type="Node2D"]
@@ -4412,7 +4475,7 @@ script = ExtResource("8_88g3q")
 
 [node name="Timer" type="Timer" parent="coinSpawner"]
 process_callback = 0
-wait_time = 0.5
+wait_time = 0.7
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="." groups=["ground"]]
@@ -4470,6 +4533,26 @@ position = Vector2(437, 320)
 [node name="human4" parent="allies" instance=ExtResource("8_6ohjw")]
 position = Vector2(546, 321)
 
+[node name="human5" parent="allies" instance=ExtResource("8_6ohjw")]
+position = Vector2(-6286, 319)
+camp_id = 1
+
+[node name="human6" parent="allies" instance=ExtResource("8_6ohjw")]
+position = Vector2(-6163, 320)
+camp_id = 1
+
+[node name="human7" parent="allies" instance=ExtResource("8_6ohjw")]
+position = Vector2(-6097, 319)
+camp_id = 1
+
+[node name="human8" parent="allies" instance=ExtResource("8_6ohjw")]
+position = Vector2(-11088, 319)
+camp_id = 2
+
+[node name="human9" parent="allies" instance=ExtResource("8_6ohjw")]
+position = Vector2(-11152, 318)
+camp_id = 2
+
 [node name="Structures" type="Node" parent="."]
 
 [node name="wall" parent="Structures" instance=ExtResource("27_iymf4")]
@@ -4496,9 +4579,11 @@ z_index = -1
 position = Vector2(589, 299)
 
 [node name="townhall_level_3" parent="Structures" instance=ExtResource("22_bgmd7")]
+z_index = -1
 position = Vector2(-6224, 294)
 
 [node name="townhall_level_4" parent="Structures" instance=ExtResource("22_bgmd7")]
+z_index = -1
 position = Vector2(-6069, 296)
 
 [node name="builder_house2" parent="Structures" instance=ExtResource("20_5w7k0")]
@@ -4508,22 +4593,27 @@ position = Vector2(-5977, 319)
 position = Vector2(-6355, 321)
 
 [node name="campfire2" parent="Structures" instance=ExtResource("4_ccvat")]
+z_index = -1
 position = Vector2(-6142, 336)
 
 [node name="townhall_level_5" parent="Structures" instance=ExtResource("22_bgmd7")]
 position = Vector2(-11023, 294)
 
 [node name="townhall_level_6" parent="Structures" instance=ExtResource("28_qmi8x")]
+z_index = -10
 position = Vector2(-11188, 278)
 scale = Vector2(0.4, 0.4)
 
 [node name="townhall_level_7" parent="Structures" instance=ExtResource("22_bgmd7")]
+z_index = -10
 position = Vector2(-11340, 294)
 
 [node name="campfire3" parent="Structures" instance=ExtResource("4_ccvat")]
+z_index = -10
 position = Vector2(-11117, 337)
 
 [node name="townhall_level_8" parent="Structures" instance=ExtResource("22_bgmd7")]
+z_index = -10
 position = Vector2(-10898, 295)
 
 [node name="archer_house3" parent="Structures" instance=ExtResource("19_hhi7e")]
@@ -4543,7 +4633,7 @@ position = Vector2(-11570, 336)
 [node name="GoblinSpawner" parent="non-base structures" instance=ExtResource("26_poinv")]
 z_index = 2
 position = Vector2(-3472, 316)
-initial_spawn_interval = 1.0
+initial_spawn_interval = 30.0
 
 [node name="GoblinSpawner2" parent="non-base structures" instance=ExtResource("26_poinv")]
 position = Vector2(-8417, 319)
@@ -4597,140 +4687,100 @@ shape = SubResource("RectangleShape2D_gpojj")
 
 [node name="particles" type="Node" parent="."]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="particles"]
-material = SubResource("CanvasItemMaterial_csrlq")
-position = Vector2(-1247, 295)
-amount = 200
-process_material = SubResource("ParticleProcessMaterial_dg3h4")
-texture = ExtResource("29_s70wa")
+[node name="fog" type="Node" parent="particles"]
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="particles"]
-material = SubResource("CanvasItemMaterial_csrlq")
-position = Vector2(-800, 295)
-amount = 200
-process_material = SubResource("ParticleProcessMaterial_dg3h4")
-texture = ExtResource("29_s70wa")
-
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="particles"]
-material = SubResource("CanvasItemMaterial_csrlq")
-position = Vector2(-1800, 295)
-amount = 200
-process_material = SubResource("ParticleProcessMaterial_dg3h4")
-texture = ExtResource("29_s70wa")
-
-[node name="GPUParticles2D4" type="GPUParticles2D" parent="particles"]
-material = SubResource("CanvasItemMaterial_csrlq")
-position = Vector2(-3100, 295)
-amount = 200
-process_material = SubResource("ParticleProcessMaterial_dg3h4")
-texture = ExtResource("29_s70wa")
-
-[node name="GPUParticles2D5" type="GPUParticles2D" parent="particles"]
-material = SubResource("CanvasItemMaterial_csrlq")
-position = Vector2(-3600, 295)
-amount = 200
-process_material = SubResource("ParticleProcessMaterial_dg3h4")
-texture = ExtResource("29_s70wa")
-
-[node name="GPUParticles2D6" type="GPUParticles2D" parent="particles"]
-material = SubResource("CanvasItemMaterial_csrlq")
-position = Vector2(-4100, 295)
-amount = 200
-process_material = SubResource("ParticleProcessMaterial_dg3h4")
-texture = ExtResource("29_s70wa")
-
-[node name="GPUParticles2D7" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D7" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-4600, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D8" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D8" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-5100, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D9" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D9" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-5600, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D10" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D10" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-6700, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D11" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D11" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-7200, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D12" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D12" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-8400, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D13" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D13" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-12200, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D14" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D14" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-12700, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D15" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D15" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-13200, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D16" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D16" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-13700, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D17" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D17" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-14200, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D18" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D18" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-14700, 295)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D19" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D19" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-9852, 294)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
-[node name="GPUParticles2D20" type="GPUParticles2D" parent="particles"]
+[node name="GPUParticles2D20" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-9251, 290)
 amount = 200
@@ -4761,6 +4811,249 @@ position = Vector2(764, 322)
 [node name="night_ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_8rkao")
 volume_db = -10.295
+[node name="GPUParticles2D" type="GPUParticles2D" parent="particles/fog"]
+material = SubResource("CanvasItemMaterial_csrlq")
+position = Vector2(-1247, 295)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_dg3h4")
+texture = ExtResource("29_s70wa")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="particles/fog"]
+material = SubResource("CanvasItemMaterial_csrlq")
+position = Vector2(-800, 295)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_dg3h4")
+texture = ExtResource("29_s70wa")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="particles/fog"]
+material = SubResource("CanvasItemMaterial_csrlq")
+position = Vector2(-1800, 295)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_dg3h4")
+texture = ExtResource("29_s70wa")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="particles/fog"]
+material = SubResource("CanvasItemMaterial_csrlq")
+position = Vector2(-3100, 295)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_dg3h4")
+texture = ExtResource("29_s70wa")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="particles/fog"]
+material = SubResource("CanvasItemMaterial_csrlq")
+position = Vector2(-3600, 295)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_dg3h4")
+texture = ExtResource("29_s70wa")
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="particles/fog"]
+material = SubResource("CanvasItemMaterial_csrlq")
+position = Vector2(-4100, 295)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_dg3h4")
+texture = ExtResource("29_s70wa")
+
+[node name="leaves" type="Node" parent="particles"]
+
+[node name="leaves_particles" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-591, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles2" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-1000, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles3" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-1500, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles4" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-2000, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles5" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-3100, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles6" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-3600, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles7" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-4100, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles8" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-4600, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles9" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-5100, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles10" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-5600, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles11" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-6700, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles12" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-7200, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles13" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-8400, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles14" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-12100, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles15" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-12600, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles16" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-13100, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles17" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-13600, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles18" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-14100, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles19" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(-14600, 267)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
+
+[node name="leaves_particles20" type="GPUParticles2D" parent="particles/leaves"]
+material = SubResource("CanvasItemMaterial_84wys")
+position = Vector2(1032, 255)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_m2l5d")
+texture = ExtResource("31_4lfh2")
+lifetime = 4.0
+speed_scale = 0.7
+randomness = 1.0
 
 [connection signal="timeout" from="coinSpawner/Timer" to="coinSpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="DayNightLight/DayNight" to="bg_main" method="_on_day_night_timeout"]

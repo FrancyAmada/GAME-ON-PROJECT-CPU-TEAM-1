@@ -11,6 +11,8 @@ class_name Player
 @onready var max_speed = velocity_component.max_speed
 @onready var torch_light: PointLight2D = $Torchlight
 
+var current_camp_id: int = 0
+
 var interactable_object : interactable_object = null
 
 var Coin = preload("res://collectables/coin.tscn")
@@ -84,6 +86,6 @@ func _on_health_component_health_changed(node, health_change):
 func get_light_for_night():
 	if DayNight.transitioning_phase == true:
 		if DayNight.is_day:
-			torch_light.energy = 0.8
+			torch_light.energy = 1.0
 		else:
 			torch_light.energy = 0
