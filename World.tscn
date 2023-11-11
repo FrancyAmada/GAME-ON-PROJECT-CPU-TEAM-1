@@ -2150,6 +2150,7 @@ spawn_interval = 100.0
 
 [node name="Builder" parent="Allies" instance=ExtResource("12_7yipq")]
 position = Vector2(649, 311)
+death_anim_name = null
 
 [node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
 position = Vector2(557, 119)
