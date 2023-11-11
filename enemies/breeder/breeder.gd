@@ -58,7 +58,7 @@ func get_direction():
 	if !DayNight.is_day:
 		if not attack1_component.check_if_enemy_is_detected():
 			direction = (enemy.global_position - global_position).normalized()
-		else:
+		elif attack1_component.check_if_enemy_is_detected():
 			direction.x = 0
 	else:
 		direction.x = -1
