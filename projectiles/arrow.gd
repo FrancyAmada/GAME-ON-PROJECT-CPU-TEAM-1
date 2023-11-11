@@ -42,7 +42,7 @@ func _on_body_entered(body):
 		var knockback: Vector2 = Vector2(sign(velocity.x) * 150, -30)
 		if hitbox:
 			var chance: int = randi_range(0, 1)
-#			print_debug("chance ", chance)
+			print_debug("chance ", chance)
 			if chance == 1:
 				damage *= 2
 			hitbox.receive_hit(damage, knockback)

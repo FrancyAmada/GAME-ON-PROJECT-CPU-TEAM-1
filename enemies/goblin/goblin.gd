@@ -11,7 +11,7 @@ class_name Goblin
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var enemydetection_component: EnemyDetectionComponent = $EnemyDetectionComponent
 @onready var max_speed = velocity_component.max_speed
-@onready var enemy: CharacterBody2D = null
+@onready var enemy: CharacterBody2D
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -19,24 +19,16 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: Vector2 = Vector2.RIGHT
 
-var enemy_distance: float = 600
-
-
 func _ready():
+	enemydetection_component.connect("chase_player", set_chase_player)
 	animation_component.connect("animation_is_finished", _on_animation_component_finished)
 
 func _physics_process(delta):
-	set_enemy()
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	if enemy == null:
-		if !DayNight.is_day:
-			direction.x = 1  # to the left
-		velocity.x = direction.x * max_speed
-	elif enemy != null and state_machine.check_if_can_move():
+	if enemy != null and state_machine.check_if_can_move():
 		get_direction()
 		velocity.x = direction.x * max_speed
 	elif state_machine.current_state != hit_state:
@@ -50,18 +42,13 @@ func _physics_process(delta):
 	animation_component.update_facing_direction(reversed_direction)
 
 func get_direction():
-	if !DayNight.is_day:
-		if not attack1_component.check_if_enemy_is_detected():
-			direction = (enemy.global_position - global_position).normalized()
-		else:
-			direction.x = 0
+	if not attack1_component.check_if_enemy_is_detected():
+		direction = (enemy.global_position - global_position).normalized()
 	else:
-		direction.x = -1
+		direction.x = 0
 		
-func set_enemy():
-	var enemy_data = enemydetection_component.get_enemy()
-	enemy = enemy_data[0]
-	enemy_distance = enemy_data[1]
+func set_chase_player(set_target: CharacterBody2D):
+	enemy = set_target
 
 func _on_animation_component_finished(anim_name: String):
 	if anim_name == death_anim_name:
