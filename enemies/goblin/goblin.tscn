@@ -410,10 +410,10 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 radius = 800.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfrxp"]
-size = Vector2(40, 32)
+size = Vector2(48, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hawr"]
-size = Vector2(28, 32)
+size = Vector2(32, 32)
 
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "attack1_component") groups=["enemy"]]
 collision_layer = 4
@@ -526,10 +526,10 @@ script = ExtResource("20_33v7t")
 ground_state = NodePath("../../CharacterStateMachine/Ground")
 
 [node name="AttackCollisionComponent" parent="Attack1/Attack1Area" instance=ExtResource("9_3kuty")]
-position = Vector2(20, 0)
+position = Vector2(24, 0)
 shape = SubResource("RectangleShape2D_nfrxp")
-facing_left_position = Vector2(20, 0)
-facing_right_position = Vector2(-20, 0)
+facing_left_position = Vector2(-24, 0)
+facing_right_position = Vector2(24, 0)
 
 [node name="EnemyDetector" parent="Attack1" node_paths=PackedStringArray("attack_component") instance=ExtResource("10_snb4g")]
 collision_layer = 0
@@ -537,14 +537,15 @@ collision_mask = 42
 attack_component = NodePath("..")
 
 [node name="DetectionCollisionComponent" parent="Attack1/EnemyDetector" instance=ExtResource("9_3kuty")]
-position = Vector2(14, 0)
+position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_5hawr")
-facing_left_position = Vector2(14, 0)
-facing_right_position = Vector2(-14, 0)
+facing_left_position = Vector2(-16, 0)
+facing_right_position = Vector2(16, 0)
 
 [connection signal="on_death" from="HealthComponent" to="CharacterStateMachine" method="_on_health_component_on_death"]
 [connection signal="on_hit" from="HitBoxComponent" to="CharacterStateMachine/Hit" method="_on_hit_box_component_on_hit"]
 [connection signal="animation_finished" from="AnimationComponent/AnimationTree" to="AnimationComponent" method="_on_animation_tree_animation_finished"]
+[connection signal="chase_enemy" from="EnemyDetectionComponent" to="." method="set_chase_player"]
 [connection signal="body_entered" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_exited"]
 [connection signal="body_entered" from="Attack1/Attack1Area" to="Attack1" method="_on_attack_1_body_entered"]

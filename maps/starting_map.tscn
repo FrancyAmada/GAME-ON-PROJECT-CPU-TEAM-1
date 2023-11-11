@@ -3414,19 +3414,6 @@ position = Vector2(-1777, 276)
 [node name="black_tree65" parent="forest 1 back" instance=ExtResource("2_tnth6")]
 position = Vector2(-2041, 276)
 
-[node name="Player" parent="." instance=ExtResource("2_a4bxm")]
-z_index = 1
-position = Vector2(-852, 318)
-
-[node name="coinSpawner" type="Node2D" parent="."]
-position = Vector2(2, 1)
-script = ExtResource("8_88g3q")
-
-[node name="Timer" type="Timer" parent="coinSpawner"]
-process_callback = 0
-wait_time = 5.0
-autostart = true
-
 [node name="black_tree63" parent="forest 1 back" instance=ExtResource("1_o4qk0")]
 position = Vector2(-1931, 294)
 
@@ -3465,19 +3452,8 @@ position = Vector2(-3733, 295)
 [node name="tree9" parent="forest 2" instance=ExtResource("13_om8xy")]
 position = Vector2(-4551, 290)
 
-[node name="coin11" parent="coins" instance=ExtResource("5_vx3qf")]
-position = Vector2(458, 265)
-
-[node name="coin12" parent="coins" instance=ExtResource("5_vx3qf")]
-position = Vector2(495, 263)
-
-[node name="coin13" parent="coins" instance=ExtResource("5_vx3qf")]
-position = Vector2(516, 263)
-
-[node name="coin14" parent="coins" instance=ExtResource("5_vx3qf")]
-position = Vector2(478, 258)
-
-[node name="allies" type="Node" parent="."]
+[node name="tree10" parent="forest 2" instance=ExtResource("11_qjksi")]
+position = Vector2(-4266, 303)
 
 [node name="tree11" parent="forest 2" instance=ExtResource("12_b6src")]
 position = Vector2(-4381, 290)
@@ -4123,12 +4099,6 @@ position = Vector2(391, 320)
 z_index = -1
 position = Vector2(589, 299)
 
-[node name="wall" parent="Structures" instance=ExtResource("27_iymf4")]
-position = Vector2(237, 338)
-
-[node name="wall2" parent="Structures" instance=ExtResource("27_iymf4")]
-position = Vector2(21, 338)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.65098, 0.52549, 0.407843, 1)
 
@@ -4145,12 +4115,15 @@ timer = NodePath("DayNight")
 
 [node name="DayNight" type="Timer" parent="DayNightLight"]
 process_callback = 0
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
 autostart = true
 
 [node name="holy_shrine" parent="." instance=ExtResource("26_2mafu")]
 position = Vector2(-1579, 336)
+
+[node name="wall" parent="." instance=ExtResource("27_iymf4")]
+position = Vector2(237, 338)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(718, 110)
@@ -4158,7 +4131,7 @@ collision_layer = 255
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(118, 126)
+position = Vector2(118, 123)
 shape = SubResource("RectangleShape2D_gpojj")
 
 [node name="GoblinSpawner" parent="." instance=ExtResource("26_poinv")]

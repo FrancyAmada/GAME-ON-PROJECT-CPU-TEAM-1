@@ -35,19 +35,12 @@ var target_animal: CharacterBody2D = null
 var target_animal_distance: int = 1000
 var animals_list: Array
 
-var target_wall: Wall
-var target_wall_position: int = 0
-var go_to_target_wall: bool = false
-@onready var wall_position: int = randi_range(30, 80)
-var on_wall_position: bool = false
-
 func _ready():
 	idle_timer.start()
 	hit.dropBow.connect(drop_bow)
 
 func _physics_process(delta):
 	on_idle()
-	on_night()
 	set_target_enemy()
 	get_target_animal()
 	
@@ -64,13 +57,8 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	if idle and !go_to_target_wall:
+	if idle:
 		direction.x = new_direction
-		velocity.x = direction.x * max_speed
-	elif go_to_target_wall:
-		if DayNight.is_day:
-			go_to_target_wall = false
-			direction.x = 0
 		velocity.x = direction.x * max_speed
 	elif enemy != null and state_machine.check_if_can_move():
 		get_direction()
@@ -82,72 +70,23 @@ func _physics_process(delta):
 	move_and_slide()
 	animation_component.update_animation(direction)
 	animation_component.update_facing_direction(direction)
-#	print_debug(self," is idle: ", idle, " go_wall: ", go_to_target_wall, " direction: ", str(direction.x), " ")
 
 func get_direction():
 	if enemy != null:
-		if !DayNight.is_day:
-			direction = (enemy.global_position - global_position).normalized()
-		else:
-			direction.x = 0
+		direction = (enemy.global_position - global_position).normalized()
 		if enemy_distance < 200 and not run_away:
 			set_shooting_angle()
 			emit_signal("use_attack", "Shoot")
-			if !on_wall_position:
-				run_away = true
-			else:
-				run_away = false
+			run_away = true
 		elif (enemy_distance > 250 and run_away) or shoot_component.check_if_can_use():
 			run_away = false
 		elif run_away:
 			direction.x = -direction.x
 
-func get_direction_to_target_wall():
-	if target_wall != null:
-		if target_wall_position - 1 < global_position.x and global_position.x < target_wall_position + 1:
-			go_to_target_wall = false
-			on_wall_position = true
-			direction.x = 0
-		else:
-			go_to_target_wall = true
-			on_wall_position = false
-			direction.x = sign(target_wall_position - global_position.x)
-#	print_debug(self, " target wall: ", target_wall, " direction : ", str(direction.x))
-	
-func find_leftmost_wall():
-	target_wall = null
-	var structures = get_node("/root/starting_map/Structures")
-	var distance_to_left: float = 10000
-	for structure in structures.get_children():
-		if structure is Wall:
-			for child in structure.get_children():
-				if child.is_in_group("wall") and structure.global_position.x < distance_to_left:
-					target_wall = structure
-					distance_to_left = structure.global_position.x
-					
-	if target_wall != null:
-		target_wall_position = target_wall.global_position.x + wall_position
-		go_to_target_wall = true
-#	print_debug(self, " target wall: ", target_wall, " wall position ", target_wall_position)
-	
-func on_night():
-	if DayNight.transitioning_phase:
-		if DayNight.is_day:  # going to night
-			idle = false
-			find_leftmost_wall()
-			get_direction_to_target_wall()
-		else:
-			idle = true
-			
-	elif !DayNight.is_day:
-		idle = false
-		find_leftmost_wall()
-		get_direction_to_target_wall()
-		
 func on_idle():
 	if enemy != null:
 		idle = false
-	elif idle_timer.is_stopped() and DayNight.is_day:
+	elif idle_timer.is_stopped():
 		idle = true
 		idle_timer.start()
 
