@@ -8,6 +8,7 @@ class_name EnemySpawner
 @export var initial_spawn_interval: float
 @onready var enemy_timer = $EnemyTimer
 @onready var structure_node = get_parent()
+@onready var audio_stream_player = $AudioStreamPlayer
 
 var count: int = 0
 var start_spawn_day: int = DayNight.day_count
@@ -63,3 +64,11 @@ func check_if_activated():
 	else:
 		print_debug("cannot spawn today")
 		return false
+
+func _on_audio_body_entered(body):
+	if body.name == "Player":
+		audio_stream_player.play()
+
+func _on_audio_body_exited(body):
+	if body.name == "Player":
+		audio_stream_player.stop()

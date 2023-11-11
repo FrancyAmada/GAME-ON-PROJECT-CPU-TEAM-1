@@ -4509,7 +4509,6 @@ position = Vector2(-6355, 321)
 
 [node name="campfire2" parent="Structures" instance=ExtResource("4_ccvat")]
 position = Vector2(-6142, 336)
-camp_id = 1
 
 [node name="townhall_level_5" parent="Structures" instance=ExtResource("22_bgmd7")]
 position = Vector2(-11023, 294)
@@ -4523,7 +4522,6 @@ position = Vector2(-11340, 294)
 
 [node name="campfire3" parent="Structures" instance=ExtResource("4_ccvat")]
 position = Vector2(-11117, 337)
-camp_id = 2
 
 [node name="townhall_level_8" parent="Structures" instance=ExtResource("22_bgmd7")]
 position = Vector2(-10898, 295)

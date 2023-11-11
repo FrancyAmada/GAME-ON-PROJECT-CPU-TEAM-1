@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://ohij7grph7uc"]
+[gd_scene load_steps=7 format=3 uid="uid://ohij7grph7uc"]
 
 [ext_resource type="Script" path="res://enemies/goblin_spawner.gd" id="1_xte51"]
 [ext_resource type="Texture2D" uid="uid://ctpfl84k1tghv" path="res://game assets test/custom/structures/Spawn Area.png" id="2_ia28p"]
+[ext_resource type="AudioStream" uid="uid://cuenk304oa74t" path="res://game assets test/audio/atmosphere-dark-3-16803.mp3" id="3_6fc5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoj15"]
 size = Vector2(20, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_61l2f"]
 size = Vector2(67, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0lhtt"]
+radius = 325.208
 
 [node name="GoblinSpawner" type="Node2D"]
 script = ExtResource("1_xte51")
@@ -37,5 +41,17 @@ collision_mask = 4
 position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_61l2f")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6fc5f")
+volume_db = -8.432
+
+[node name="audio" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="audio"]
+shape = SubResource("CircleShape2D_0lhtt")
+
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
 [connection signal="body_entered" from="RemoveArea" to="." method="_on_remove_area_body_entered"]
+[connection signal="body_entered" from="audio" to="." method="_on_audio_body_entered"]
+[connection signal="body_exited" from="audio" to="." method="_on_audio_body_exited"]

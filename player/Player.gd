@@ -53,7 +53,6 @@ func _physics_process(delta):
 	elif state_machine.current_state != hit_state:
 		velocity.x = move_toward(velocity.x, 0, max_speed)
 	
-	print(direction)
 	if direction.x == 0:
 		audio_stream_player.stop()
 	elif !audio_stream_player.is_playing():
