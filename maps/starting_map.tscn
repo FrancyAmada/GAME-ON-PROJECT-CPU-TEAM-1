@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c6v46g012i0d3"]
+[gd_scene load_steps=29 format=3 uid="uid://c6v46g012i0d3"]
 
 [ext_resource type="PackedScene" uid="uid://bcwledypnfy41" path="res://buildings/ineractable/trees/black_tree2.tscn" id="1_o4qk0"]
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="2_a4bxm"]
@@ -25,7 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://bessh5aahmo6w" path="res://textures/gradient_circle.jpg" id="23_7dsx2"]
 [ext_resource type="PackedScene" uid="uid://b3dn6npd4hs8a" path="res://day_night_light.tscn" id="24_8qqes"]
 [ext_resource type="PackedScene" uid="uid://ohxi5wchd7up" path="res://buildings/holy_shrine.tscn" id="26_2mafu"]
-[ext_resource type="PackedScene" uid="uid://y66u0xbne8om" path="res://collectables/bow.tscn" id="27_5yffq"]
 [ext_resource type="PackedScene" uid="uid://ba84lifj0uers" path="res://buildings/wall.tscn" id="27_iymf4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc6vf"]
@@ -2967,9 +2966,6 @@ position = Vector2(-163, 335)
 
 [node name="wall" parent="." instance=ExtResource("27_iymf4")]
 position = Vector2(237, 338)
-
-[node name="bow" parent="." instance=ExtResource("27_5yffq")]
-position = Vector2(672, 315)
 
 [connection signal="timeout" from="coinSpawner/Timer" to="coinSpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="DayNightLight/DayNight" to="bg_main" method="_on_day_night_timeout"]

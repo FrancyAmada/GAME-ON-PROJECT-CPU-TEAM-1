@@ -37,7 +37,7 @@ var animals_list: Array
 
 func _ready():
 	idle_timer.start()
-	hit.dropBow.connect(printMe)
+	hit.dropBow.connect(drop_bow)
 
 func _physics_process(delta):
 	on_idle()
@@ -82,7 +82,6 @@ func get_direction():
 			run_away = false
 		elif run_away:
 			direction.x = -direction.x
-#	print_debug(enemy_distance)
 
 func on_idle():
 	if enemy != null:
@@ -90,13 +89,11 @@ func on_idle():
 	elif idle_timer.is_stopped():
 		idle = true
 		idle_timer.start()
-#	print_debug(idle, enemy)
 
 func _on_idle_timer_timeout():
 	var choice: int = rng.randi_range(-1, 1)
 	if idle:
 		new_direction = choice
-#		print_debug("Idle Direction : " + str(new_direction))
 	
 func set_target_enemy():
 	var enemy_data = enemydetection_component.get_enemy()
@@ -124,7 +121,7 @@ func rad2deg(rad):
 func map_range(value: float, start1: float, stop1: float, start2: float, stop2: float):
 	return (value - start1) / (stop1 - start1) * (stop2 - start2) + start2
 
-func printMe():
+func drop_bow():
 	var new_bow = bow.instantiate()
 	add_child(new_bow)
 	var velocity_x = randi_range(-140, 140)

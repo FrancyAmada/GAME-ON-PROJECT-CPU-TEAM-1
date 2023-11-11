@@ -147,7 +147,7 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 radius = 600.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ro0xl"]
-radius = 207.163
+radius = 880.668
 
 [node name="jobless" type="CharacterBody2D" groups=["jobless"]]
 scale = Vector2(0.7, 0.7)

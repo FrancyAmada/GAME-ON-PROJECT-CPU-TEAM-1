@@ -42,9 +42,7 @@ func stop_chase():
 	emit_signal("chase_tool", null)
 
 func _on_tool_detection_body_entered(body):
-#	print_debug(body)
 	if body.is_in_group("tool"):
-		print("a tool!")
 		tool_list.append(body)
 	
 func _on_tool_detection_body_exited(body):

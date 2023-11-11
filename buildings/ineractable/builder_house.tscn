@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c8dik85s0t2rw" path="res://game assets test/custom/structures/Builder Area.png" id="1_1wb47"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdljh"]
-size = Vector2(260, 165)
+size = Vector2(53, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xxoaq"]
 animations = [{
@@ -18,14 +18,14 @@ animations = [{
 }]
 
 [node name="builder_house" type="Area2D" groups=["interactable"]]
-scale = Vector2(0.2, 0.2)
 script = ExtResource("1_1hw1k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-15, -2.5)
+position = Vector2(-2.5, -3)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tdljh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xxoaq")
 flip_h = true

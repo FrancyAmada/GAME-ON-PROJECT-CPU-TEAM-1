@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://buildings/build_area.gd" id="3_0a5ir"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5dmi"]
-radius = 32.0624
+radius = 20.025
 
 [node name="wall" type="Node2D"]
 script = ExtResource("1_7x4dy")
