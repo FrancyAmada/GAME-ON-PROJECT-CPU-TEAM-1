@@ -14,6 +14,7 @@ animations = [{
 }]
 
 [node name="bush5" type="Node2D"]
+modulate = Color(0.639216, 0.588235, 0.580392, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_saysg")
