@@ -35,21 +35,33 @@ var target_animal: CharacterBody2D = null
 var target_animal_distance: int = 1000
 var animals_list: Array
 
+@onready var structures_node = get_node("/root/starting_map/Structures")
+@onready var wall_position: int = randi_range(30, 80)
+var target_wall: Wall = null
+var go_to_target_wall: bool = false
+var target_wall_position: float = 0
+var on_wall_position: bool = false
+
+
 func _ready():
 	idle_timer.start()
 	hit.dropBow.connect(drop_bow)
 
 func _physics_process(delta):
 	on_idle()
+	on_night()
 	set_target_enemy()
 	get_target_animal()
 	
-	if enemy == null:
+	if enemy == null and DayNight.is_day:
 		hunt_area.monitoring = true
 		if target_animal != null:
 			enemy = target_animal
 			enemy_distance = target_animal_distance
 	else:
+		if enemy != null:
+			if enemy.is_in_group("animals"):
+				enemy = null
 		hunt_area.monitoring = false
 		target_animal = null
 	
@@ -57,36 +69,87 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
+	if go_to_target_wall:
+		get_direction_to_wall()
+		velocity.x = direction.x * max_speed
+	
 	if idle:
 		direction.x = new_direction
 		velocity.x = direction.x * max_speed
 	elif enemy != null and state_machine.check_if_can_move():
 		get_direction()
 		velocity.x = direction.x * max_speed
-	elif state_machine.current_state != hit_state and not idle:
+	elif state_machine.current_state != hit_state and not idle and !go_to_target_wall:
 		direction.x = 0
 		velocity.x = move_toward(velocity.x, 0, max_speed)
 	
 	move_and_slide()
 	animation_component.update_animation(direction)
 	animation_component.update_facing_direction(direction)
+	
+	print_debug(self.name, " idle: ", idle, " direction: ", direction.x, 
+	"\n enemy: ", enemy, " on wall position: ", on_wall_position, " go to wall: ", go_to_target_wall)
 
 func get_direction():
 	if enemy != null:
 		direction = (enemy.global_position - global_position).normalized()
+		set_shooting_angle()
+		
+		if on_wall_position:
+			direction.x = 0
+		
 		if enemy_distance < 200 and not run_away:
-			set_shooting_angle()
 			emit_signal("use_attack", "Shoot")
-			run_away = true
+			if enemy.is_in_group("enemy") or enemy_distance < 160:
+				run_away = true
 		elif (enemy_distance > 250 and run_away) or shoot_component.check_if_can_use():
 			run_away = false
 		elif run_away:
 			direction.x = -direction.x
 
+func on_night():
+	if DayNight.transitioning_phase:
+		if DayNight.is_day:
+			idle = false
+			find_leftmost_wall()
+		else:
+			idle = true
+			on_wall_position = false
+			
+	elif !DayNight.is_day:
+		idle = false
+		find_leftmost_wall()
+
+func find_leftmost_wall():
+	target_wall = null
+	var leftmost_distance: float = 10000
+	for structure in structures_node.get_children():
+		if structure is Wall:
+			for child in structure.get_children():
+				if child.is_in_group("wall") and structure.global_position.x < leftmost_distance:
+					leftmost_distance = structure.global_position.x
+					target_wall = structure
+					
+	if target_wall != null:
+		target_wall_position = target_wall.global_position.x + wall_position
+		go_to_target_wall = true
+
+func get_direction_to_wall():
+	if target_wall != null:
+		if target_wall_position - 1 < global_position.x and global_position.x < target_wall_position + 1:
+			on_wall_position = true
+			go_to_target_wall = false
+			direction.x = 0
+		else:
+			on_wall_position = false
+			go_to_target_wall = true
+			direction.x = sign(target_wall_position - global_position.x)
+	
+
 func on_idle():
 	if enemy != null:
 		idle = false
-	elif idle_timer.is_stopped():
+	elif idle_timer.is_stopped() and DayNight.is_day:
 		idle = true
 		idle_timer.start()
 

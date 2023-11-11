@@ -4085,6 +4085,15 @@ position = Vector2(-694, 313)
 
 [node name="Structures" type="Node" parent="."]
 
+[node name="wall" parent="Structures" instance=ExtResource("27_iymf4")]
+position = Vector2(237, 338)
+
+[node name="wall2" parent="Structures" instance=ExtResource("27_iymf4")]
+position = Vector2(-6608, 337)
+
+[node name="wall3" parent="Structures" instance=ExtResource("27_iymf4")]
+position = Vector2(-7170, 337)
+
 [node name="campfire" parent="Structures" instance=ExtResource("4_ccvat")]
 position = Vector2(475, 336)
 scale = Vector2(1.7, 1.7)
@@ -4098,6 +4107,77 @@ position = Vector2(391, 320)
 [node name="townhall_level_2" parent="Structures" instance=ExtResource("22_bgmd7")]
 z_index = -1
 position = Vector2(589, 299)
+
+[node name="townhall_level_3" parent="Structures" instance=ExtResource("22_bgmd7")]
+position = Vector2(-6224, 294)
+
+[node name="townhall_level_4" parent="Structures" instance=ExtResource("22_bgmd7")]
+position = Vector2(-6069, 296)
+
+[node name="builder_house2" parent="Structures" instance=ExtResource("20_5w7k0")]
+position = Vector2(-5977, 319)
+
+[node name="archer_house2" parent="Structures" instance=ExtResource("19_hhi7e")]
+position = Vector2(-6355, 321)
+
+[node name="campfire2" parent="Structures" instance=ExtResource("4_ccvat")]
+position = Vector2(-6142, 336)
+
+[node name="townhall_level_5" parent="Structures" instance=ExtResource("22_bgmd7")]
+position = Vector2(-11023, 294)
+
+[node name="townhall_level_6" parent="Structures" instance=ExtResource("28_qmi8x")]
+position = Vector2(-11188, 278)
+scale = Vector2(0.4, 0.4)
+
+[node name="townhall_level_7" parent="Structures" instance=ExtResource("22_bgmd7")]
+position = Vector2(-11340, 294)
+
+[node name="campfire3" parent="Structures" instance=ExtResource("4_ccvat")]
+position = Vector2(-11117, 337)
+
+[node name="townhall_level_8" parent="Structures" instance=ExtResource("22_bgmd7")]
+position = Vector2(-10898, 295)
+
+[node name="archer_house3" parent="Structures" instance=ExtResource("19_hhi7e")]
+position = Vector2(-11258, 321)
+
+[node name="builder_house3" parent="Structures" instance=ExtResource("20_5w7k0")]
+position = Vector2(-10957, 319)
+
+[node name="wall4" parent="Structures" instance=ExtResource("27_iymf4")]
+position = Vector2(-10676, 336)
+
+[node name="wall5" parent="Structures" instance=ExtResource("27_iymf4")]
+position = Vector2(-11570, 336)
+
+[node name="non-base structures" type="Node" parent="."]
+
+[node name="GoblinSpawner" parent="non-base structures" instance=ExtResource("26_poinv")]
+z_index = 2
+position = Vector2(-3472, 316)
+
+[node name="GoblinSpawner2" parent="non-base structures" instance=ExtResource("26_poinv")]
+position = Vector2(-8417, 319)
+initial_spawn_interval = 10000.0
+
+[node name="holy_shrine" parent="non-base structures" instance=ExtResource("26_2mafu")]
+position = Vector2(-1579, 336)
+
+[node name="holy_shrine2" parent="non-base structures" instance=ExtResource("26_2mafu")]
+position = Vector2(-7550, 337)
+
+[node name="holy_shrine3" parent="non-base structures" instance=ExtResource("26_2mafu")]
+position = Vector2(-12698, 337)
+
+[node name="GoblinSpawner3" parent="non-base structures" instance=ExtResource("26_poinv")]
+position = Vector2(-14638, 317)
+
+[node name="AnimalSpawner" parent="non-base structures" instance=ExtResource("29_vm2lk")]
+position = Vector2(2, 323)
+
+[node name="AnimalSpawner2" parent="non-base structures" instance=ExtResource("29_vm2lk")]
+position = Vector2(-9749, 314)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.65098, 0.52549, 0.407843, 1)
@@ -4119,12 +4199,6 @@ wait_time = 0.05
 one_shot = true
 autostart = true
 
-[node name="holy_shrine" parent="." instance=ExtResource("26_2mafu")]
-position = Vector2(-1579, 336)
-
-[node name="wall" parent="." instance=ExtResource("27_iymf4")]
-position = Vector2(237, 338)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(718, 110)
 collision_layer = 255
@@ -4133,40 +4207,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(118, 123)
 shape = SubResource("RectangleShape2D_gpojj")
-
-[node name="GoblinSpawner" parent="." instance=ExtResource("26_poinv")]
-z_index = 2
-position = Vector2(-3472, 316)
-
-[node name="strucures 2" type="Node" parent="."]
-
-[node name="GoblinSpawner2" parent="strucures 2" instance=ExtResource("26_poinv")]
-position = Vector2(-8417, 319)
-initial_spawn_interval = 10000.0
-
-[node name="townhall_level_2" parent="strucures 2" instance=ExtResource("22_bgmd7")]
-position = Vector2(-6224, 294)
-
-[node name="townhall_level_3" parent="strucures 2" instance=ExtResource("22_bgmd7")]
-position = Vector2(-6069, 296)
-
-[node name="builder_house" parent="strucures 2" instance=ExtResource("20_5w7k0")]
-position = Vector2(-5977, 319)
-
-[node name="archer_house" parent="strucures 2" instance=ExtResource("19_hhi7e")]
-position = Vector2(-6355, 321)
-
-[node name="wall2" parent="strucures 2" instance=ExtResource("27_iymf4")]
-position = Vector2(-6608, 337)
-
-[node name="wall3" parent="strucures 2" instance=ExtResource("27_iymf4")]
-position = Vector2(-7170, 337)
-
-[node name="campfire2" parent="strucures 2" instance=ExtResource("4_ccvat")]
-position = Vector2(-6142, 336)
-
-[node name="holy_shrine2" parent="." instance=ExtResource("26_2mafu")]
-position = Vector2(-7550, 337)
 
 [node name="bush5" parent="." instance=ExtResource("17_gixr5")]
 position = Vector2(-9374, 316)
@@ -4203,46 +4243,6 @@ position = Vector2(-9257, 313)
 
 [node name="bush12" parent="." instance=ExtResource("27_5hwv0")]
 position = Vector2(-10316, 311)
-
-[node name="townhall_level_2" parent="." instance=ExtResource("22_bgmd7")]
-position = Vector2(-11023, 294)
-
-[node name="townhall_level_3" parent="." instance=ExtResource("28_qmi8x")]
-position = Vector2(-11188, 278)
-scale = Vector2(0.4, 0.4)
-
-[node name="townhall_level_4" parent="." instance=ExtResource("22_bgmd7")]
-position = Vector2(-11340, 294)
-
-[node name="campfire" parent="." instance=ExtResource("4_ccvat")]
-position = Vector2(-11117, 337)
-
-[node name="townhall_level_5" parent="." instance=ExtResource("22_bgmd7")]
-position = Vector2(-10898, 295)
-
-[node name="archer_house" parent="." instance=ExtResource("19_hhi7e")]
-position = Vector2(-11258, 321)
-
-[node name="builder_house" parent="." instance=ExtResource("20_5w7k0")]
-position = Vector2(-10957, 319)
-
-[node name="wall2" parent="." instance=ExtResource("27_iymf4")]
-position = Vector2(-10676, 336)
-
-[node name="wall3" parent="." instance=ExtResource("27_iymf4")]
-position = Vector2(-11570, 336)
-
-[node name="holy_shrine3" parent="." instance=ExtResource("26_2mafu")]
-position = Vector2(-12698, 337)
-
-[node name="GoblinSpawner2" parent="." instance=ExtResource("26_poinv")]
-position = Vector2(-14638, 317)
-
-[node name="AnimalSpawner" parent="." instance=ExtResource("29_vm2lk")]
-position = Vector2(2, 323)
-
-[node name="AnimalSpawner2" parent="." instance=ExtResource("29_vm2lk")]
-position = Vector2(-9749, 314)
 
 [node name="black_tree1" parent="." instance=ExtResource("2_tnth6")]
 position = Vector2(-14148, 278)

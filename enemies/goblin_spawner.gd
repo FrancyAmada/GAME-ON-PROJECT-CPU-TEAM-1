@@ -9,7 +9,7 @@ func _ready():
 
 func _on_enemy_timer_timeout():
 	if !DayNight.is_day:
-		var new_goblin = goblin.instance()
+		var new_goblin = goblin.instantiate()
 		add_child(new_goblin)
 		new_goblin.global_position = global_position
 
@@ -28,3 +28,7 @@ func calculate_spawn_interval(day_count: int) -> float:
 	var new_spawn_interval = initial_spawn_interval / (base ** (day_count * multiplier))
 	
 	return new_spawn_interval
+
+func _on_remove_area_body_entered(body):
+	if DayNight.is_day and body.is_in_group("enemy"):
+		body.queue_free()
