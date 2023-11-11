@@ -1,8 +1,7 @@
-[gd_scene load_steps=50 format=3 uid="uid://c7vlerc3ikog7"]
+[gd_scene load_steps=48 format=3 uid="uid://c7vlerc3ikog7"]
 
 [ext_resource type="Script" path="res://enemies/breeder/breeder.gd" id="1_i3klk"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="2_0t8er"]
-[ext_resource type="Texture2D" uid="uid://t0u6v3ptn2lq" path="res://game assets test/Monsters_Creatures_Fantasy/Mushroom/Idle.png" id="2_jvh3p"]
 [ext_resource type="PackedScene" uid="uid://bci8dwt4iycg0" path="res://components/character_components/velocity_component.tscn" id="3_arv4k"]
 [ext_resource type="PackedScene" uid="uid://dprnmdpqf2q34" path="res://components/character_components/hit_box_component.tscn" id="4_jyga6"]
 [ext_resource type="PackedScene" uid="uid://ba2mdypfi1l0u" path="res://components/character_components/animation_component.tscn" id="5_4vrud"]
@@ -206,45 +205,6 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 }
 
-[sub_resource type="Animation" id="Animation_3c7sr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_jvh3p")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Attack/AttackArea:monitoring")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="Animation" id="Animation_h7eb1"]
 resource_name = "Walk"
 length = 1.6
@@ -292,7 +252,6 @@ _data = {
 "Death": SubResource("Animation_eofmk"),
 "Hit": SubResource("Animation_0ujmx"),
 "Idle": SubResource("Animation_nbkb8"),
-"RESET": SubResource("Animation_3c7sr"),
 "Walk": SubResource("Animation_h7eb1")
 }
 
@@ -368,9 +327,8 @@ shape = SubResource("CapsuleShape2D_ljy5q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 2)
-texture = ExtResource("2_jvh3p")
+texture = ExtResource("10_8v0to")
 hframes = 16
-frame = 1
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("dead_state") instance=ExtResource("2_0t8er")]
 max_health = 30.0
@@ -490,7 +448,6 @@ autostart = true
 [connection signal="on_death" from="HealthComponent" to="CharacterStateMachine" method="_on_health_component_on_death"]
 [connection signal="on_hit" from="HitBoxComponent" to="CharacterStateMachine/Hit" method="_on_hit_box_component_on_hit"]
 [connection signal="animation_finished" from="AnimationComponent/AnimationTree" to="AnimationComponent" method="_on_animation_tree_animation_finished"]
-[connection signal="chase_enemy" from="EnemyDetectionComponent" to="." method="set_chase_player"]
 [connection signal="body_entered" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionComponent/EnemyDetection" to="EnemyDetectionComponent" method="_on_enemy_detection_body_exited"]
 [connection signal="body_entered" from="Attack/AttackArea" to="Attack" method="_on_attack_body_entered"]

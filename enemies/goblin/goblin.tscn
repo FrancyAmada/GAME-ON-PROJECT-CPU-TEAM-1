@@ -1,7 +1,6 @@
-[gd_scene load_steps=47 format=3 uid="uid://djfo2ggqgpq5m"]
+[gd_scene load_steps=45 format=3 uid="uid://djfo2ggqgpq5m"]
 
 [ext_resource type="Script" path="res://enemies/goblin/goblin.gd" id="1_u0c15"]
-[ext_resource type="Texture2D" uid="uid://dcda0rk7vdv37" path="res://game assets test/Monsters_Creatures_Fantasy/Goblin/Attack.png" id="2_o5lts"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="2_vmbxs"]
 [ext_resource type="PackedScene" uid="uid://bci8dwt4iycg0" path="res://components/character_components/velocity_component.tscn" id="3_xmp28"]
 [ext_resource type="PackedScene" uid="uid://dprnmdpqf2q34" path="res://components/character_components/hit_box_component.tscn" id="4_jmetp"]
@@ -249,45 +248,6 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_g28to"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_o5lts")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-
 [sub_resource type="Animation" id="Animation_myibm"]
 resource_name = "Walk"
 length = 0.8
@@ -347,7 +307,6 @@ _data = {
 "Death": SubResource("Animation_ycu56"),
 "Hit": SubResource("Animation_qjs6t"),
 "Idle": SubResource("Animation_8i113"),
-"RESET": SubResource("Animation_g28to"),
 "Walk": SubResource("Animation_myibm")
 }
 
@@ -429,7 +388,7 @@ shape = SubResource("CapsuleShape2D_313mf")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 6)
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("2_o5lts")
+texture = ExtResource("7_o2vdr")
 hframes = 8
 vframes = 8
 
