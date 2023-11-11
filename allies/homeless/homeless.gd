@@ -81,8 +81,7 @@ func on_idle():
 func _on_idle_timer_timeout():
 	var choice: int = rng.randi_range(-1, 1)
 	
-	var campfire: Campfire = get_node("/root/starting_map/Structures/campfire")
-#	print_debug(campfire)
+	var campfire = get_node("/root/starting_map/Structures/campfire")
 	var distance_to_campfire: int = abs(global_position.x - campfire.global_position.x)
 	
 	if idle and distance_to_campfire <= campfire_radius:

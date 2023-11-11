@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d3ipjerk8uya8"]
+[gd_scene load_steps=44 format=3 uid="uid://d3ipjerk8uya8"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_bktfi"]
 [ext_resource type="Texture2D" uid="uid://dipumig8hrd2q" path="res://game assets test/Medieval King Pack 2/Sprites/Take Hit - white silhouette.png" id="2_j0opl"]
@@ -211,40 +211,49 @@ _data = {
 "Walk": SubResource("Animation_14s22")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nbdbd"]
+animation = &"Attack1"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5hxdm"]
 animation = &"Hit"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0e1es"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dkqow"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vi22f"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kaqs8"]
 animation = &"Walk"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b4xxo"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3dnxo"]
 animation = &"Walk"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_1os2s"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_0e1es")
+blend_point_0/node = SubResource("AnimationNodeAnimation_dkqow")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_vi22f")
+blend_point_1/node = SubResource("AnimationNodeAnimation_kaqs8")
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_b4xxo")
+blend_point_2/node = SubResource("AnimationNodeAnimation_3dnxo")
 blend_point_2/pos = -1.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gt5t5"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eo0f6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mivh1"]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2h7ok"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w71ux"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3rqbj"]
+states/Attack1/node = SubResource("AnimationNodeAnimation_nbdbd")
+states/Attack1/position = Vector2(416, 28)
 states/Hit/node = SubResource("AnimationNodeAnimation_5hxdm")
 states/Hit/position = Vector2(485, 163)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_1os2s")
 states/Move/position = Vector2(403, 100)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_gt5t5"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_2h7ok"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_w71ux")]
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_gt5t5"), "Move", "Attack1", SubResource("AnimationNodeStateMachineTransition_eo0f6"), "Attack1", "Move", SubResource("AnimationNodeStateMachineTransition_mivh1"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_2h7ok"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_w71ux")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0v82"]
 size = Vector2(43, 48)
@@ -314,7 +323,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="AnimationComponent"]
 tree_root = SubResource("AnimationNodeStateMachine_3rqbj")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Move/blend_position = -0.356875
+parameters/Move/blend_position = 0
 
 [node name="CharacterStateMachine" parent="." node_paths=PackedStringArray("character", "animation_component", "current_state") instance=ExtResource("8_r5g2f")]
 character = NodePath("..")
