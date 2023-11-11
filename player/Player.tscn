@@ -17,8 +17,8 @@
 [ext_resource type="Script" path="res://player/PlayerAttack.gd" id="14_us3g6"]
 [ext_resource type="Script" path="res://player/player_melee_attack.gd" id="16_radv3"]
 [ext_resource type="Script" path="res://player/MeleeArea.gd" id="19_b2esm"]
+[ext_resource type="PackedScene" uid="uid://bg3od4tbnqntc" path="res://text_box/text_box.tscn" id="20_5lcew"]
 [ext_resource type="AudioStream" uid="uid://ruxwqex113xm" path="res://game assets test/audio/Move Run Grass.mp3" id="20_fr1td"]
-[ext_resource type="Script" path="res://gold.gd" id="21_ciwsi"]
 [ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="22_agr8t"]
 
 [sub_resource type="Gradient" id="Gradient_64cmo"]
@@ -38,6 +38,46 @@ radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbpw5"]
 size = Vector2(20, 32)
+
+[sub_resource type="Animation" id="Animation_rfibc"]
+resource_name = "Death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_gl80l")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
 
 [sub_resource type="Animation" id="Animation_jsd63"]
 resource_name = "Hit"
@@ -122,6 +162,21 @@ tracks/2/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_7fjah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="Animation" id="Animation_14s22"]
 resource_name = "Walk"
 length = 0.45
@@ -162,61 +217,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_rfibc"]
-resource_name = "Death"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("9_gl80l")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_7fjah"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rirbf"]
@@ -401,16 +401,14 @@ facing_right_position = Vector2(21.5, -9)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="gold" type="Label" parent="UI"]
-offset_left = 36.0
-offset_top = 27.0
-offset_right = 76.0
-offset_bottom = 53.0
-text = "Gold"
-script = ExtResource("21_ciwsi")
-
 [node name="bag" parent="UI" instance=ExtResource("22_agr8t")]
 position = Vector2(1082, 514)
+
+[node name="text_box" parent="UI" instance=ExtResource("20_5lcew")]
+offset_left = 219.0
+offset_top = 98.0
+offset_right = 935.0
+offset_bottom = 564.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_fr1td")
