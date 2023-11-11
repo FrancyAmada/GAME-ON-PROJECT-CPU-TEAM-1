@@ -47,7 +47,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	if idle and !run_away and !go_to_building:
+	if idle and !run_away:
 		idle_time += delta
 		get_idle_direction()
 		velocity.x = direction.x * max_speed

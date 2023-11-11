@@ -2857,10 +2857,6 @@ position = Vector2(-1985, 292)
 
 [node name="black_tree65" parent="forest 1 back" instance=ExtResource("2_tnth6")]
 position = Vector2(-2041, 276)
-[node name="Timer" type="Timer" parent="coinSpawner"]
-process_callback = 0
-wait_time = 5.0
-autostart = true
 
 [node name="forest 2 back" type="Node" parent="."]
 
@@ -3403,12 +3399,6 @@ position = Vector2(391, 320)
 [node name="townhall_level_2" parent="Structures" instance=ExtResource("22_bgmd7")]
 z_index = -1
 position = Vector2(589, 299)
-
-[node name="wall" parent="Structures" instance=ExtResource("27_iymf4")]
-position = Vector2(237, 338)
-
-[node name="wall2" parent="Structures" instance=ExtResource("27_iymf4")]
-position = Vector2(6, 339)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.65098, 0.52549, 0.407843, 1)

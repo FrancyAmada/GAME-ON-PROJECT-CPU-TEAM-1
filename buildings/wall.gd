@@ -1,7 +1,5 @@
 extends building_node
 
-class_name Wall
-
 @onready var dirt_mound = $dirt_mound as interactable_object
 var wall_level_1 = preload("res://buildings/ineractable/wall_level_1.tscn")
 var dirt_mound_1 = preload("res://buildings/ineractable/dirt_mound.tscn")
@@ -57,5 +55,4 @@ func add_building():
 		add_child(new_wall)
 		new_wall.connect("build_me", add_scaffolding)
 	
-	print_debug(global_position.x)
 	Game.buildngs_construction_remove(self)
