@@ -18,6 +18,7 @@ animations = [{
 
 [node name="tree4" type="Area2D"]
 modulate = Color(0.607843, 0.627451, 0.803922, 1)
+z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_6hm4w")
