@@ -1,15 +1,9 @@
-extends State
+extends HitState
 
 class_name HitState_builder
+@onready var builder = $"../.." as builder
 
-@export var health_component: HealthComponent
-@export var hitbox_component: HitBoxComponent
-@export var dead_state: State
-@export var return_animation_name: String = "Move"
-@export var hit_animation_node: String = "Hit"
-@export var return_state: State
-
-@onready var timer: Timer = $Timer
+signal dropHammer
 
 func _ready():
 	hitbox_component.connect("on_hit", _on_hit_box_component_on_hit)
@@ -25,7 +19,7 @@ func on_exit():
 
 func _on_hit_box_component_on_hit(knockback: Vector2):
 	character.velocity = knockback
-	print("i am hit")
+	dropHammer.emit()
 
 func _on_timer_timeout():
 	next_state = return_state

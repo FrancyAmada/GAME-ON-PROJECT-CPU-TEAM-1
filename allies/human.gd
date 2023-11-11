@@ -21,7 +21,6 @@ func change_to_jobless():
 	
 	var new_jobless = jobless_role.instantiate()
 	add_child(new_jobless)
-#	print_debug(position_at)
 	new_jobless.global_position = position_at
 	new_jobless.connect("to_builder", change_to_builder)
 	new_jobless.connect("to_archer", change_to_archer)
@@ -41,6 +40,7 @@ func change_to_builder():
 	var new_builder = builder_role.instantiate()
 	add_child(new_builder)
 	new_builder.global_position = position_at
+	new_builder.connect("to_jobless", change_to_jobless)
 
 func change_to_archer():
 	for child in get_children():
@@ -49,3 +49,4 @@ func change_to_archer():
 	var new_archer = archer_role.instantiate()
 	add_child(new_archer)
 	new_archer.global_position = position_at
+	new_archer.connect("to_jobless", change_to_jobless)

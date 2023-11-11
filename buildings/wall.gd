@@ -44,17 +44,27 @@ func add_building():
 		var new_wall = wall_level_1.instantiate()
 		add_child(new_wall)
 		new_wall.connect("build_me", add_scaffolding)
+		new_wall.connect("destroyed", destroyed)
 	elif level == 2:
 		var new_wall = wall_level_2.instantiate()
 		add_child(new_wall)
 		new_wall.connect("build_me", add_scaffolding)
+		new_wall.connect("destroyed", destroyed)
 	elif level == 3:
 		var new_wall = wall_level_3.instantiate()
 		add_child(new_wall)
 		new_wall.connect("build_me", add_scaffolding)
+		new_wall.connect("destroyed", destroyed)
 	elif level == 4:
 		var new_wall = wall_level_4.instantiate()
 		add_child(new_wall)
 		new_wall.connect("build_me", add_scaffolding)
+		new_wall.connect("destroyed", destroyed)
 	
 	Game.buildngs_construction_remove(self)
+
+func destroyed():
+	level = 0
+	var new_dirt_mound = dirt_mound_1.instantiate()
+	add_child(new_dirt_mound)
+	new_dirt_mound.build_me.connect(add_scaffolding)

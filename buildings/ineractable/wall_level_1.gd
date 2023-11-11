@@ -2,6 +2,8 @@ extends interactable_object
 
 @export var maxHp: int = 10
 
+signal destroyed
+
 var building_name = "Wall"
 @onready var hp = maxHp
 
@@ -59,7 +61,8 @@ func close_coins_need():
 
 func damage():
 	hp -= 1
-	print_debug(name, " health: ", str(hp))
+	if hp <= 0:
+		destroyed.emit()
 
 func repair():
 	if hp < maxHp:

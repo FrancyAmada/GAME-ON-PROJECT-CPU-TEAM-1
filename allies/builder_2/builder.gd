@@ -2,11 +2,15 @@ extends CharacterBody2D
 
 class_name Builder
 
+signal to_jobless
+
 signal animation_is_finished(anim_name: String)
 
 signal start_check_for_building
 
 signal start_building
+
+var hammer = preload("res://collectables/hammer.tscn")
 
 @export var hit_state: State
 @export var build_state: State
@@ -19,6 +23,7 @@ signal start_building
 @onready var max_speed = velocity_component.max_speed
 @onready var enemy: CharacterBody2D
 @onready var build_range: Area2D = $Build_Range
+@onready var hit = $CharacterStateMachine/Hit
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -39,6 +44,7 @@ var campfire_radius: int = 300
 
 func _ready():
 	build_state.connect("stop_building", _on_stop_building)
+	hit.dropHammer.connect(drop_hammer)
 	
 func _physics_process(delta):
 	check_enemies()
@@ -76,6 +82,15 @@ func _physics_process(delta):
 	move_and_slide()
 	animation_component.update_animation(direction)
 	animation_component.update_facing_direction(direction)
+
+func drop_hammer():
+	var new_hammer = hammer.instantiate()
+	add_child(new_hammer)
+	var velocity_x = randi_range(-140, 140)
+	var newVelocity = Vector2(velocity_x, -130)
+	new_hammer.set_linear_velocity(newVelocity)
+	new_hammer.global_position = self.position + Vector2(0, -35)
+	await get_tree().create_timer(.6).timeout
 
 func get_idle_direction():
 	if idle_time >= 2:

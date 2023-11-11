@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Archer
 
+signal to_jobless
+
 signal use_attack(attack_name: String)
 
 var bow = preload("res://props/bow_despawnable.tscn")
@@ -144,7 +146,6 @@ func get_direction_to_wall():
 			on_wall_position = false
 			go_to_target_wall = true
 			direction.x = sign(target_wall_position - global_position.x)
-	
 
 func on_idle():
 	if enemy != null:
@@ -192,7 +193,7 @@ func drop_bow():
 	new_bow.set_linear_velocity(newVelocity)
 	new_bow.global_position = self.position + Vector2(0, -35)
 	await get_tree().create_timer(.6).timeout
-	queue_free()
+	to_jobless.emit()
 
 func get_target_animal():
 	target_animal = null
@@ -203,7 +204,7 @@ func get_target_animal():
 			nearest_distance = animal_distance
 			target_animal = animal
 			target_animal_distance = animal_distance
-	
+
 func _on_hunt_area_body_entered(body):
 	if body.is_in_group("animals"):
 		animals_list.append(body)
