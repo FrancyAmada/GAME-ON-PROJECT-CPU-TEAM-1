@@ -2743,7 +2743,7 @@ script = ExtResource("8_88g3q")
 
 [node name="Timer" type="Timer" parent="coinSpawner"]
 process_callback = 0
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -2941,6 +2941,12 @@ position = Vector2(787, 337)
 z_index = -1
 position = Vector2(589, 299)
 
+[node name="wall" parent="Structures" instance=ExtResource("27_iymf4")]
+position = Vector2(237, 338)
+
+[node name="wall2" parent="Structures" instance=ExtResource("27_iymf4")]
+position = Vector2(6, 339)
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.65098, 0.52549, 0.407843, 1)
 
@@ -2963,9 +2969,6 @@ autostart = true
 
 [node name="holy_shrine" parent="." instance=ExtResource("26_2mafu")]
 position = Vector2(-163, 335)
-
-[node name="wall" parent="." instance=ExtResource("27_iymf4")]
-position = Vector2(237, 338)
 
 [connection signal="timeout" from="coinSpawner/Timer" to="coinSpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="DayNightLight/DayNight" to="bg_main" method="_on_day_night_timeout"]
