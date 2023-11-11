@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://b3dn6npd4hs8a" path="res://day_night_light.tscn" id="24_8qqes"]
 [ext_resource type="PackedScene" uid="uid://ohxi5wchd7up" path="res://buildings/holy_shrine.tscn" id="26_2mafu"]
 [ext_resource type="PackedScene" uid="uid://ohij7grph7uc" path="res://enemies/goblin_spawner.tscn" id="26_poinv"]
-[ext_resource type="PackedScene" uid="uid://djfo2ggqgpq5m" path="res://enemies/goblin/goblin.tscn" id="27_glsl8"]
 [ext_resource type="PackedScene" uid="uid://ba84lifj0uers" path="res://buildings/wall.tscn" id="27_iymf4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc6vf"]
@@ -2848,6 +2847,9 @@ position = Vector2(-1815, 293)
 [node name="black_tree62" parent="forest 1 back" instance=ExtResource("2_tnth6")]
 position = Vector2(-1777, 276)
 
+[node name="black_tree65" parent="forest 1 back" instance=ExtResource("2_tnth6")]
+position = Vector2(-2041, 276)
+
 [node name="Player" parent="." instance=ExtResource("2_a4bxm")]
 z_index = 1
 position = Vector2(-852, 318)
@@ -2856,12 +2858,9 @@ position = Vector2(-852, 318)
 position = Vector2(2, 1)
 script = ExtResource("8_88g3q")
 
-
-[node name="black_tree65" parent="forest 1 back" instance=ExtResource("2_tnth6")]
-position = Vector2(-2041, 276)
 [node name="Timer" type="Timer" parent="coinSpawner"]
 process_callback = 0
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -2904,6 +2903,18 @@ position = Vector2(-230, 313)
 
 [node name="coin10" parent="coins" instance=ExtResource("5_vx3qf")]
 position = Vector2(-278, 315)
+
+[node name="coin11" parent="coins" instance=ExtResource("5_vx3qf")]
+position = Vector2(458, 265)
+
+[node name="coin12" parent="coins" instance=ExtResource("5_vx3qf")]
+position = Vector2(495, 263)
+
+[node name="coin13" parent="coins" instance=ExtResource("5_vx3qf")]
+position = Vector2(516, 263)
+
+[node name="coin14" parent="coins" instance=ExtResource("5_vx3qf")]
+position = Vector2(478, 258)
 
 [node name="allies" type="Node" parent="."]
 
@@ -3172,6 +3183,12 @@ position = Vector2(391, 320)
 z_index = -1
 position = Vector2(589, 299)
 
+[node name="wall" parent="Structures" instance=ExtResource("27_iymf4")]
+position = Vector2(237, 338)
+
+[node name="wall2" parent="Structures" instance=ExtResource("27_iymf4")]
+position = Vector2(21, 338)
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.65098, 0.52549, 0.407843, 1)
 
@@ -3188,15 +3205,12 @@ timer = NodePath("DayNight")
 
 [node name="DayNight" type="Timer" parent="DayNightLight"]
 process_callback = 0
-wait_time = 0.05
+wait_time = 0.1
 one_shot = true
 autostart = true
 
 [node name="holy_shrine" parent="." instance=ExtResource("26_2mafu")]
 position = Vector2(-163, 335)
-
-[node name="wall" parent="." instance=ExtResource("27_iymf4")]
-position = Vector2(237, 338)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(718, 110)
@@ -3204,13 +3218,12 @@ collision_layer = 255
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(118, 123)
+position = Vector2(118, 126)
 shape = SubResource("RectangleShape2D_gpojj")
 
 [node name="GoblinSpawner" parent="." instance=ExtResource("26_poinv")]
 z_index = 2
 position = Vector2(-1612, 318)
-goblin = ExtResource("27_glsl8")
 spawn_interval = 3.0
 
 [node name="tree2" parent="." instance=ExtResource("10_t0wux")]
