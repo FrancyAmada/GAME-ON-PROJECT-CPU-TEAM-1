@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://2842j0kx3m1f"]
+[gd_scene load_steps=24 format=3 uid="uid://2842j0kx3m1f"]
 
 [ext_resource type="Script" path="res://buildings/ineractable/campfire.gd" id="1_pet5b"]
 [ext_resource type="Texture2D" uid="uid://ccqh84vxs68hr" path="res://game assets test/campfire/fire_fx_v1.0/fire_fx_v1.0/png/orange/loops/burning_loop_1.png" id="1_x843p"]
 [ext_resource type="Texture2D" uid="uid://fn87w6ft0alp" path="res://game assets test/custom/structures/town hall/Townhall 1.png" id="3_nejjc"]
+[ext_resource type="Texture2D" uid="uid://bessh5aahmo6w" path="res://textures/gradient_circle.jpg" id="4_l4m3s"]
+[ext_resource type="Texture2D" uid="uid://bng3m8lomclat" path="res://game assets test/particles/Fire_spritesheet.png" id="5_u6gjm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2jbg8"]
 radius = 13.0384
@@ -71,6 +73,56 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_24tss"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_k3to3"]
+max_value = 200.0
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uu1ct"]
+curve = SubResource("Curve_k3to3")
+
+[sub_resource type="Gradient" id="Gradient_4g5tn"]
+offsets = PackedFloat32Array(0, 0.551724, 1)
+colors = PackedColorArray(0.98, 0.9114, 0.1568, 1, 0.988235, 0.498039, 0.0705882, 1, 1, 1, 1, 0.215686)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8wi3a"]
+gradient = SubResource("Gradient_4g5tn")
+
+[sub_resource type="Curve" id="Curve_hnyc4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fbt1v"]
+width = 32
+curve = SubResource("Curve_hnyc4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fcc5m"]
+emission_shape = 2
+emission_sphere_radius = 7.0
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+angular_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = -5.0
+radial_accel_max = 5.0
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_fbt1v")
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_8wi3a")
+turbulence_enabled = true
+turbulence_noise_scale = 1.0
+anim_speed_curve = SubResource("CurveTexture_uu1ct")
+anim_offset_max = 1.0
+
 [node name="campfire" type="Area2D"]
 script = ExtResource("1_pet5b")
 
@@ -82,9 +134,24 @@ shape = SubResource("CircleShape2D_2jbg8")
 position = Vector2(0, -21)
 scale = Vector2(1, 1.125)
 sprite_frames = SubResource("SpriteFrames_gu5vi")
-frame_progress = 0.188547
+frame_progress = 0.808463
 
 [node name="Townhall1" type="Sprite2D" parent="."]
 position = Vector2(1, -13)
 scale = Vector2(0.143125, 0.13)
 texture = ExtResource("3_nejjc")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(1.16667, 1.14444)
+color = Color(0.866667, 0.54902, 0.278431, 1)
+energy = 1.2
+texture = ExtResource("4_l4m3s")
+texture_scale = 0.5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_24tss")
+position = Vector2(0, -11)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_fcc5m")
+texture = ExtResource("5_u6gjm")

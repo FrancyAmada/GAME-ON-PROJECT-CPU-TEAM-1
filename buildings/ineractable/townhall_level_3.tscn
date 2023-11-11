@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://6h1q5eerwtha"]
+[gd_scene load_steps=6 format=3 uid="uid://6h1q5eerwtha"]
 
 [ext_resource type="Texture2D" uid="uid://cg1dv4g7gspkl" path="res://game assets test/custom/structures/town hall/Townhall 3.png" id="1_r0nxk"]
 
@@ -15,6 +15,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_8g0cc"]
+offsets = PackedFloat32Array(0, 0.448413, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.856067, 0.856067, 0.856067, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eoa66"]
+gradient = SubResource("Gradient_8g0cc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.423077, 1)
+
 [node name="townhall_level_3" type="Area2D"]
 scale = Vector2(0.45, 0.45)
 
@@ -23,3 +33,15 @@ shape = SubResource("RectangleShape2D_rjm8s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_umfc3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-71.1111, 57.7778)
+scale = Vector2(4, 4)
+color = Color(0.866667, 0.54902, 0.278431, 1)
+texture = SubResource("GradientTexture2D_eoa66")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(33.3333, 60)
+scale = Vector2(4, 4)
+color = Color(0.866667, 0.54902, 0.278431, 1)
+texture = SubResource("GradientTexture2D_eoa66")
