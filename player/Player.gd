@@ -10,6 +10,8 @@ class_name Player
 @onready var max_speed = velocity_component.max_speed
 @onready var torch_light: PointLight2D = $Torchlight
 
+var current_camp_id: int = 0
+
 var interactable_object : interactable_object = null
 
 var Coin = preload("res://collectables/coin.tscn")

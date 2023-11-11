@@ -8,6 +8,7 @@ var building_name = "Holy Shrine"
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var point_light : PointLight2D = $PointLight2D
 @onready var structure_node = get_parent()
+@onready var player: CharacterBody2D = get_node("/root/starting_map/Player")
 
 var level = 1
 
@@ -97,6 +98,9 @@ func destroy_spawner():
 				human_type.camp_id = human.camp_id
 				human_type.find_camp()
 				print(human_type.name, " is finding camp")
+	
+	if shrine_id < 2:
+		player.current_camp_id += 1
 	
 func displayAnimation():
 	var animation_name = str(level)
