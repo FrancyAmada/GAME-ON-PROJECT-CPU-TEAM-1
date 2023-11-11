@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://fcf6dvm3trqp"]
+[gd_scene load_steps=44 format=3 uid="uid://fcf6dvm3trqp"]
 
 [ext_resource type="Script" path="res://allies/builder_2/builder.gd" id="1_hvw3h"]
 [ext_resource type="Texture2D" uid="uid://bu8d4cu72n1pt" path="res://game assets test/custom/entities/humans/jobless/jobless_idle.png" id="2_7a1rc"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://d1ryhs5mbdtww" path="res://components/character_states/enemy_dead_state.tscn" id="10_pbecn"]
 [ext_resource type="Script" path="res://allies/builder_2/Build_Range.gd" id="12_6gsed"]
 [ext_resource type="Script" path="res://allies/builder_2/BuilderGroundState.gd" id="13_tfvrp"]
+[ext_resource type="Script" path="res://allies/builder_2/HitState_builder.gd" id="14_vj6xe"]
 [ext_resource type="Script" path="res://allies/builder_2/BuilderBuildState.gd" id="16_pdt0o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2qdcq"]
@@ -369,12 +370,11 @@ script = ExtResource("13_tfvrp")
 build_state = NodePath("../Build")
 build_anim_name = "Build"
 
-[node name="Hit" parent="CharacterStateMachine" node_paths=PackedStringArray("health_component", "hitbox_component", "dead_state", "return_state") instance=ExtResource("9_b0y65")]
+[node name="Hit" parent="CharacterStateMachine" node_paths=PackedStringArray("health_component", "hitbox_component", "dead_state") instance=ExtResource("9_b0y65")]
+script = ExtResource("14_vj6xe")
 health_component = NodePath("../../HealthComponent")
 hitbox_component = NodePath("../../HitBoxComponent")
 dead_state = NodePath("../Dead")
-return_state = NodePath("../Ground")
-can_move = false
 
 [node name="Dead" parent="CharacterStateMachine" instance=ExtResource("10_pbecn")]
 

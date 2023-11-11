@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://wn136btlbtdg"]
+[gd_scene load_steps=27 format=3 uid="uid://wn136btlbtdg"]
 
 [ext_resource type="Shader" path="res://World.gdshader" id="1_pfbsb"]
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="1_tdels"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://ba84lifj0uers" path="res://buildings/wall.tscn" id="11_sbetg"]
 [ext_resource type="PackedScene" uid="uid://fcf6dvm3trqp" path="res://allies/builder_2/builder.tscn" id="12_7yipq"]
 [ext_resource type="PackedScene" uid="uid://b0lrnpdo2jceo" path="res://props/tree.tscn" id="12_lkdhx"]
-[ext_resource type="PackedScene" uid="uid://uyb7ag4gjakv" path="res://allies/human.tscn" id="16_8wu52"]
 [ext_resource type="PackedScene" uid="uid://y66u0xbne8om" path="res://collectables/bow.tscn" id="22_e82pd"]
 [ext_resource type="PackedScene" uid="uid://ohxi5wchd7up" path="res://buildings/holy_shrine.tscn" id="23_vcxp1"]
 
@@ -2143,28 +2142,15 @@ position = Vector2(149, 327)
 
 [node name="GoblinSpawner" parent="Enemies" instance=ExtResource("4_cwq77")]
 position = Vector2(0, 257)
-spawn_interval = 100.0
 
 [node name="Allies" type="Node2D" parent="."]
 
 [node name="Builder" parent="Allies" instance=ExtResource("12_7yipq")]
-position = Vector2(649, 311)
+position = Vector2(762, 320)
 death_anim_name = null
 
 [node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
-position = Vector2(557, 119)
-
-[node name="human" parent="Allies" instance=ExtResource("16_8wu52")]
-position = Vector2(71, 320)
-
-[node name="human2" parent="Allies" instance=ExtResource("16_8wu52")]
-position = Vector2(95, 318)
-
-[node name="human3" parent="Allies" instance=ExtResource("16_8wu52")]
-position = Vector2(120, 321)
-
-[node name="human4" parent="Allies" instance=ExtResource("16_8wu52")]
-position = Vector2(438, 319)
+position = Vector2(-100, 290)
 
 [node name="collectables" type="Node2D" parent="."]
 position = Vector2(2, 1)
@@ -2196,7 +2182,7 @@ position = Vector2(465, 282)
 position = Vector2(883, 306)
 
 [node name="Player" parent="." instance=ExtResource("1_tdels")]
-position = Vector2(360, 318)
+position = Vector2(670, 321)
 
 [node name="TileMap" type="TileMap" parent="." groups=["ground"]]
 tile_set = SubResource("TileSet_xaqel")
@@ -2214,7 +2200,7 @@ position = Vector2(796, 337)
 position = Vector2(625, 274)
 
 [node name="Goblin" parent="." instance=ExtResource("4_yt5yi")]
-position = Vector2(467, 318)
+position = Vector2(831, 319)
 
 [node name="holy_shrine" parent="." instance=ExtResource("23_vcxp1")]
 position = Vector2(569, 338)

@@ -4383,7 +4383,7 @@ script = ExtResource("8_88g3q")
 
 [node name="Timer" type="Timer" parent="coinSpawner"]
 process_callback = 0
-wait_time = 2.0
+wait_time = 4096.0
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -4548,7 +4548,6 @@ timer = NodePath("DayNight")
 
 [node name="DayNight" type="Timer" parent="DayNightLight"]
 process_callback = 0
-wait_time = 0.05
 one_shot = true
 autostart = true
 
