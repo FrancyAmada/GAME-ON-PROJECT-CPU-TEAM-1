@@ -7,3 +7,4 @@ class_name PlayerDeadState
 
 func on_enter():
 	playback.travel(dead_animation_node)
+	

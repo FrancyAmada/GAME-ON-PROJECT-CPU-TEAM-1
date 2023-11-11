@@ -31,6 +31,8 @@ var coin_dropped = false
 
 var damageable = true
 
+
+
 func _input(event):
 	if event.is_action_pressed("ui_down") and interactable_object and Game.player_gold > 0 and interactable_object.coins_in < interactable_object.coins_needed:
 		interactable_object._pass_coin()
@@ -48,11 +50,13 @@ func _physics_process(delta):
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
+	
 	direction = Input.get_vector("left", "right", "up", "down")
+		
 	if direction.x and state_machine.check_if_can_move():
 		velocity.x = direction.x * max_speed
 	elif state_machine.current_state != hit_state:
+		direction.x = 0
 		velocity.x = move_toward(velocity.x, 0, max_speed)
 	
 	if direction.x == 0:
@@ -82,6 +86,8 @@ func _on_health_component_health_changed(node, health_change):
 	if Game.player_gold > 0:
 		Signals.emit_signal("remove_coin")
 		coin_dropped = true
+	else:
+		get_node("/root/starting_map/Transition/Transitions").activate_transition()
 
 func get_light_for_night():
 	if DayNight.transitioning_phase == true:
