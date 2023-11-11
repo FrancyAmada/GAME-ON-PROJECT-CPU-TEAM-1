@@ -2143,14 +2143,13 @@ position = Vector2(149, 327)
 
 [node name="GoblinSpawner" parent="Enemies" instance=ExtResource("4_cwq77")]
 position = Vector2(0, 257)
+goblin = ExtResource("4_yt5yi")
 spawn_interval = 100.0
 
 [node name="Allies" type="Node2D" parent="."]
 
-[node name="Builder" parent="Allies" node_paths=PackedStringArray("hit_state", "build_state") instance=ExtResource("12_7yipq")]
+[node name="Builder" parent="Allies" instance=ExtResource("12_7yipq")]
 position = Vector2(649, 311)
-hit_state = NodePath("")
-build_state = NodePath("")
 death_anim_name = null
 
 [node name="Archer" parent="Allies" instance=ExtResource("5_uavne")]
