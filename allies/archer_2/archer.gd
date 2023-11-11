@@ -44,10 +44,16 @@ var go_to_target_wall: bool = false
 var target_wall_position: float = 0
 var on_wall_position: bool = false
 
+var campfire_radius: int = 700
+@onready var camp_id: int = get_parent().camp_id
+var campfire: Campfire
+var go_to_camp_fire: bool  = false
+
 
 func _ready():
 	idle_timer.start()
 	hit.dropBow.connect(drop_bow)
+	find_camp()
 
 func _physics_process(delta):
 	on_idle()
@@ -55,7 +61,7 @@ func _physics_process(delta):
 	set_target_enemy()
 	get_target_animal()
 	
-	if enemy == null and DayNight.is_day:
+	if enemy == null and DayNight.is_day and !go_to_camp_fire:
 		hunt_area.monitoring = true
 		if target_animal != null:
 			enemy = target_animal
@@ -81,7 +87,7 @@ func _physics_process(delta):
 	elif enemy != null and state_machine.check_if_can_move():
 		get_direction()
 		velocity.x = direction.x * max_speed
-	elif state_machine.current_state != hit_state and not idle and !go_to_target_wall:
+	elif state_machine.current_state != hit_state and not idle and !go_to_target_wall and !go_to_camp_fire:
 		direction.x = 0
 		velocity.x = move_toward(velocity.x, 0, max_speed)
 	
@@ -156,8 +162,17 @@ func on_idle():
 
 func _on_idle_timer_timeout():
 	var choice: int = rng.randi_range(-1, 1)
-	if idle:
+	
+#	print_debug(campfire)
+	var distance_to_campfire: int = abs(global_position.x - campfire.global_position.x)
+	go_to_camp_fire = false
+	
+	if idle and distance_to_campfire <= campfire_radius:
 		new_direction = choice
+	elif distance_to_campfire > campfire_radius:
+		var direction_to_campfire: int = sign(campfire.global_position.x - global_position.x)
+		new_direction = direction_to_campfire
+		go_to_camp_fire = true
 	
 func set_target_enemy():
 	var enemy_data = enemydetection_component.get_enemy()
@@ -212,3 +227,10 @@ func _on_hunt_area_body_entered(body):
 func _on_hunt_area_body_exited(body):
 	if body in animals_list:
 		animals_list.erase(body)
+
+func find_camp():
+	var structures_node = get_node("/root/starting_map/Structures")
+	for structure in structures_node.get_children():
+		if structure is Campfire:
+			if structure.camp_id == camp_id:
+				campfire = structure
