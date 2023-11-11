@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7lecufj2m5yq"
+path="res://.godot/imported/Monster Screams Compilation.mp3-17da0d437650b0c9ac38cf8b03ab3661.mp3str"
+
+[deps]
+
+source_file="res://game assets test/audio/Monster Screams Compilation.mp3"
+dest_files=["res://.godot/imported/Monster Screams Compilation.mp3-17da0d437650b0c9ac38cf8b03ab3661.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
