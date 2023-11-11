@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d3ipjerk8uya8"]
+[gd_scene load_steps=43 format=3 uid="uid://d3ipjerk8uya8"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_bktfi"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="3_duv6c"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://player/PlayerAttack.gd" id="14_us3g6"]
 [ext_resource type="Script" path="res://player/player_melee_attack.gd" id="16_radv3"]
 [ext_resource type="Script" path="res://player/MeleeArea.gd" id="19_b2esm"]
+[ext_resource type="AudioStream" uid="uid://ruxwqex113xm" path="res://game assets test/audio/Move Run Grass.mp3" id="20_fr1td"]
 [ext_resource type="Script" path="res://gold.gd" id="21_ciwsi"]
 [ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="22_agr8t"]
 
@@ -352,6 +353,11 @@ script = ExtResource("21_ciwsi")
 
 [node name="bag" parent="UI" instance=ExtResource("22_agr8t")]
 position = Vector2(1082, 514)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_fr1td")
+volume_db = -5.92
+pitch_scale = 0.89
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

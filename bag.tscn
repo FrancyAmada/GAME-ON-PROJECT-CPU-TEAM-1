@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkl340sb5p14f"]
+[gd_scene load_steps=6 format=3 uid="uid://bkl340sb5p14f"]
 
 [ext_resource type="Script" path="res://bag.gd" id="1_hr0c4"]
 [ext_resource type="Texture2D" uid="uid://cgxy01a0ckijx" path="res://game assets test/custom/bag.png" id="2_t8l48"]
+[ext_resource type="AudioStream" uid="uid://brghrlvyq7c4f" path="res://game assets test/audio/Coins Pick Up _ Drop.mp3" id="3_tpbkn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sxww6"]
 animations = [{
@@ -41,5 +42,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 87)
 shape = SubResource("RectangleShape2D_85ai3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_tpbkn")
+volume_db = -8.025
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

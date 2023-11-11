@@ -1,5 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://c6v46g012i0d3"]
 
+[ext_resource type="Script" path="res://maps/starting_map.gd" id="1_3stfo"]
+[ext_resource type="PackedScene" uid="uid://dyr74sfe4sw3q" path="res://audio/ambiance.tscn" id="1_5bot0"]
 [ext_resource type="PackedScene" uid="uid://bcwledypnfy41" path="res://buildings/ineractable/trees/black_tree2.tscn" id="1_o4qk0"]
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="2_a4bxm"]
 [ext_resource type="Texture2D" uid="uid://72cfdoqx0h0u" path="res://game assets test/Texture/TX Tileset Ground.png" id="2_coelw"]
@@ -30,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://bpkadorv6cbql" path="res://game assets test/particles/Fog_spritesheet.png" id="29_s70wa"]
 [ext_resource type="PackedScene" uid="uid://cluxufpss8t4q" path="res://animals/spawner/animal_spawner.tscn" id="29_vm2lk"]
 [ext_resource type="PackedScene" uid="uid://cvmv8iwtvljat" path="res://props/tiki_torch.tscn" id="30_vqjiy"]
+[ext_resource type="AudioStream" uid="uid://qrfxr2ctu73q" path="res://game assets test/audio/Field Night Cricket.mp3" id="33_8rkao"]
 [ext_resource type="Texture2D" uid="uid://bnf4kgnfxo2rm" path="res://game assets test/particles/leaves_spritesheet.png" id="31_4lfh2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc6vf"]
@@ -2767,6 +2770,9 @@ turbulence_noise_scale = 1.0
 anim_offset_max = 1.0
 
 [node name="starting_map" type="Node2D"]
+script = ExtResource("1_3stfo")
+
+[node name="ambiance" parent="." instance=ExtResource("1_5bot0")]
 
 [node name="forest 3" type="Node" parent="."]
 
@@ -4472,7 +4478,7 @@ process_callback = 0
 wait_time = 0.7
 autostart = true
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["ground"]]
 modulate = Color(0.818901, 0.872643, 0.686208, 1)
 tile_set = SubResource("TileSet_gqe6e")
 format = 2
@@ -4589,7 +4595,6 @@ position = Vector2(-6355, 321)
 [node name="campfire2" parent="Structures" instance=ExtResource("4_ccvat")]
 z_index = -1
 position = Vector2(-6142, 336)
-camp_id = 1
 
 [node name="townhall_level_5" parent="Structures" instance=ExtResource("22_bgmd7")]
 position = Vector2(-11023, 294)
@@ -4606,7 +4611,6 @@ position = Vector2(-11340, 294)
 [node name="campfire3" parent="Structures" instance=ExtResource("4_ccvat")]
 z_index = -10
 position = Vector2(-11117, 337)
-camp_id = 2
 
 [node name="townhall_level_8" parent="Structures" instance=ExtResource("22_bgmd7")]
 z_index = -10
@@ -4780,6 +4784,30 @@ amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
 
+[node name="Tiki_torch" parent="." instance=ExtResource("30_vqjiy")]
+position = Vector2(287, 323)
+
+[node name="Tiki_torch2" parent="." instance=ExtResource("30_vqjiy")]
+position = Vector2(-6567, 322)
+
+[node name="Tiki_torch3" parent="." instance=ExtResource("30_vqjiy")]
+position = Vector2(-6385, 323)
+
+[node name="Tiki_torch4" parent="." instance=ExtResource("30_vqjiy")]
+position = Vector2(-5861, 325)
+
+[node name="Tiki_torch5" parent="." instance=ExtResource("30_vqjiy")]
+position = Vector2(-11528, 322)
+
+[node name="Tiki_torch6" parent="." instance=ExtResource("30_vqjiy")]
+position = Vector2(-10704, 323)
+
+[node name="Tiki_torch7" parent="." instance=ExtResource("30_vqjiy")]
+position = Vector2(764, 322)
+
+[node name="night_ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_8rkao")
+volume_db = -10.295
 [node name="GPUParticles2D" type="GPUParticles2D" parent="particles/fog"]
 material = SubResource("CanvasItemMaterial_csrlq")
 position = Vector2(-1247, 295)

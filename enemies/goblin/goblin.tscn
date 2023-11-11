@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://djfo2ggqgpq5m"]
+[gd_scene load_steps=47 format=3 uid="uid://djfo2ggqgpq5m"]
 
 [ext_resource type="Script" path="res://enemies/goblin/goblin.gd" id="1_u0c15"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="2_vmbxs"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://components/character_states/EnemyAttackState.gd" id="12_8espu"]
 [ext_resource type="PackedScene" uid="uid://bo3jadkrsersr" path="res://components/character_components/enemy_detection_component.tscn" id="17_egjl2"]
 [ext_resource type="Script" path="res://enemies/goblin/Attack1.gd" id="19_fmpdm"]
+[ext_resource type="AudioStream" uid="uid://c4rpvcu7x0r2h" path="res://game assets test/audio/Monsters Awaken.mp3" id="19_y068w"]
 [ext_resource type="Script" path="res://enemies/goblin/Attack1Area.gd" id="20_33v7t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_313mf"]
@@ -374,6 +375,9 @@ size = Vector2(40, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hawr"]
 size = Vector2(32, 32)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_edqnx"]
+radius = 156.387
+
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "attack1_component") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 33
@@ -501,6 +505,15 @@ shape = SubResource("RectangleShape2D_5hawr")
 facing_left_position = Vector2(16, 0)
 facing_right_position = Vector2(-16, 0)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_y068w")
+volume_db = -13.117
+
+[node name="sound" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sound"]
+shape = SubResource("CircleShape2D_edqnx")
+
 [connection signal="on_death" from="HealthComponent" to="CharacterStateMachine" method="_on_health_component_on_death"]
 [connection signal="on_hit" from="HitBoxComponent" to="CharacterStateMachine/Hit" method="_on_hit_box_component_on_hit"]
 [connection signal="animation_finished" from="AnimationComponent/AnimationTree" to="AnimationComponent" method="_on_animation_tree_animation_finished"]
@@ -509,3 +522,4 @@ facing_right_position = Vector2(-16, 0)
 [connection signal="body_entered" from="Attack1/Attack1Area" to="Attack1" method="_on_attack_1_body_entered"]
 [connection signal="body_shape_entered" from="Attack1/Attack1Area" to="Attack1" method="_on_attack_1_area_body_shape_entered"]
 [connection signal="body_shape_entered" from="Attack1/EnemyDetector" to="Attack1/EnemyDetector" method="_on_body_shape_entered"]
+[connection signal="body_entered" from="sound" to="." method="_on_sound_body_entered"]

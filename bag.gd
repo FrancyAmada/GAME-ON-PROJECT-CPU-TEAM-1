@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 var CoinScene = preload("res://coin_stored.tscn")
+@onready var audio_stream_player = $AudioStreamPlayer
 
 func _ready():
 	Signals.connect("add_coin", _on_coin_collected)
@@ -16,6 +17,7 @@ func _process(delta):
 
 func _on_coin_collected():
 	call_deferred("_spawn_coin")
+	audio_stream_player.play()
 
 func _spawn_coin():
 	var new_coin = CoinScene.instantiate()

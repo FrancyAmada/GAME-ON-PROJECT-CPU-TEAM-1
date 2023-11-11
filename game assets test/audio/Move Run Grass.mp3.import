@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ruxwqex113xm"
+path="res://.godot/imported/Move Run Grass.mp3-6f5490e4455efc1cab2557dc2a76c8f5.mp3str"
+
+[deps]
+
+source_file="res://game assets test/audio/Move Run Grass.mp3"
+dest_files=["res://.godot/imported/Move Run Grass.mp3-6f5490e4455efc1cab2557dc2a76c8f5.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

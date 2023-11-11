@@ -5,6 +5,8 @@ class_name Goblin
 @export var hit_state: State
 @export var attack1_component: AttackComponent
 @export var death_anim_name: String = "Death"
+@onready var audio_stream_player = $AudioStreamPlayer
+
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
@@ -67,3 +69,7 @@ func set_target_enemy():
 func _on_animation_component_finished(anim_name: String):
 	if anim_name == death_anim_name:
 		queue_free()
+
+func _on_sound_body_entered(body):
+	if body.name == "Player":
+		audio_stream_player.play()

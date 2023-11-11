@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyr74sfe4sw3q"]
+
+[ext_resource type="AudioStream" uid="uid://c7fyv33owdudp" path="res://game assets test/audio/Forest Light Wind Birds Ambience.mp3" id="1_lmfoo"]
+
+[node name="ambiance" type="AudioStreamPlayer"]
+stream = ExtResource("1_lmfoo")
+volume_db = -9.37
+autoplay = true

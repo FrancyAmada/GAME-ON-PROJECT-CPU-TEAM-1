@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://t5tpsjhqx2e4"
+path="res://.godot/imported/Arrow Impact Fleshy Body.mp3-c2a3095c137384576e0744832a696932.mp3str"
+
+[deps]
+
+source_file="res://game assets test/audio/Arrow Impact Fleshy Body.mp3"
+dest_files=["res://.godot/imported/Arrow Impact Fleshy Body.mp3-c2a3095c137384576e0744832a696932.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

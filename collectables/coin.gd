@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @onready var coin = $"."
+@onready var audio_stream_player = $AudioStreamPlayer
 
 func _ready():
 	contact_monitor = true

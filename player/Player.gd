@@ -3,12 +3,15 @@ extends CharacterBody2D
 class_name Player
 
 @export var hit_state: HitState
+@onready var audio_stream_player = $AudioStreamPlayer
 
 @onready var state_machine: CharacterStateMachine = $CharacterStateMachine
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var max_speed = velocity_component.max_speed
 @onready var torch_light: PointLight2D = $Torchlight
+
+var current_camp_id: int = 0
 
 var interactable_object : interactable_object = null
 
@@ -51,6 +54,11 @@ func _physics_process(delta):
 		velocity.x = direction.x * max_speed
 	elif state_machine.current_state != hit_state:
 		velocity.x = move_toward(velocity.x, 0, max_speed)
+	
+	if direction.x == 0:
+		audio_stream_player.stop()
+	elif !audio_stream_player.is_playing():
+		audio_stream_player.play()
 		
 	move_and_slide()
 	animation_component.update_animation(direction)

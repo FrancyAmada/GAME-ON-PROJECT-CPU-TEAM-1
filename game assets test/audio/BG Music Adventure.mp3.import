@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cpqug5h4odcri"
+path="res://.godot/imported/BG Music Adventure.mp3-00a3682309c3a2d66201f9f7da261939.mp3str"
+
+[deps]
+
+source_file="res://game assets test/audio/BG Music Adventure.mp3"
+dest_files=["res://.godot/imported/BG Music Adventure.mp3-00a3682309c3a2d66201f9f7da261939.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

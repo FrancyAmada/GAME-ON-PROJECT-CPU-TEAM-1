@@ -1,10 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://2842j0kx3m1f"]
+[gd_scene load_steps=26 format=3 uid="uid://2842j0kx3m1f"]
 
 [ext_resource type="Script" path="res://buildings/ineractable/campfire.gd" id="1_pet5b"]
 [ext_resource type="Texture2D" uid="uid://ccqh84vxs68hr" path="res://game assets test/campfire/fire_fx_v1.0/fire_fx_v1.0/png/orange/loops/burning_loop_1.png" id="1_x843p"]
 [ext_resource type="Texture2D" uid="uid://fn87w6ft0alp" path="res://game assets test/custom/structures/town hall/Townhall 1.png" id="3_nejjc"]
 [ext_resource type="Texture2D" uid="uid://bessh5aahmo6w" path="res://textures/gradient_circle.jpg" id="4_l4m3s"]
 [ext_resource type="Texture2D" uid="uid://bng3m8lomclat" path="res://game assets test/particles/Fire_spritesheet.png" id="5_u6gjm"]
+[ext_resource type="AudioStream" uid="uid://nkshtfc4oiyr" path="res://game assets test/audio/Campfire.mp3" id="6_60o5k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oew4q"]
+radius = 359.001
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2jbg8"]
 radius = 13.0384
@@ -126,6 +130,12 @@ anim_offset_max = 1.0
 [node name="campfire" type="Area2D"]
 script = ExtResource("1_pet5b")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_oew4q")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_2jbg8")
@@ -155,3 +165,10 @@ position = Vector2(0, -11)
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_fcc5m")
 texture = ExtResource("5_u6gjm")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_60o5k")
+volume_db = -10.306
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

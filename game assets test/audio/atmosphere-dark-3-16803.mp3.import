@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cuenk304oa74t"
+path="res://.godot/imported/atmosphere-dark-3-16803.mp3-1ecb7a700ff9d83938baf2c5cc49b655.mp3str"
+
+[deps]
+
+source_file="res://game assets test/audio/atmosphere-dark-3-16803.mp3"
+dest_files=["res://.godot/imported/atmosphere-dark-3-16803.mp3-1ecb7a700ff9d83938baf2c5cc49b655.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
