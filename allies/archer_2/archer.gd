@@ -35,10 +35,9 @@ var target_animal: CharacterBody2D = null
 var target_animal_distance: int = 1000
 var animals_list: Array
 
-
 func _ready():
 	idle_timer.start()
-	hit.dropBow.connect(printMe)
+	hit.dropBow.connect(drop_bow)
 
 func _physics_process(delta):
 	on_idle()
@@ -75,15 +74,14 @@ func _physics_process(delta):
 func get_direction():
 	if enemy != null:
 		direction = (enemy.global_position - global_position).normalized()
-		if enemy_distance < 120 and not run_away:
+		if enemy_distance < 200 and not run_away:
 			set_shooting_angle()
 			emit_signal("use_attack", "Shoot")
 			run_away = true
-		elif (enemy_distance > 200 and run_away) or shoot_component.check_if_can_use():
+		elif (enemy_distance > 250 and run_away) or shoot_component.check_if_can_use():
 			run_away = false
 		elif run_away:
 			direction.x = -direction.x
-#	print_debug(enemy_distance)
 
 func on_idle():
 	if enemy != null:
@@ -91,13 +89,11 @@ func on_idle():
 	elif idle_timer.is_stopped():
 		idle = true
 		idle_timer.start()
-#	print_debug(idle, enemy)
 
 func _on_idle_timer_timeout():
 	var choice: int = rng.randi_range(-1, 1)
 	if idle:
 		new_direction = choice
-#		print_debug("Idle Direction : " + str(new_direction))
 	
 func set_target_enemy():
 	var enemy_data = enemydetection_component.get_enemy()
@@ -106,9 +102,13 @@ func set_target_enemy():
 	
 func set_shooting_angle():
 	var initial_velocity = 500
+	var height: float = 0.8
+	
+	if enemy.is_in_group("enemy"):
+		height = 1.0
 	
 	# Just for testing only
-	var range_multiplier = map_range(enemy_distance, 200, 0, 1.0, 0.5)
+	var range_multiplier = map_range(enemy_distance, 200, 0, height, 0.5)
 	
 	var angle = range_multiplier * asin((gravity * enemy_distance * direction.x) / (initial_velocity ** 2))
 	shooting_angle = rad2deg(angle)
@@ -121,7 +121,7 @@ func rad2deg(rad):
 func map_range(value: float, start1: float, stop1: float, start2: float, stop2: float):
 	return (value - start1) / (stop1 - start1) * (stop2 - start2) + start2
 
-func printMe():
+func drop_bow():
 	var new_bow = bow.instantiate()
 	add_child(new_bow)
 	var velocity_x = randi_range(-140, 140)

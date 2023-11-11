@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://drj0wuqxbx5u8"]
+
+[ext_resource type="Script" path="res://props/other_datu.gd" id="1_88xkm"]
+[ext_resource type="Texture2D" uid="uid://bu8d4cu72n1pt" path="res://game assets test/custom/entities/humans/jobless/jobless_idle.png" id="1_dj8le"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebxqd"]
+atlas = ExtResource("1_dj8le")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfp1t"]
+atlas = ExtResource("1_dj8le")
+region = Rect2(400, 0, 400, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4rrnn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebxqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfp1t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="other_datu" type="Node2D"]
+script = ExtResource("1_88xkm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.26, 0.26)
+sprite_frames = SubResource("SpriteFrames_4rrnn")
+frame = 1
+frame_progress = 0.612707

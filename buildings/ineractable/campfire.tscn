@@ -1,0 +1,90 @@
+[gd_scene load_steps=14 format=3 uid="uid://2842j0kx3m1f"]
+
+[ext_resource type="Script" path="res://buildings/ineractable/campfire.gd" id="1_pet5b"]
+[ext_resource type="Texture2D" uid="uid://ccqh84vxs68hr" path="res://game assets test/campfire/fire_fx_v1.0/fire_fx_v1.0/png/orange/loops/burning_loop_1.png" id="1_x843p"]
+[ext_resource type="Texture2D" uid="uid://fn87w6ft0alp" path="res://game assets test/custom/structures/town hall/Townhall 1.png" id="3_nejjc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jbg8"]
+radius = 13.0384
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fudvq"]
+atlas = ExtResource("1_x843p")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c8vh"]
+atlas = ExtResource("1_x843p")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yypbb"]
+atlas = ExtResource("1_x843p")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8ymb"]
+atlas = ExtResource("1_x843p")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2akwg"]
+atlas = ExtResource("1_x843p")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piecf"]
+atlas = ExtResource("1_x843p")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em8vd"]
+atlas = ExtResource("1_x843p")
+region = Rect2(144, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73m2l"]
+atlas = ExtResource("1_x843p")
+region = Rect2(168, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gu5vi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fudvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c8vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yypbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8ymb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2akwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piecf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em8vd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73m2l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="campfire" type="Area2D"]
+script = ExtResource("1_pet5b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_2jbg8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -21)
+scale = Vector2(1, 1.125)
+sprite_frames = SubResource("SpriteFrames_gu5vi")
+frame_progress = 0.188547
+
+[node name="Townhall1" type="Sprite2D" parent="."]
+position = Vector2(1, -13)
+scale = Vector2(0.143125, 0.13)
+texture = ExtResource("3_nejjc")

@@ -281,21 +281,21 @@ animation = &"Death"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4b7kk"]
 animation = &"Hit"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a1gar"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_obs4h"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_08uba"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rwusq"]
 animation = &"Walk"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f4ctf"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3m16s"]
 animation = &"Walk"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_m8qyx"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_a1gar")
+blend_point_0/node = SubResource("AnimationNodeAnimation_obs4h")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_08uba")
+blend_point_1/node = SubResource("AnimationNodeAnimation_rwusq")
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_f4ctf")
+blend_point_2/node = SubResource("AnimationNodeAnimation_3m16s")
 blend_point_2/pos = -1.0
 blend_mode = 1
 
@@ -347,7 +347,7 @@ shape = SubResource("CapsuleShape2D_1krw8")
 position = Vector2(1, 6.667)
 scale = Vector2(0.23, 0.23)
 texture = ExtResource("2_xeaxd")
-hframes = 5
+hframes = 2
 frame = 1
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("dead_state") instance=ExtResource("2_by07i")]
@@ -355,7 +355,6 @@ max_health = 20.0
 dead_state = NodePath("../CharacterStateMachine/Dead")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_q3pe8")]
-max_speed = 60.0
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("4_i2dwk")]
 collision_layer = 8
@@ -378,7 +377,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="AnimationComponent"]
 tree_root = SubResource("AnimationNodeStateMachine_m3lok")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Move/blend_position = 0.006006
+parameters/Move/blend_position = 0.00525916
 
 [node name="CharacterStateMachine" parent="." node_paths=PackedStringArray("character", "animation_component", "current_state") instance=ExtResource("6_7k3vs")]
 character = NodePath("..")

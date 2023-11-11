@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://4cloq3o0f7s4"]
+
+[ext_resource type="Texture2D" uid="uid://dxsqhui3vidwm" path="res://game assets test/custom/bush5.png" id="1_ouusm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_saysg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ouusm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="bush5" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_saysg")

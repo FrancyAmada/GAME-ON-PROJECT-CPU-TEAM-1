@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://ohxi5wchd7up"]
+
+[ext_resource type="Script" path="res://buildings/holy_shrine.gd" id="1_hd154"]
+[ext_resource type="Texture2D" uid="uid://bplcohdlv7red" path="res://game assets test/custom/structures/holyshrine/holyshrine1.png" id="2_ny3kh"]
+[ext_resource type="Texture2D" uid="uid://0kof21wadong" path="res://game assets test/custom/structures/holyshrine/holyshrine2.png" id="3_ubn0l"]
+[ext_resource type="Texture2D" uid="uid://c8rkfb45svi6k" path="res://game assets test/custom/structures/holyshrine/holyshrine3.png" id="4_tjyo5"]
+[ext_resource type="Texture2D" uid="uid://cp1yro7h5yhec" path="res://game assets test/custom/structures/holyshrine/holyshrine4.png" id="5_b6m8i"]
+[ext_resource type="Texture2D" uid="uid://cy10f4a1lbbk6" path="res://game assets test/custom/structures/holyshrine/holyshrine5.png" id="6_qgta0"]
+[ext_resource type="Texture2D" uid="uid://dqj8o4f4euiy1" path="res://game assets test/custom/structures/holyshrine/holyshrine6.png" id="7_c5exl"]
+[ext_resource type="Texture2D" uid="uid://bessh5aahmo6w" path="res://textures/gradient_circle.jpg" id="8_xyq50"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rk2pv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ny3kh")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ubn0l")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tjyo5")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b6m8i")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_qgta0")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_c5exl")
+}],
+"loop": true,
+"name": &"6",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nyjhx"]
+radius = 27.0185
+
+[node name="holy_shrine" type="Area2D" groups=["interactable"]]
+script = ExtResource("1_hd154")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, -26)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_rk2pv")
+animation = &"6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("CircleShape2D_nyjhx")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -15)
+scale = Vector2(0.4, 0.4)
+color = Color(0.894118, 0.788235, 0.560784, 1)
+energy = 1.5
+texture = ExtResource("8_xyq50")
