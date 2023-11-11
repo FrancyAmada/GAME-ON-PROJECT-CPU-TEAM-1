@@ -2,11 +2,15 @@ extends interactable_object
 
 class_name holy_shrine
 
+@export var shrine_id: int = 0
+
 var building_name = "Holy Shrine"
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var point_light : PointLight2D = $PointLight2D
+@onready var structure_node = get_parent()
 
 var level = 1
+
 
 func _ready():
 	set_process(true)
@@ -71,8 +75,16 @@ func upgrade():
 	coins_in = 0
 	point_light.set_texture_scale(level * 1.3)
 	if level == 6:
+		destroy_spawner()
 		close_coins_need()
 		remove_from_group("interactable")
+		
+func destroy_spawner():
+	for structure in structure_node.get_children():
+		if structure is EnemySpawner:
+			if structure.spawner_id == shrine_id:
+				structure.queue_free()
+				print_debug("SUCCESSFULLY DESTROYED SPAWNER : ", structure.spawner_id)
 
 func displayAnimation():
 	var animation_name = str(level)

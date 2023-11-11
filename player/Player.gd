@@ -9,6 +9,8 @@ class_name Player
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var max_speed = velocity_component.max_speed
 @onready var torch_light: PointLight2D = $Torchlight
+@onready var walk_grass_sound = $WalkGrass
+@onready var village_night_sound = $VillageNight
 
 var interactable_object : interactable_object = null
 
@@ -49,13 +51,16 @@ func _physics_process(delta):
 	direction = Input.get_vector("left", "right", "up", "down")
 	if direction.x and state_machine.check_if_can_move():
 		velocity.x = direction.x * max_speed
+		if not walk_grass_sound.playing:
+			walk_grass_sound.play()
 	elif state_machine.current_state != hit_state:
 		velocity.x = move_toward(velocity.x, 0, max_speed)
+		walk_grass_sound.stop()
 		
 	move_and_slide()
 	animation_component.update_animation(direction)
 	animation_component.update_facing_direction(direction)
-
+	
 func _on_area_2d_area_entered(object):
 	if object.is_in_group("interactable"):
 		if interactable_object:
@@ -81,3 +86,12 @@ func get_light_for_night():
 			torch_light.energy = 2.5
 		else:
 			torch_light.energy = 0
+
+
+func _on_townhall_level_2_body_entered(body):
+	if not village_night_sound.playing:
+		village_night_sound.play()
+
+
+func _on_townhall_level_2_body_exited(body):
+	village_night_sound.stop()

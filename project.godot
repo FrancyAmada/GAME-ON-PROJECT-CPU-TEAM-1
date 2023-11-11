@@ -21,6 +21,7 @@ Game="*res://global/game.gd"
 Utils="*res://global/utils.gd"
 Signals="*res://global/signals.gd"
 DayNight="*res://global/day_night.gd"
+World="*res://World.tscn"
 
 [display]
 
@@ -68,3 +69,4 @@ attack1={
 2d_physics/layer_6="Walls"
 2d_physics/layer_7="Animals"
 2d_physics/layer_8="Tools"
+2d_physics/layer_9="Objects"

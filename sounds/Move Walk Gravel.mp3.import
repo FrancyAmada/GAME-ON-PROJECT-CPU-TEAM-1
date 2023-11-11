@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cje2f0luvko54"
+path="res://.godot/imported/Move Walk Gravel.mp3-0d0fd135f97ac4af2f2dbe9708c1933e.mp3str"
+
+[deps]
+
+source_file="res://sounds/Move Walk Gravel.mp3"
+dest_files=["res://.godot/imported/Move Walk Gravel.mp3-0d0fd135f97ac4af2f2dbe9708c1933e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

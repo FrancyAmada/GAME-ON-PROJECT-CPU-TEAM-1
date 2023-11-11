@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ohij7grph7uc"]
+[gd_scene load_steps=6 format=3 uid="uid://ohij7grph7uc"]
 
 [ext_resource type="Script" path="res://enemies/goblin_spawner.gd" id="1_xte51"]
 [ext_resource type="PackedScene" uid="uid://djfo2ggqgpq5m" path="res://enemies/goblin/goblin.tscn" id="2_aevsr"]
@@ -7,9 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoj15"]
 size = Vector2(20, 55)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61l2f"]
+size = Vector2(67, 20)
+
 [node name="GoblinSpawner" type="Node2D"]
 script = ExtResource("1_xte51")
 goblin = ExtResource("2_aevsr")
+initial_spawn_interval = 3.0
 
 [node name="EnemyTimer" type="Timer" parent="."]
 process_callback = 0
@@ -29,4 +33,12 @@ light_mask = 127
 position = Vector2(-41, -10)
 shape = SubResource("RectangleShape2D_hoj15")
 
+[node name="RemoveArea" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RemoveArea"]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_61l2f")
+
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
+[connection signal="body_entered" from="RemoveArea" to="." method="_on_remove_area_body_entered"]
