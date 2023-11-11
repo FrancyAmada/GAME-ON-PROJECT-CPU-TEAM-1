@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cwcv46yf5cn43"
+path="res://.godot/imported/Village Afternoon Windy.mp3-0bb4cd6367786ac2554fbaabfc0129b5.mp3str"
+
+[deps]
+
+source_file="res://sounds/Village Afternoon Windy.mp3"
+dest_files=["res://.godot/imported/Village Afternoon Windy.mp3-0bb4cd6367786ac2554fbaabfc0129b5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://b0lrnpdo2jceo" path="res://props/tree.tscn" id="12_lkdhx"]
 [ext_resource type="PackedScene" uid="uid://y66u0xbne8om" path="res://collectables/bow.tscn" id="22_e82pd"]
 [ext_resource type="PackedScene" uid="uid://ohxi5wchd7up" path="res://buildings/holy_shrine.tscn" id="23_vcxp1"]
+[ext_resource type="AudioStream" uid="uid://08ev71ljw0qd" path="res://sounds/BG Music Calm Credit_Sancho & Morin.mp3" id="24_wsorh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ed260"]
 shader = ExtResource("1_pfbsb")
@@ -2204,6 +2205,11 @@ position = Vector2(831, 319)
 
 [node name="holy_shrine" parent="." instance=ExtResource("23_vcxp1")]
 position = Vector2(569, 338)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_wsorh")
+volume_db = 1.0
+autoplay = true
 
 [connection signal="timeout" from="DayNight" to="BG Forest" method="_on_day_night_timeout"]
 [connection signal="timeout" from="DayNight" to="DayNightLight" method="_on_day_night_timeout"]
