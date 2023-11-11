@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://djfo2ggqgpq5m"]
+[gd_scene load_steps=45 format=3 uid="uid://djfo2ggqgpq5m"]
 
 [ext_resource type="Script" path="res://enemies/goblin/goblin.gd" id="1_u0c15"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="2_vmbxs"]
@@ -15,11 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://bsrnejlsx5kut" path="res://components/character_components/attack_detection_component.tscn" id="10_snb4g"]
 [ext_resource type="PackedScene" uid="uid://d1ryhs5mbdtww" path="res://components/character_states/enemy_dead_state.tscn" id="11_1k0bx"]
 [ext_resource type="Script" path="res://components/character_states/EnemyAttackState.gd" id="12_8espu"]
-[ext_resource type="AudioStream" uid="uid://c84w4qsvv6v1q" path="res://sounds/audiomass-output.mp3" id="14_124hb"]
-[ext_resource type="PackedScene" path="res://components/character_components/enemy_detection_component.tscn" id="17_egjl2"]
+[ext_resource type="PackedScene" uid="uid://bo3jadkrsersr" path="res://components/character_components/enemy_detection_component.tscn" id="17_egjl2"]
 [ext_resource type="Script" path="res://enemies/goblin/Attack1.gd" id="19_fmpdm"]
 [ext_resource type="Script" path="res://enemies/goblin/Attack1Area.gd" id="20_33v7t"]
-[ext_resource type="Script" path="res://enemies/goblin/EnemyProximity.gd" id="20_qwer2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_313mf"]
 radius = 7.0
@@ -376,9 +374,6 @@ size = Vector2(40, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hawr"]
 size = Vector2(32, 32)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7kxtc"]
-radius = 43.2897
-
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "attack1_component") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 33
@@ -463,10 +458,6 @@ can_move = false
 visible = false
 detection_area = NodePath("EnemyDetection")
 
-[node name="EnemySound" type="AudioStreamPlayer2D" parent="EnemyDetectionComponent"]
-stream = ExtResource("14_124hb")
-volume_db = 15.0
-
 [node name="EnemyDetection" type="Area2D" parent="EnemyDetectionComponent"]
 collision_layer = 0
 collision_mask = 10
@@ -509,14 +500,6 @@ position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_5hawr")
 facing_left_position = Vector2(16, 0)
 facing_right_position = Vector2(-16, 0)
-
-[node name="EnemyProximity" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 10
-script = ExtResource("20_qwer2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyProximity"]
-shape = SubResource("CircleShape2D_7kxtc")
 
 [connection signal="on_death" from="HealthComponent" to="CharacterStateMachine" method="_on_health_component_on_death"]
 [connection signal="on_hit" from="HitBoxComponent" to="CharacterStateMachine/Hit" method="_on_hit_box_component_on_hit"]

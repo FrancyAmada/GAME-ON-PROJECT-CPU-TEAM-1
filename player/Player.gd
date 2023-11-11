@@ -9,8 +9,6 @@ class_name Player
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var max_speed = velocity_component.max_speed
 @onready var torch_light: PointLight2D = $Torchlight
-@onready var walk_grass_sound = $WalkGrass
-@onready var village_sound = $VillageSound
 
 var interactable_object : interactable_object = null
 
@@ -83,12 +81,3 @@ func get_light_for_night():
 			torch_light.energy = 0.8
 		else:
 			torch_light.energy = 0
-
-
-func _on_townhall_level_2_body_entered(body):
-	if not village_sound.playing:
-		village_sound.play()
-
-
-func _on_townhall_level_2_body_exited(body):
-	village_sound.stop()

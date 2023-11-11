@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://d3ipjerk8uya8"]
+[gd_scene load_steps=42 format=3 uid="uid://d3ipjerk8uya8"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_bktfi"]
 [ext_resource type="PackedScene" uid="uid://cf5p4jifvkr5q" path="res://components/character_components/health_component.tscn" id="3_duv6c"]
@@ -19,7 +19,6 @@
 [ext_resource type="Script" path="res://player/MeleeArea.gd" id="19_b2esm"]
 [ext_resource type="Script" path="res://gold.gd" id="21_ciwsi"]
 [ext_resource type="PackedScene" uid="uid://bkl340sb5p14f" path="res://bag.tscn" id="22_agr8t"]
-[ext_resource type="AudioStream" uid="uid://c84w4qsvv6v1q" path="res://sounds/audiomass-output.mp3" id="22_todp2"]
 
 [sub_resource type="Gradient" id="Gradient_64cmo"]
 offsets = PackedFloat32Array(0, 0.107143, 0.670968)
@@ -353,18 +352,6 @@ script = ExtResource("21_ciwsi")
 
 [node name="bag" parent="UI" instance=ExtResource("22_agr8t")]
 position = Vector2(1082, 514)
-
-[node name="VillageSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("20_72l2y")
-volume_db = 10.0
-
-[node name="WalkGrass" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("20_on1d2")
-volume_db = 10.0
-
-[node name="EnemySound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("22_todp2")
-volume_db = 15.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
