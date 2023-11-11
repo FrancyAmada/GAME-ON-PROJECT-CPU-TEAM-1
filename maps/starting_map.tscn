@@ -4373,6 +4373,29 @@ position = Vector2(-9463, 312)
 [node name="bush33" parent="bushes" instance=ExtResource("27_5hwv0")]
 position = Vector2(-9257, 313)
 
+[node name="torches" type="Node" parent="."]
+
+[node name="Tiki_torch" parent="torches" instance=ExtResource("30_vqjiy")]
+position = Vector2(287, 323)
+
+[node name="Tiki_torch2" parent="torches" instance=ExtResource("30_vqjiy")]
+position = Vector2(-6567, 322)
+
+[node name="Tiki_torch3" parent="torches" instance=ExtResource("30_vqjiy")]
+position = Vector2(-6385, 323)
+
+[node name="Tiki_torch4" parent="torches" instance=ExtResource("30_vqjiy")]
+position = Vector2(-5861, 325)
+
+[node name="Tiki_torch5" parent="torches" instance=ExtResource("30_vqjiy")]
+position = Vector2(-11528, 322)
+
+[node name="Tiki_torch6" parent="torches" instance=ExtResource("30_vqjiy")]
+position = Vector2(-10704, 323)
+
+[node name="Tiki_torch7" parent="torches" instance=ExtResource("30_vqjiy")]
+position = Vector2(764, 322)
+
 [node name="Player" parent="." instance=ExtResource("2_a4bxm")]
 z_index = 1
 position = Vector2(-852, 318)
@@ -4383,7 +4406,7 @@ script = ExtResource("8_88g3q")
 
 [node name="Timer" type="Timer" parent="coinSpawner"]
 process_callback = 0
-wait_time = 2.0
+wait_time = 0.5
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -4480,6 +4503,7 @@ position = Vector2(-6355, 321)
 
 [node name="campfire2" parent="Structures" instance=ExtResource("4_ccvat")]
 position = Vector2(-6142, 336)
+camp_id = 1
 
 [node name="townhall_level_5" parent="Structures" instance=ExtResource("22_bgmd7")]
 position = Vector2(-11023, 294)
@@ -4493,6 +4517,7 @@ position = Vector2(-11340, 294)
 
 [node name="campfire3" parent="Structures" instance=ExtResource("4_ccvat")]
 position = Vector2(-11117, 337)
+camp_id = 2
 
 [node name="townhall_level_8" parent="Structures" instance=ExtResource("22_bgmd7")]
 position = Vector2(-10898, 295)
@@ -4514,14 +4539,17 @@ position = Vector2(-11570, 336)
 [node name="GoblinSpawner" parent="non-base structures" instance=ExtResource("26_poinv")]
 z_index = 2
 position = Vector2(-3472, 316)
+initial_spawn_interval = 1.0
 
 [node name="GoblinSpawner2" parent="non-base structures" instance=ExtResource("26_poinv")]
 position = Vector2(-8417, 319)
 spawner_id = 1
+initial_spawn_interval = 60.0
 
 [node name="GoblinSpawner3" parent="non-base structures" instance=ExtResource("26_poinv")]
 position = Vector2(-14638, 317)
 spawner_id = 2
+initial_spawn_interval = 100.0
 
 [node name="holy_shrine" parent="non-base structures" instance=ExtResource("26_2mafu")]
 position = Vector2(-1579, 336)
@@ -4702,27 +4730,6 @@ position = Vector2(-9251, 290)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_dg3h4")
 texture = ExtResource("29_s70wa")
-
-[node name="Tiki_torch" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(287, 323)
-
-[node name="Tiki_torch2" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-6567, 322)
-
-[node name="Tiki_torch3" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-6385, 323)
-
-[node name="Tiki_torch4" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-5861, 325)
-
-[node name="Tiki_torch5" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-11528, 322)
-
-[node name="Tiki_torch6" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(-10704, 323)
-
-[node name="Tiki_torch7" parent="." instance=ExtResource("30_vqjiy")]
-position = Vector2(764, 322)
 
 [connection signal="timeout" from="coinSpawner/Timer" to="coinSpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="DayNightLight/DayNight" to="bg_main" method="_on_day_night_timeout"]

@@ -31,4 +31,6 @@ func change_time():
 		DayNight.transitioning_phase = false
 		DayNight.is_day = not DayNight.is_day
 		count = 0
-		DayNight.day_count += 1
+		if DayNight.is_day:
+			DayNight.day_count += 1
+			print_debug("Day: ", DayNight.day_count)

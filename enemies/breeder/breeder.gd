@@ -31,6 +31,8 @@ func _ready():
 	breed_timer.connect("timeout", _on_breed_timer_timeout)
 
 func _physics_process(delta):
+	set_target_enemy()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta

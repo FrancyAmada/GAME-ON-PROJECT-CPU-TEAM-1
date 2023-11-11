@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var camp_id: int = 0
+
 var homeless_role = preload("res://allies/homeless/homeless.tscn")
 var jobless_role = preload("res://allies/jobless/jobless.tscn")
 var archer_role = preload("res://allies/archer_2/archer.tscn")
@@ -9,6 +11,7 @@ var builder_role = preload("res://allies/builder_2/builder.tscn")
 var position_at : Vector2
 
 func _ready():
+	homeless.camp_id = camp_id
 	homeless.connect("to_jobless", change_to_jobless)
 
 func _physics_process(delta):
