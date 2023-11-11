@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c6v46g012i0d3"]
+[gd_scene load_steps=30 format=3 uid="uid://c6v46g012i0d3"]
 
 [ext_resource type="PackedScene" uid="uid://bcwledypnfy41" path="res://buildings/ineractable/trees/black_tree2.tscn" id="1_o4qk0"]
 [ext_resource type="PackedScene" uid="uid://d3ipjerk8uya8" path="res://player/Player.tscn" id="2_a4bxm"]
@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://b3dn6npd4hs8a" path="res://day_night_light.tscn" id="24_8qqes"]
 [ext_resource type="PackedScene" uid="uid://ohxi5wchd7up" path="res://buildings/holy_shrine.tscn" id="26_2mafu"]
 [ext_resource type="PackedScene" uid="uid://ohij7grph7uc" path="res://enemies/goblin_spawner.tscn" id="26_poinv"]
-[ext_resource type="PackedScene" uid="uid://djfo2ggqgpq5m" path="res://enemies/goblin/goblin.tscn" id="27_glsl8"]
 [ext_resource type="PackedScene" uid="uid://ba84lifj0uers" path="res://buildings/wall.tscn" id="27_iymf4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc6vf"]
@@ -3213,7 +3212,6 @@ shape = SubResource("RectangleShape2D_gpojj")
 [node name="GoblinSpawner" parent="." instance=ExtResource("26_poinv")]
 z_index = 2
 position = Vector2(-1612, 318)
-goblin = ExtResource("27_glsl8")
 spawn_interval = 3.0
 
 [node name="tree2" parent="." instance=ExtResource("10_t0wux")]
