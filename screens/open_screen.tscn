@@ -19,6 +19,7 @@ scale = Vector2(1.0775, 1.1025)
 texture = ExtResource("2_t468r")
 
 [node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_left = 405.0
 offset_top = 197.0
 offset_right = 754.0
